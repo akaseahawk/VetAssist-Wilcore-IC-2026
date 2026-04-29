@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VetAssist — Benefits & Forms Assistant</title>
+  <link rel="stylesheet" href="../static/vendor/va-web-components/component-library.css" />
+  <link rel="stylesheet" href="../static/css/vetassist.css" />
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header>
+  <div>
+    <h1>VetAssist</h1>
+    <div class="tagline">VA Benefits &amp; Forms Assistant — Wilcore Innovation Challenge</div>
+  </div>
+  <div class="wilcore-badge">Powered by Wilcore<br>Service-Disabled Veteran-Owned</div>
+</header>
+
+<!-- =========================================================
+     FLOW STEP INDICATOR
+     Uses the VA Design System segmented progress bar web component.
+========================================================= -->
+<section class="flow-progress">
+  <va-segmented-progress-bar
+    id="flow-progress-bar"
+    current="1"
+    total="5"
+    counters="small"
+    header-level="2"
+    labels="Select profile;Review benefits;Choose and review form;Review and complete;Any remaining gaps">
+  </va-segmented-progress-bar>
+</section>
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+<main class="container" id="main-content">
+
+  <section class="journey-overview" aria-labelledby="journey-overview-title">
+    <h2 id="journey-overview-title">How VetAssist helps you prepare</h2>
+    <va-process-list class="journey-process">
+      <va-process-list-item header="Share what you know" level="3">
+        <p>Choose a demo profile, enter your own information, or scan a document to start with the facts you have.</p>
+      </va-process-list-item>
+      <va-process-list-item header="Review possible benefits and forms" level="3">
+        <p>See benefits worth discussing with a VSO, then choose the VA form connected to that benefit.</p>
+      </va-process-list-item>
+      <va-process-list-item header="Confirm and prepare" level="3">
+        <p>Review known information, fill any needed fields, and download a preparation package for your VSO appointment.</p>
+      </va-process-list-item>
+    </va-process-list>
+  </section>
+
+  <!-- STEP 1: Select Veteran Profile -->
+  <div class="card" id="card-select">
+    <h2><span class="step-num">1</span> Select Your Profile</h2>
+
+    <!--
+      Two options: pick a demo profile OR enter your own information.
+      WHY: This tool is for real veterans. Demo profiles exist for testing
+      and demonstration, but a real veteran needs to be able to enter their
+      own data without being forced to pick from a fake name.
+    -->
+    <div class="profile-mode-row">
+      <button type="button" class="btn btn-secondary profile-mode-btn active" id="btn-mode-demo"
+        aria-pressed="true"
+        onclick="setProfileMode('demo')">
+        Use a demo profile
+      </button>
+      <button type="button" class="btn btn-secondary profile-mode-btn" id="btn-mode-own"
+        aria-pressed="false"
+        onclick="setProfileMode('own')">
+        Enter my own information
+      </button>
+      <button type="button" class="btn btn-secondary profile-mode-btn" id="btn-mode-scan"
+        aria-pressed="false"
+        onclick="setProfileMode('scan')">
+        Scan a document
+      </button>
+    </div>
+
+    <!-- DEMO MODE: select from synthetic profiles -->
+    <div id="profile-demo-section">
+      <div class="demo-profile-control">
+        <div class="form-field demo-profile-field">
+          <label class="demo-profile-label" for="veteran-select">Demo profile</label>
+          <select id="veteran-select" class="profile-select">
+            <option value="">— choose a profile —</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-load-demo" onclick="loadVeteran()">Load profile</button>
+      </div>
+      <p class="note">
+        These are synthetic profiles for demonstration only. No real veteran data is stored or transmitted.
+      </p>
+    </div>
+
+    <!-- OWN INFO MODE: manual entry form -->
+    <div id="profile-own-section" class="hidden">
+      <p class="note note-spaced-lg">
+        Fill in what you know. You can leave anything blank — VetAssist will ask about it later.
+        Nothing you enter is stored or transmitted anywhere outside this browser session.
+      </p>
+      <div class="own-profile-grid">
+        <div class="own-field"><label for="own-name-first">First Name *</label><input type="text" id="own-name-first" placeholder="First name" /></div>
+        <div class="own-field"><label for="own-name-last">Last Name *</label><input type="text" id="own-name-last" placeholder="Last name" /></div>
+        <div class="own-field"><label for="own-dob">Date of Birth</label><input type="date" id="own-dob" /></div>
+        <div class="own-field">
+          <label for="own-branch">Branch of Service *</label>
+          <select id="own-branch">
+            <option value="">— select —</option>
+            <option>Army</option><option>Navy</option><option>Marine Corps</option>
+            <option>Air Force</option><option>Space Force</option><option>Coast Guard</option>
+          </select>
+        </div>
+        <div class="own-field"><label for="own-service-start">Service Start Date</label><input type="date" id="own-service-start" /></div>
+        <div class="own-field"><label for="own-service-end">Service End Date</label><input type="date" id="own-service-end" /></div>
+        <div class="own-field">
+          <label for="own-discharge">Type of Discharge</label>
+          <select id="own-discharge">
+            <option value="">— select —</option>
+            <option>Honorable</option><option>General</option>
+            <option>Other Than Honorable</option><option>Bad Conduct</option><option>Dishonorable</option>
+          </select>
+        </div>
+        <div class="own-field">
+          <label for="own-combat">Combat Deployment?</label>
+          <select id="own-combat">
+            <option value="">— select —</option>
+            <option value="true">Yes</option><option value="false">No</option>
+          </select>
+        </div>
+        <div class="own-field"><label for="own-deployments">Deployment Locations (if any)</label><input type="text" id="own-deployments" placeholder="e.g. Iraq, Afghanistan" /></div>
+        <div class="own-field">
+          <label for="own-scd">Service-Connected Disability?</label>
+          <select id="own-scd">
+            <option value="">— select —</option>
+            <option value="true">Yes</option><option value="false">No</option>
+          </select>
+        </div>
+        <div class="own-field"><label for="own-rating">Disability Rating % (if any)</label><input type="number" id="own-rating" min="0" max="100" placeholder="e.g. 30" /></div>
+        <div class="own-field"><label for="own-conditions">Disability Conditions (if any)</label><input type="text" id="own-conditions" placeholder="e.g. PTSD, hearing loss" /></div>
+        <div class="own-field">
+          <label for="own-va-hc">Enrolled in VA Health Care?</label>
+          <select id="own-va-hc">
+            <option value="">— select —</option>
+            <option value="true">Yes</option><option value="false">No</option>
+          </select>
+        </div>
+        <div class="own-field">
+          <label for="own-comp">Currently Receiving Disability Comp?</label>
+          <select id="own-comp">
+            <option value="">— select —</option>
+            <option value="true">Yes</option><option value="false">No</option>
+          </select>
+        </div>
+        <div class="own-field"><label for="own-income">Annual Income (approximate)</label><input type="number" id="own-income" placeholder="e.g. 42000" /></div>
+        <div class="own-field"><label for="own-dependents">Number of Dependents</label><input type="number" id="own-dependents" min="0" placeholder="e.g. 2" /></div>
+        <div class="own-field"><label for="own-addr-street">Street Address</label><input type="text" id="own-addr-street" placeholder="123 Main St" /></div>
+        <div class="own-field"><label for="own-addr-city">City</label><input type="text" id="own-addr-city" /></div>
+        <div class="own-field"><label for="own-addr-state">State</label><input type="text" id="own-addr-state" maxlength="2" placeholder="e.g. CA" /></div>
+        <div class="own-field"><label for="own-addr-zip">ZIP Code</label><input type="text" id="own-addr-zip" /></div>
+        <div class="own-field"><label for="own-phone">Phone Number</label><input type="text" id="own-phone" placeholder="555-000-0000" /></div>
+        <div class="own-field"><label for="own-email">Email Address</label><input type="email" id="own-email" placeholder="your@email.com" /></div>
+      </div>
+      <p class="required-note">* Required to find relevant benefits</p>
+      <button type="button" class="btn btn-primary mt-1" onclick="loadOwnProfile()">
+        Continue with my information
+      </button>
+      <div id="own-error" class="inline-error"></div>
+    </div>
+
+    <!--
+      SCAN MODE: veteran photographs a DD-214, military ID, or VA letter.
+      Claude extracts whatever fields it can find, then pre-populates the
+      own-info form below for the veteran to review and confirm.
+
+      WHY scan THEN show the form (not scan THEN go straight to eligibility):
+        We never auto-fill without the veteran seeing and confirming the values.
+        The extracted fields populate the own-info form inputs, the veteran
+        reviews them, edits anything wrong, then clicks Continue.
+        This is the same verify-before-proceed principle used everywhere in VetAssist.
+
+      WHY we ask the veteran to choose document type first:
+        Telling Claude what kind of document it's looking at dramatically improves
+        extraction accuracy vs. open-ended "what is this?"
+    -->
+    <div id="profile-scan-section" class="hidden">
+      <p class="note note-spaced-md">
+        Take a clear photo of a military document and we'll fill in what we can.
+        You'll review and confirm every field before anything is used.
+        Nothing is stored outside this session.
+      </p>
+
+      <!-- Step A: choose document type -->
+      <div class="scan-control-group">
+        <label class="scan-control-label" for="scan-doc-type">
+          What document are you photographing?
+        </label>
+        <select id="scan-doc-type" class="scan-doc-select">
+          <option value="DD-214">DD-214 (Discharge Papers) — Best option, most complete</option>
+          <option value="MILITARY_ID">Military ID / CAC Card</option>
+          <option value="VA_LETTER">VA Award Letter or Rating Decision</option>
+          <option value="GENERIC">Other military or VA document</option>
+        </select>
+        <p id="scan-doc-hint" class="scan-doc-hint"></p>
+      </div>
+
+      <!-- Step B: camera/file input -->
+      <div class="scan-control-group">
+        <span class="scan-control-label">Add your document image:</span>
+        <div class="scan-image-actions">
+          <button type="button" class="btn btn-secondary" id="btn-scan-camera" onclick="openScanCamera()">
+            Take photo
+          </button>
+          <label class="btn btn-secondary scan-file-label" for="scan-file-input">
+            Choose image file
+          </label>
+        </div>
+        <input
+          type="file"
+          id="scan-file-input"
+          accept="image/*"
+          class="scan-file-input"
+          onchange="previewScanImage(this)"
+        />
+        <input
+          type="file"
+          id="scan-camera-input"
+          accept="image/*"
+          capture="environment"
+          class="scan-file-input"
+          onchange="previewScanCameraImage(this)"
+        />
+        <div id="scan-camera-panel" class="scan-camera-panel">
+          <video id="scan-camera-video" class="scan-camera-video" autoplay playsinline muted></video>
+          <canvas id="scan-camera-canvas" class="scan-camera-canvas"></canvas>
+          <div class="scan-camera-actions">
+            <button type="button" class="btn btn-primary" onclick="captureScanPhoto()">
+              Capture photo
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="closeScanCamera()">
+              Cancel
+            </button>
+          </div>
+        </div>
+        <div id="scan-preview" class="scan-preview">
+          <img id="scan-preview-img"
+            class="scan-preview-img"
+            alt="Document preview" />
+        </div>
+      </div>
+
+      <!-- Step C: submit -->
+      <button type="button" class="btn btn-primary full-width" onclick="scanDocument()" id="btn-scan-submit">
+        Extract fields from photo
+      </button>
+
+      <!-- Scanning indicator -->
+      <div id="scan-loading" class="loading-status scan-loading">
+        <span class="spinner"></span> Reading your document… this takes a few seconds.
+      </div>
+
+      <!-- Result note -->
+      <div id="scan-result-note" class="scan-result-note">
+      </div>
+
+      <!-- Error -->
+      <div id="scan-error" class="inline-error"></div>
+
+      <!--
+        After scanning, we switch to the own-profile form with fields pre-populated.
+        This button only appears after a successful scan.
+      -->
+      <div id="scan-to-form-prompt" class="scan-to-form-prompt">
+        <p class="scan-review-copy">
+          The fields below have been filled in from your document.
+          <strong>Please review every value</strong> — correct anything that looks wrong —
+          then click Continue.
+        </p>
+        <button type="button" class="btn btn-secondary full-width" onclick="setProfileMode('own', true)">
+          Review and edit extracted fields
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading indicator shown while eligibility is running -->
+    <div id="profile-loading" class="loading-status">
+      <span class="spinner"></span> Loading your profile and checking benefits...
+    </div>
+
+    <!-- Profile summary, shown after loading -->
+    <div id="profile-summary" class="hidden profile-summary">
+      <hr class="section-divider">
+      <div id="profile-greeting" class="profile-greeting"></div>
+      <div class="profile-grid" id="profile-grid"></div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Benefits Worth Exploring -->
+  <div class="card hidden" id="card-benefits">
+    <h2><span class="step-num">2</span> Benefits Worth Exploring</h2>
+
+    <!-- Disclaimer — VA alert web component, announced when benefits are shown -->
+    <va-alert
+      id="benefit-disclaimer"
+      status="info"
+      role="status"
+      aria-labelledby="benefit-disclaimer-title"
+      aria-describedby="benefit-disclaimer-copy benefit-disclaimer-detail mode-badge"
+      hidden
+    >
+      <h3 id="benefit-disclaimer-title" slot="headline" tabindex="-1">Before you read these</h3>
+      <p id="benefit-disclaimer-copy">
+        Based on your profile, these are benefits worth asking your VSO about.
+        This is not an eligibility determination. VetAssist does not decide your eligibility;
+        your VSO and the VA do that.
+      </p>
+      <p id="benefit-disclaimer-detail">
+        Think of this as preparation for that conversation.
+      </p>
+      <p id="mode-badge" class="mode-badge"></p>
+    </va-alert>
+
+    <div id="benefit-spinner" class="loading-status-compact">
+      <span class="spinner"></span> Reviewing your profile and finding benefits...
+    </div>
+    <ul class="benefit-grid" id="benefit-grid"></ul>
+  </div>
+
+  <!-- STEP 3: Choose a Form -->
+  <div class="card hidden" id="card-forms">
+    <h2><span class="step-num">3</span> Choose a Form to Work On</h2>
+    <p class="section-note">
+      Select a form below. We’ll show everything we already know and everything
+      still needed — all at once. Review, correct anything wrong, fill in the gaps, then confirm.
+    </p>
+    <!-- WHY forms-loading: the /api/forms call runs after benefits render and can
+         take 1-3 seconds. Without this spinner the card appears blank, which looks
+         broken. We show it immediately when the card becomes visible, then hide it
+         once renderFormTabs() has populated form-groups. -->
+    <div id="forms-loading" class="loading-status-compact">
+      <span class="spinner"></span> Matching forms to your benefits&hellip;
+    </div>
+    <!-- Form groups rendered here: one group per benefit, tabs inside each group -->
+    <div id="form-groups"></div>
+
+    <!-- Selected form detail: two sections + single confirm button -->
+    <div id="form-detail" class="hidden">
+      <div id="form-header" class="form-header"></div>
+      <div class="progress-label" id="progress-label"></div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+      <!--
+        Section A: Fields we already have from the veteran’s profile or uploaded document.
+        Shown pre-populated. Veteran can edit any value before confirming.
+        WHY editable: we never assume our data is correct. Address changes, typos,
+        profile mismatches — the veteran is the source of truth.
+      -->
+      <h3 class="field-section-header known hidden" id="section-known-header">
+        Known information — correct anything that looks wrong
+      </h3>
+      <div id="fields-known"></div>
+
+      <!--
+        Section B: Fields still missing. Shown as empty inputs.
+        Where we know which documents may have answers, we show a short
+        paragraph under the header. Veteran can also type directly.
+      -->
+      <h3 class="field-section-header needed hidden" id="section-needed-header">
+        Information needed — fill in or upload a document photo
+      </h3>
+      <div id="document-suggestions"></div>
+      <div id="fields-needed"></div>
+
+      <!-- Form actions: save a draft without validation, or submit with validation. -->
+      <div class="confirm-row">
+        <div class="form-action-row">
+          <button type="button" class="btn btn-secondary form-action-button" onclick="saveFormForLater()">
+            Save and continue later
+          </button>
+          <button type="button" class="btn btn-primary form-action-button submit-button" onclick="confirmFields()">
+            Submit
+          </button>
+        </div>
+        <div id="confirm-save-status" role="status" aria-live="polite">
+          Your draft has been saved in this browser. Return to this profile and form to continue.
+        </div>
+        <div id="confirm-error">Please fill in the fields highlighted above before continuing.</div>
+      </div>
+
+      <!--
+        Download button — shown after confirming fields.
+        WHY here too (not just chat): the veteran may want to download
+        as soon as they've confirmed fields, before going through chat.
+        We show it hidden and reveal it after confirmFields() succeeds.
+      -->
+      <div id="download-btn-forms" class="download-panel">
+        <button type="button" class="btn btn-primary download-package-btn" onclick="downloadPackage()">
+          Download my preparation package (PDF)
+        </button>
+        <p class="download-helper">
+          Includes a cover page with your VSO contacts and a field summary for each form.
+          Bring this to your VSO appointment.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: Any remaining gaps via chat -->
+  <div class="card hidden" id="card-chat">
+    <h2><span class="step-num">5</span> Any Remaining Gaps</h2>
+    <p class="note note-chat">
+      Nothing you type here is stored. This session ends when you close the page.
+      Your answers are only used to help fill out your forms during this session.
+    </p>
+    <p class="section-note" id="chat-intro">
+      If anything is still unclear or missing, I’ll help you work through it here.
+      You can also ask me anything about your benefits or next steps.
+    </p>
+
+    <div id="chat-messages"></div>
+
+    <div class="chat-input-row">
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="Type your answer or question..."
+        onkeydown="if(event.key==='Enter' && !event.shiftKey) sendChat()"
+      />
+      <!-- WHY the button text changes: showing 'Thinking...' with the spinner
+           gives the veteran real feedback that the AI is working, not broken. -->
+      <button type="button" class="btn btn-primary" id="chat-send-btn" onclick="sendChat()">Send</button>
+    </div>
+    <div id="chat-thinking" class="chat-thinking">
+      <span class="spinner"></span> Thinking...
+    </div>
+    <p class="note" id="chat-mode-note"></p>
+
+    <!-- Download button at end of chat flow — the logical 'I'm done' moment -->
+    <div class="chat-download-wrap">
+      <button type="button" class="btn btn-primary chat-download-btn" onclick="downloadPackage()">
+        Download my preparation package (PDF)
+      </button>
+      <p class="chat-download-helper">
+        Cover page with your VSO contacts + field summary for every form you reviewed.
+        Bring this to your VSO — it has everything they need to help you file.
+      </p>
+    </div>
+  </div>
+
+</main><!-- /.container -->
+<!-- Hidden file input for document photo uploads -->
+<!-- WHY hidden: we trigger it programmatically from the upload button in the field table -->
+<input
+  type="file"
+  id="doc-upload-input"
+  accept="image/*"
+  class="hidden-file-input"
+  onchange="handleDocUpload(event)"
+/>
+<input
+  type="file"
+  id="doc-camera-input"
+  accept="image/*"
+  capture="environment"
+  class="hidden-file-input"
+  onchange="handleDocUpload(event)"
+/>
+
+<!-- Vision extraction confirmation modal -->
+<!-- WHY a modal and not auto-fill: veteran must confirm every extracted value -->
+<dialog id="vision-modal" class="vision-modal" aria-labelledby="vision-modal-title">
+  <div class="vision-modal-panel">
+    <h3 id="vision-modal-title" class="vision-modal-title">Review Extracted Fields</h3>
+    <p id="vision-modal-note" class="vision-modal-note"></p>
+    <p class="vision-modal-warning">
+      Review each value carefully. Edit anything that looks wrong before confirming.
+      These values came from your document photo — blurry or partial images may be inaccurate.
+    </p>
+    <div id="vision-modal-fields"></div>
+    <div class="vision-modal-actions">
+      <button type="button" class="btn btn-secondary" onclick="closeVisionModal()">Cancel</button>
+      <button type="button" class="btn btn-primary" id="vision-modal-confirm" onclick="confirmVisionFields()">Confirm and populate fields</button>
+    </div>
+  </div>
+</dialog>
+
+<script type="module" src="../static/vendor/va-web-components/component-library.esm.js"></script>
+<script nomodule src="../static/vendor/va-web-components/component-library.js"></script>
+<script src="../static/js/app.js"></script>
+
+</body>
+</html>

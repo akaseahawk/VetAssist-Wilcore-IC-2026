@@ -1,0 +1,592 @@
+# VetAssist
+
+**VA Benefits & Forms AI Assistant | Wilcore Innovation Challenge | April 20–27, 2026**
+
+> Veterans deserve better than a stack of confusing forms and a Google search.
+> VetAssist identifies likely benefits, explains required forms, prefills what it can,
+> and asks plain-language follow-up questions for the rest.
+
+**Setup (one time)**
+```bash
+git clone https://github.com/akaseahawk/VetAssist
+cd VetAssist
+pip install -r requirements.txt
+cp .env.example .env          # optionally add ANTHROPIC_API_KEY=sk-...
+                               # optional: CLAUDE_MODEL=claude-sonnet-4-6 (this is the default)
+```
+
+**Run / re-run**
+```bash
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+# open http://localhost:8000
+```
+
+The app runs without an API key. Claude responses fall back gracefully so the
+demo works locally even in an offline environment.
+
+---
+
+## Act 1 — The Problem
+
+### Why Veterans Are Left Behind
+
+> *"The average VA disability claim takes over 125 days to be considered backlogged —
+> and the confusion before that clock even starts is the part no one has solved."*
+>
+> The VA defines a backlogged claim as one pending more than 125 days.
+> In January 2025, the average processing time was 141.5 days.
+> As of early 2026 the VA has reduced this to roughly 80 days — real progress.
+> But the barrier VetAssist addresses comes *before* any of that:
+> figuring out which benefits to apply for, which forms are needed, and what goes on each one.
+> Most veterans never file because they don't know where to begin.
+>
+> *Sources: [VA Benefits Claims Backlog Under 100K — VA.gov Press Room, Feb 2026](https://news.va.gov/press-room/va-benefits-claims-backlog-under-100k-for-first-time-since-2020/) ·
+> [VA Announces Major Improvements in Benefits Processing — VA.gov, Apr 2026](https://news.va.gov/press-room/va-announces-major-improvements-in-benefits-processing-and-delivery/)*
+
+VetAssist doesn't touch the adjudication window — the VA controls that.
+It removes the barrier *before* the clock starts: helping veterans know which benefits
+are worth exploring, which forms those require, which documents they already have
+that contain the needed information, and how to fill in what's left conversationally.
+The problem isn't just how long claims take — it's how many veterans never file at all.
+
+Veterans earned their benefits through service and sacrifice. Getting those benefits
+should not require a law degree, a research project, or a stack of paper forms
+with overlapping fields filled out by hand.
+
+**What veterans face today:**
+
+- No single entry point to understand what they qualify for
+- 3–5 forms per claim, many still flat PDFs or scanned images — not digital
+- The same name, SSN, service dates, and address re-entered on every form
+- Form instructions written for administrators, not veterans
+- Incomplete submissions → rejections → months of delay → benefits never received
+
+**Diagram 1 — The painful journey today:**
+
+```mermaid
+flowchart TD
+    A([Veteran suspects\nbenefits exist]) --> B[Google:\nVA disability forms]
+    B --> C[VA.gov search\nresults — confusing]
+    C --> D[47-page PDF form\nmanual fill-out]
+    D --> E[Re-enter same info\non 3–5 forms]
+    E --> F{Submission}
+    F -->|Incomplete| G([❌ Rejected\n125+ day clock restarted])
+    F -->|Wrong form| G
+    F -->|Correct| H([✅ Claim begins\n125+ day adjudication])
+
+    style A fill:#f5f5f5,stroke:#999
+    style G fill:#ffe0e0,stroke:#cc0000
+    style H fill:#e0f0e0,stroke:#006600
+```
+
+*Pain points: No guidance · Paper-first · Repeated data entry · Plain-language gap*
+
+---
+
+## Act 2 — The Solution
+
+### What VetAssist Does
+
+Three things, in order:
+
+**Understand** — Read the veteran's profile and surface the benefits worth exploring
+in plain language, with reasons specific to that veteran's situation.
+
+**Prepare** — Show the required forms, prefill every field already known
+from the veteran's profile, and surface which other documents (like a DD-214)
+may already have the missing information. The veteran can take a photo of that
+document — Claude reads it using computer vision (not OCR), extracts the fields,
+and presents them for the veteran to review and confirm before anything populates.
+For fields with no document source, Claude asks conversationally — one question at a time.
+
+**Connect** — Point the veteran to their VSO, the VA, and the specific VA.gov pages
+they need. VetAssist prepares them. The VA and VSO make the final call.
+
+**Diagram 2 — What VetAssist does:**
+
+```mermaid
+flowchart TD
+    U1(["Veteran profile loaded\nor self-entered by veteran"])
+    U1 --> U2
+
+    U2["🔍 UNDERSTAND\nClaude reviews service history\nbranch · discharge · conditions\nSurfaces benefits worth exploring\nnot a ruling — plain language"]
+    U2 --> P1
+
+    P1["📋 PREPARE — Step 1: Forms & Prefill\nMatch benefits to required VA forms\nPrefill every field already in the profile\nFlag fields that are still missing"]
+    P1 --> P2
+
+    P2["📋 PREPARE — Step 2: Document Photo\nTell veteran which document has missing fields\ne.g. 'Your DD-214 has 4 of these'\n📷 Veteran photographs that document\nClaude reads it — vision, not OCR\nVeteran confirms every extracted value"]
+    P2 --> P3
+
+    P3["📋 PREPARE — Step 3: Conversational Fill\nRemaining gaps filled one at a time\nClaude asks in plain language\nVeteran types answers in chat"]
+    P3 --> C1
+
+    C1["🔗 CONNECT\nVA.gov link on every benefit card\nVSO contacts by branch\nVetAssist prepares.\nVSO + VA decide."]
+
+    style U2 fill:#e8f0fe,stroke:#4285f4
+    style P1 fill:#fef9e7,stroke:#f0ad4e
+    style P2 fill:#fff3cd,stroke:#ffc107
+    style P3 fill:#fff3cd,stroke:#ffc107
+    style C1 fill:#e0f0e0,stroke:#34a853
+```
+
+### Before vs. After
+
+**Diagram 3 — Experience comparison:**
+
+```mermaid
+flowchart TD
+    B0(["❌ Before VetAssist"])
+    B0 --> B1
+    B1["Veteran guesses what they qualify for\nSearches VA.gov — finds 47-page PDFs"]
+    B1 --> B2
+    B2["Re-enters name · SSN · service dates\non 3 to 5 separate forms"]
+    B2 --> B3
+    B3["Prints · Handwrites · Scans · Mails\nHopes nothing is missing"]
+    B3 --> B4
+    B4(["125+ days just to start adjudication\nRejected if anything is incomplete"])
+
+    A0(["✅ With VetAssist"])
+    A0 --> A1
+    A1["Profile loads — Claude surfaces benefits\nworth exploring in plain language"]
+    A1 --> A2
+    A2["Matching forms shown\nEvery known field prefilled from profile"]
+    A2 --> A3
+    A3["Missing fields: VetAssist identifies\nwhich document has them\n📷 Veteran photographs it\nClaude reads it — vision, not OCR\nVeteran confirms each extracted value"]
+    A3 --> A4
+    A4["Remaining gaps filled conversationally\nClaude asks · Veteran answers in chat"]
+    A4 --> A5
+    A5(["Under 30 minutes · Guided · Clear\nReady to bring to VSO or VA"])
+
+    style B0 fill:#ffe0e0,stroke:#cc0000
+    style B4 fill:#ffe0e0,stroke:#cc0000
+    style A0 fill:#e0f0e0,stroke:#006600
+    style A5 fill:#e0f0e0,stroke:#006600
+```
+
+### Why Not Just Use VA.gov, VA Form Wizard, or benefits.gov?
+
+This question will come up. Here's the honest answer:
+
+| Tool | What it does | What it doesn't do |
+|------|-------------|-------------------|
+| **VA.gov "How to Apply"** | Explains what benefits exist | No eligibility discovery, no prefill, no guidance |
+| **VA Form Wizard** | Helps pick the right form for a single benefit | One form at a time, no prefill, no conversational follow-up |
+| **benefits.gov** | Lists federal programs with eligibility criteria | No form prefill, no veteran-specific reasoning, no follow-up |
+| **VSO appointment** | Expert human guidance | Requires scheduling, often weeks out, inconsistent availability |
+| **VetAssist** | Discovers likely benefits from profile, maps to forms, prefills known fields from profile, suggests which documents (DD-214, etc.) may have missing fields, reads those documents with Claude vision, asks for the rest conversationally | Not a determination — prepares veteran for VSO/VA conversation |
+
+The gap VetAssist fills: **no single existing tool does discovery + prefill + document vision + conversational guidance in one session**.
+VA.gov has the information. VetAssist connects it to the veteran's specific situation — including reading the paper documents they already have.
+
+### Why Now
+
+- The VA processes over 1 million disability claims per year ([VA FY2023 Benefits Report](https://www.benefits.va.gov/REPORTS/abr/))
+- Post-9/11 veterans are aging into benefit eligibility windows now
+- VA.gov digital modernization is ongoing but form complexity remains
+- Claude and other frontier LLMs now reliably explain forms in plain language
+- Wilcore's SDVOSB identity and existing VA relationships create a direct path to pilot this
+
+### Impact
+
+> **CEO lens:** Wilcore is an SDVOSB built to serve veterans. This project does exactly that —
+> and it comes with a credible path to a federal proposal. A working prototype today is a BD
+> asset tomorrow. The before/after story is memorable: veterans go from a confusion and delay
+> to a guided 30-minute process. That's the kind of impact that wins challenges and opens
+> doors with VA program offices.
+
+- Reduce time-to-submission from hours or days to under 30 minutes
+- Reduce incomplete submissions through prefill and guided follow-ups
+- Scalable to any federal benefit program with known forms and eligibility rules
+- Maps directly to active VA modernization priorities
+> - *Credible BD path for Wilcore: VA T4NG (Transformation Twenty-One Total Technology Next Generation) Task Order, CIO-SP4, or 8(a) sole-source under 38 U.S.C. § 8127 as a certified SDVOSB — no competitive tender required below $M, SPRUCE IDIQ.* **needs review**
+
+Quantified (conservative): If 10% of ~1M annual VA disability claims used a tool like this
+and saved 2 hours each, that's ~200,000 veteran-hours recovered per year.
+
+---
+
+## Act 3 — How It Works
+
+> **CTO lens (primary):** Every layer is replaceable without touching the others.
+> JSON → DB, Anthropic → Bedrock, local → GovCloud. The MVP is the simplest
+> credible version of the full architecture — not a throwaway.
+
+### Diagram 4 — System Architecture
+
+```mermaid
+flowchart TD
+    Browser["🌐 Veteran's Browser\ntemplates/index.html\nvanilla JS · no build step"]
+
+    API["⚙️ FastAPI Application\nmain.py\nGET / · GET /api/veterans\nGET /api/eligibility/{id} · POST /api/eligibility/own\nGET /api/forms/{id} · POST /api/forms/own\nPOST /api/chat\nPOST /api/upload · GET /api/upload/suggestions/{id}\nPOST /api/scan-identity · GET /api/scan-identity/document-types\nPOST /api/generate-output · GET /health"]
+
+    BD["benefit_discovery.py\nClaude-first discovery\nrules fallback"]
+    FM["form_matcher.py\nMaps benefits → forms\nPrefills fields · Flags missing\nReturns source_documents per field"]
+    CC["claude_chat.py\nConversational assistant\nBranch-aware greeting"]
+    DV["document_vision.py\nClaude multimodal vision\nExtract fields from photo\nsuggest_source_documents()"]
+
+    DATA["data/\nveterans.json\nbenefits_rules.json\nforms_catalog.json\nbranch_contacts.json"]
+
+    CLAUDE["☁️ Anthropic Claude API\nor placeholder mode\nwithout API key"]
+
+    Browser -->|HTTP| API
+    API --> BD
+    API --> FM
+    API --> CC
+    API -->|"POST /api/upload"| DV
+    BD --> DATA
+    FM --> DATA
+    CC --> DATA
+    DV --> DATA
+    BD -->|Claude-first| CLAUDE
+    CC --> CLAUDE
+    DV -->|"Claude vision\nmultimodal"| CLAUDE
+    API -->|JSON response| Browser
+```
+
+### Diagram 5 — Data Flow: MVP → Next Sprint → Federal
+
+```mermaid
+flowchart TD
+    subgraph MVP["🟢 MVP — Today"]
+        M1[Veteran data → data/veterans.json\nsynthetic JSON profiles]
+        M2[Benefit rules → data/benefits_rules.json]
+        M3[Form catalog → data/forms_catalog.json]
+        M4[AI model → Anthropic API direct\nor placeholder mode]
+        M5[Infra → Local laptop · uvicorn · no cloud]
+    end
+
+    subgraph NEXT["🟡 Next Sprint — Post-Hackathon"]
+        N1[Veteran data → DD-214 upload + OCR\nAWS Textract]
+        N2[Benefit rules → rules engine\n+ Claude nuance layer]
+        N3[Form catalog → VA Forms API\napi.va.gov]
+        N4[AI model → Anthropic API\n+ conversation persistence]
+        N5[Output → XFA form fill · Adobe SDK or cloud PDF service]
+        N6[Infra → Hosted cloud · no auth yet]
+    end
+
+    subgraph FED["🔵 Federal Deployment — VA Pilot"]
+        F1[Veteran data → VA Identity Service\nlogin.gov]
+        F2[Benefit rules → VA Benefits API\nlive data]
+        F3[Form catalog → VA Forms API\nlive + versioned]
+        F4[AI model → AWS Bedrock Claude\nFedRAMP-authorized]
+        F5[Infra → AWS GovCloud\nFISMA Low/Moderate ATO]
+        F6[Auth → VA PIV card\nor login.gov identity]
+    end
+
+    MVP -->|Sprint 2–4\nweeks 2–4| NEXT
+    NEXT -->|Months 2–6\nfederal contract| FED
+```
+
+### Diagram 6 — Eligibility Approach: Claude-Driven with Rules Fallback
+
+```mermaid
+flowchart TD
+    START([Veteran profile loaded]) --> CHECK{ANTHROPIC_API_KEY\nset in environment?}
+
+    CHECK -->|Yes| CLAUDE["☁️ Claude reads full veteran profile\nUses innate VA knowledge\nReasons from: branch · discharge\ncombat history · conditions · deployments"]
+    CHECK -->|No| RULES["📋 Hardcoded rules engine\nservices/eligibility.py\nRULE_REGISTRY pattern\nPure Python · fast · auditable"]
+
+    CLAUDE -->|Fails or malformed JSON| RULES
+    CLAUDE -->|Success| MERGE
+    RULES --> MERGE
+
+    MERGE["Merge with catalog metadata\nTitles · descriptions · VA.gov links"] --> FRAME
+
+    FRAME["🛡️ Always framed as:\n'worth exploring' — NOT 'eligible'\n\n• Plain-language reason\n• Specific to this veteran\n• VA.gov Learn more link\n• Talk to your VSO note"]
+
+    FRAME --> END([Results returned to frontend])
+
+    NOTE["⚠️ VetAssist is NOT the decision maker.\nThe VA and the veteran's VSO are."]
+    FRAME --- NOTE
+
+    style CLAUDE fill:#e8f0fe,stroke:#4285f4
+    style RULES fill:#fef9e7,stroke:#f0ad4e
+    style FRAME fill:#e8f8e8,stroke:#34a853
+    style NOTE fill:#fff3cd,stroke:#ffc107
+```
+
+### Diagram 7 — Service Interaction Map
+
+```mermaid
+flowchart TD
+    REQ([HTTP Request]) --> MAIN
+
+    subgraph MAIN["main.py — all routes"]
+        R1["GET /api/eligibility/{id}\nPOST /api/eligibility/own"]
+        R2["GET /api/forms/{id}\nPOST /api/forms/own"]
+        R3["POST /api/chat"]
+        R4["POST /api/upload\nGET /api/upload/suggestions/{id}\nPOST /api/scan-identity\nGET /api/scan-identity/document-types"]
+        R5["GET /api/veterans · GET /health"]
+    end
+
+    R1 --> BD
+    R2 --> BD
+    R3 --> BD
+    R4 --> DV
+    R4 --> FM
+
+    subgraph DV["services/document_vision.py"]
+        DV1["extract_fields_from_image()\nSends photo bytes to Claude vision\nReturns structured field dict"]
+        DV2["suggest_source_documents()\nGiven missing field keys\nreturns which doc type has them"]
+        DV3["DOCUMENT_FIELD_DEFINITIONS\nDD-214 · 21-4142 · GENERIC\nField layouts Claude looks for"]
+        DV1 --- DV3
+        DV2 --- DV3
+    end
+
+    subgraph BD["services/benefit_discovery.py"]
+        BD1["discover_benefits(veteran)"]
+        BD2["_discover_with_claude()\nAnthropics messages.create()\nparse JSON · merge catalog"]
+        BD3["_discover_with_rules() fallback\neligibility.check_eligibility()\nRULE_REGISTRY lookup"]
+        BD1 --> BD2
+        BD2 -->|"failure / no key"| BD3
+    end
+
+    R2 --> FM
+    R3 --> FM
+
+    subgraph FM["services/form_matcher.py"]
+        FM1["get_forms_for_benefits()"]
+        FM2["prefill_fields()"]
+        FM3["build_field_summary()"]
+        FM1 --> FM2 --> FM3
+    end
+
+    R3 --> CC
+
+    subgraph CC["services/claude_chat.py"]
+        CC1["chat(message, veteran,\nbenefits, missing, verified,\nhistory, active_form)"]
+        CC2["Build system prompt\nprofile + benefits + missing fields"]
+        CC3["Load branch_contacts.json\nfor VSO info + branch greeting"]
+        CC4["anthropic.messages.create()\nor placeholder string"]
+        CC1 --> CC2 --> CC3 --> CC4
+    end
+
+    BD --> DATA
+    FM --> DATA
+    CC --> DATA
+
+    subgraph DATA["data/ — JSON files"]
+        D1[veterans.json]
+        D2[benefits_rules.json]
+        D3[forms_catalog.json]
+        D4[branch_contacts.json]
+    end
+
+    BD2 --> ANTHROPIC["☁️ Anthropic Claude API\n(text + multimodal vision)"]
+    CC4 --> ANTHROPIC
+    DV1 --> ANTHROPIC
+
+    MAIN -->|JSON response| FE(["🌐 templates/index.html\nvanilla JS frontend"])
+```
+
+### Eligibility Engine Detail
+
+**No hardcoded rules by default — Claude drives this.**
+
+When `ANTHROPIC_API_KEY` is set, Claude reads the veteran's profile and uses its
+own knowledge of VA benefits to surface what's worth exploring. It reasons from
+branch, service dates, discharge type, conditions, and deployments — the same
+factors a knowledgeable VSO would consider.
+
+The hardcoded rules engine in `services/eligibility.py` runs only as a fallback
+when no API key is configured. This keeps the app fully runnable for demos, development,
+and offline environments without compromising the default experience.
+
+**Critical framing (non-negotiable):**
+- Always: *"worth exploring"* — never *"eligible"* or *"you qualify"*
+- Always: disclaimer banner before any benefit cards
+- Always: *"Talk to your VSO or the VA to confirm"* on every benefit
+- Always: VA.gov link on every benefit card
+- VetAssist is a preparation tool — the VA makes the determination
+
+### What Is Real vs. Mocked
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Veteran profile loading | **Real** | Reads from `data/veterans.json` |
+| Benefit discovery | **Real** | Claude-first; rules fallback |
+| Form field prefill | **Real** | Maps profile fields to form field metadata |
+| VA form titles and VA.gov links | **Real** | 5 actual VA forms with public URLs — 16–34 fields each |
+| Manual profile entry | **Real** | Veterans can enter their own info instead of picking a demo profile |
+| Step 1 document scan | **Real** (with API key) | Veterans photograph a DD-214, military ID, or VA letter; Claude extracts identity/service fields and pre-populates the own-info entry form; veteran reviews every value before proceeding |
+| Conversational assistant | **Real** (with API key) | Graceful placeholder without |
+| Document photo → prefill (Claude vision) | **Real** (with API key) | Veteran photos a DD-214 or other doc; Claude extracts fields; veteran confirms before anything populates |
+| Document type suggestions | **Real** | System tells veteran which document likely has each missing field |
+| PDF download package | **Real** | Cover page (VSO contacts, next steps, branch-specific benefits) + field summary sheet (green = confirmed, amber = still needed). Generated by `services/pdf_generator.py` using reportlab. Veteran downloads after confirming fields or at end of chat. |
+| VA API integration | **Stub** | Uses local JSON instead |
+| Veteran PII | **Synthetic** | No real data used |
+
+---
+
+## Act 4 — Implementation Path Forward
+
+> **COO lens:** This is a bounded, realistic one-week build with a clear demo path.
+> The scope is intentionally constrained — no database, no cloud, no auth.
+> Every dependency is justified. If this moves past the challenge, the roadmap
+> is phased and each sprint has a defined deliverable.
+
+### Diagram 8 — Two-Track Implementation Roadmap
+
+```mermaid
+flowchart TD
+    MVP["✅ Week 1 — Hackathon MVP\nSynthetic profiles · Claude benefit discovery · Prefill\nClaude chat · Forms catalog · Demo frontend\nDocument photo-to-prefill via Claude vision\nDisclaimer framing · VA.gov links"]
+
+    MVP --> TRACK_A & TRACK_B
+
+    subgraph TRACK_A["Track A — Product Depth"]
+        direction TB
+        A2["Sprint 2 — weeks 2–4\nPrintable / email-ready output\nConversation persistence\nExpand document vision beyond DD-214 + 21-4142"]
+        A3["Sprint 3 — months 2–3\nLive VA Forms API integration\nMulti-benefit workflow\nVSO warm handoff integration"]
+        A4["Sprint 4 — months 4–6\nVA Benefits API live eligibility\nMulti-agency expansion SSA · HUD\nVA login.gov identity"]
+        A2 --> A3 --> A4
+    end
+
+    subgraph TRACK_B["Track B — Infrastructure"]
+        direction TB
+        B2["Sprint 2 — weeks 2–4\nHosted deployment\nDatabase PostgreSQL or DynamoDB\nBasic auth layer"]
+        B3["Sprint 3 — months 2–3\nAWS Bedrock Claude endpoint swap\nFedRAMP-authorized infrastructure\nSection 508 accessibility baseline"]
+        B4["Sprint 4 — months 4–6\nAWS GovCloud deployment\nFISMA Low/Moderate ATO process\nVA PIV / login.gov integration"]
+        B2 --> B3 --> B4
+    end
+
+    A4 & B4 --> PILOT(["🎯 VA Pilot\n6–9 months · 3–4 engineers"])
+
+    style MVP fill:#e0f0e0,stroke:#34a853
+    style PILOT fill:#e8f0fe,stroke:#4285f4
+```
+
+### Feasibility — Why This Works in One Week
+
+| Task | Effort |
+|------|--------|
+| Backend + eligibility engine | 1–2 days |
+| Forms catalog + prefill logic | 1 day |
+| Frontend (HTML/JS) | 1 day |
+| Claude chat integration | 0.5 days |
+| Docs + diagrams + README | 0.5 days |
+| Demo recording + submission | 0.5 days |
+| **Total** | **~5–6 developer-days** |
+
+**Why it stays simple:**
+- No database — JSON files for everything
+- No authentication — synthetic data only
+- No cloud deployment — runs on any laptop with Python
+- One HTML page — no framework, no build step
+- PDF download is a preparation summary sheet, not a filled VA form. VA forms use Adobe XFA format that Python libraries cannot write into. The summary sheet + cover page is the honest, reliable alternative.
+
+### Dependencies
+
+- Python 3.10+
+- FastAPI + uvicorn (lightweight, production-grade)
+- Anthropic Python SDK (optional — app runs without it)
+- No paid services required to run the MVP
+
+### Risks and Mitigations
+
+| Risk | Mitigation |
+|------|-----------|
+| Benefit suggestions are not legally precise | Always framed as "worth exploring." Disclaimer before every card. VSO recommended. |
+| Form field metadata may drift from VA.gov | Catalog is versioned JSON; easy to update. Direct VA.gov links included. |
+| Claude API unavailable or slow | Graceful rules fallback. Demo does not depend on live API. |
+| PDF is a summary sheet, not a filled form | VA forms use XFA format. Summary sheet + cover page is the honest alternative. Clearly described in the UI before download. |
+| Judges ask about PII / data security | Synthetic data only. No real veteran data stored anywhere. |
+| "Why not just use VA.gov?" | VA.gov has no eligibility discovery, no prefill, no conversational guidance. VetAssist bridges those gaps. |
+
+### Federal Applicability
+
+> **CTO lens (primary):** The architecture is intentionally modular and swap-ready.
+> The model layer is abstracted in `services/claude_chat.py` — one environment variable
+> switches from Anthropic direct to AWS Bedrock. The data layer is JSON today and
+> PostgreSQL or DynamoDB tomorrow with no service-layer changes. The eligibility engine
+> is pure Python rules — no ML dependency, fully auditable, easy to extend.
+> The federal deployment path runs through Bedrock on AWS GovCloud (FedRAMP-authorized)
+> with a FISMA Low/Moderate ATO.
+
+- **Primary agency:** Department of Veterans Affairs (VA)
+  - Aligns with VA Digital Modernization Strategy and Benefits Modernization priorities
+  - Directly addresses the "Benefits at First Ask" theme from the Wilcore challenge
+- **Compliance path:**
+  - Section 508: accessible HTML, keyboard-navigable, screen-reader compatible with minor additions
+  - FedRAMP: swap Anthropic API for AWS Bedrock (Claude) on FedRAMP-authorized infrastructure
+  - FISMA Low/Moderate: appropriate for a VA benefits guidance tool with synthetic or de-identified data
+- **Contract structure:** Deliverable as a Task Order under VA T4NG or CIO-SP4, or via 8(a) sole-source under 38 U.S.C. § 8127 (SDVOSB preference). Wilcore's SDVOSB certification means no competitive tender is required below $4M — a significant acquisition advantage
+- **Broader applicability:** Same architecture applies to any federal benefit program with known forms (SSA, HUD, USDA rural benefits)
+
+### Why This Scores Well Against the Wilcore Rubric
+
+| Criterion | Weight | How VetAssist Addresses It |
+|-----------|--------|---------------------------|
+| **Impact** | 30% | Reduces veteran friction in a high-stakes process; clear federal proposal path |
+| **Originality** | 25% | Combines benefit discovery, form mapping, prefill, document photo-to-prefill (Claude vision), and conversational guidance — no single VA tool does all five |
+| **Feasibility** | 20% | Runs locally today; realistic one-week scope; clear post-MVP roadmap |
+| **Clarity** | 15% | One-screen demo, plain-language output, diagrams, before/after story |
+| **Collaboration** | 10% | Three defined teammate roles with clear ownership and bounded time commitment |
+
+Directly aligns with the Wilcore challenge themes: *"Benefits at First Ask"*
+and *"Closing the Digital Divide"* — and with Wilcore's SDVOSB identity.
+
+---
+
+## Demo Narrative
+
+> This is the story to tell in the video and presentation.
+
+**Before:** Maria is an Army veteran. She knows she may have PTSD from her deployments
+in Iraq and Afghanistan. She tries to file a claim but doesn't know where to start.
+She Googles "VA disability forms," finds a 47-page PDF, and gives up.
+
+**With VetAssist:**
+1. Maria opens VetAssist, selects her profile, enters her own information, or photographs her DD-214 to auto-fill the entry form
+2. In seconds, she sees benefits worth exploring: disability compensation, PTSD benefits, VA health care
+3. She sees matching forms — one flagged as "not fully digitized"
+4. Most fields are already filled in from her profile (name, service dates, branch, conditions)
+5. For missing fields, VetAssist tells her: “Your DD-214 may have 3 of these — do you have it nearby?”
+6. She photographs her DD-214 with her phone and uploads the photo
+7. Claude reads the document image (not OCR — it understands the form semantically), extracts the fields, and shows them to Maria for review
+8. She sees all extracted values in editable inputs and corrects anything that looks wrong, then clicks Confirm
+9. The chat assistant handles any remaining gaps in plain conversational language
+10. She sees a summary ready to bring to her VSO or the VA
+
+**The before/after:** hours of confusion just to know where to start → under 30 minutes, guided.
+The adjudication clock is the VA's — still measured in months. The confusion before it starts is ours to solve.
+
+---
+
+## Repository Structure
+
+```
+VetAssist/
+├── main.py                    # FastAPI app — all routes
+├── requirements.txt           # Minimal dependencies
+├── .env.example               # Environment variable template
+├── .gitignore
+├── README.md                  # This file
+├── COLLABORATOR_BRIEF.md      # Plain-language teammate recruitment guide
+├── CLAUDE.md                  # Architecture guide for Claude Code and developers
+├── data/
+│   ├── veterans.json          # 3 synthetic veteran profiles
+│   ├── benefits_rules.json    # 5 benefit definitions (rules fallback)
+│   ├── forms_catalog.json     # 5 VA form definitions with field metadata
+│   └── branch_contacts.json  # VSO contacts + branch-specific benefit notes
+├── services/
+│   ├── benefit_discovery.py   # Claude-first discovery; rules fallback
+│   ├── eligibility.py         # Hardcoded rules engine (fallback mode)
+│   ├── form_matcher.py        # Form selection and field prefill
+│   ├── claude_chat.py         # Conversational assistant (Claude API)
+│   ├── document_vision.py     # Claude multimodal vision — reads document photos, extracts fields
+│   └── pdf_generator.py       # PDF package generator (cover page + field summary sheet)
+├── forms_to_verify/
+│   ├── README.md              # Explains folder purpose
+│   ├── DD_214_mockup_example.png
+│   ├── VA_21-4142_authorization_to_disclose_mockup.png
+│   └── VA_21-0781_PTSD_stressor_statement_mockup.png
+└── templates/
+    └── index.html             # Single-page frontend (vanilla JS, no framework)
+```
+
+---
+
+*VetAssist — Wilcore Innovation Challenge 2026*
+*Synthetic data only. Not a real VA system. No real veteran PII used.*
+*VetAssist helps veterans prepare. The VA and their VSO make the final determination.*

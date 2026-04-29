@@ -1,0 +1,682 @@
+"""
+services/document_vision.py
+
+WHY this exists:
+  Veterans often have the information we need locked inside physical documents —
+  a DD-214 in a folder, a VA letter in a drawer, a discharge paper they've had for decades.
+  Instead of asking them to type it out from memory, we let them photograph or scan it
+  and send the image to Claude, which reads it like a human would.
+
+  This is multimodal vision — NOT traditional OCR.
+  Traditional OCR does pixel-level character scanning. It fails on skewed photos,
+  handwriting, stamps, and low-contrast text.
+  Claude vision understands the document semantically: it knows what a DD-214 looks like,
+  where the "Character of Discharge" box is, and what to do with a partially visible field.
+
+  WHY every extracted field goes back to the veteran for confirmation:
+  We never assume extracted data is correct. A blurry photo, a redaction, a typo on the
+  original document — any of these could cause a wrong value. The veteran confirms each
+  field before it populates their form. VetAssist does not auto-fill without consent.
+
+FLOW:
+  1. Receive image bytes + MIME type + list of fields we want
+  2. Build a Claude prompt that describes exactly which fields to extract
+  3. Send image + prompt to Claude via the messages API (vision input)
+  4. Parse the JSON response into a structured dict
+  5. Return extracted fields + confidence notes for each
+  6. Caller (main.py) returns to frontend; veteran confirms before any field populates
+"""
+
+import base64
+import json
+import logging
+import os
+from typing import Optional
+
+logger = logging.getLogger(__name__)
+
+# --- Field definitions for documents we know about ---
+# WHY a lookup table: each document has a known layout and known field positions.
+# Telling Claude exactly what to look for improves accuracy vs. open-ended extraction.
+
+# ---------------------------------------------------------------------------
+# WHAT DOCUMENTS WE CAN SCAN AT STEP 1 (identity/profile prefill)
+# ---------------------------------------------------------------------------
+# WHY a separate list: Step 1 scanning is about getting the veteran's basic
+# identity and service history into the own-profile form quickly. These are
+# documents a veteran might realistically have on them or nearby.
+# Driver's license is intentionally excluded — it has no military service data.
+# VA letters are included because they confirm branch, period of service, and
+# sometimes disability rating from a single page.
+
+IDENTITY_SCAN_DOCUMENTS = [
+    {
+        "id":          "DD-214",
+        "label":       "DD-214 (Discharge Papers)",
+        "description": "Best option — contains your name, branch, service dates, discharge type, and MOS.",
+        "fields":      ["name", "branch", "service_start", "service_end", "discharge_type", "rank", "mos"],
+    },
+    {
+        "id":          "MILITARY_ID",
+        "label":       "Military ID / CAC Card",
+        "description": "Contains your name, branch, and sometimes rank. Limited but quick.",
+        "fields":      ["name", "branch", "rank", "dob"],
+    },
+    {
+        "id":          "VA_LETTER",
+        "label":       "VA Award Letter or Rating Decision",
+        "description": "Contains your name, disability rating, and sometimes branch and service dates.",
+        "fields":      ["name", "branch", "service_start", "service_end", "disability_rating", "conditions"],
+    },
+    {
+        "id":          "GENERIC",
+        "label":       "Other military or VA document",
+        "description": "Any other military record or VA correspondence — we'll extract what we can.",
+        "fields":      ["name", "branch", "service_start", "service_end", "discharge_type", "dob"],
+    },
+]
+
+DOCUMENT_FIELD_DEFINITIONS = {
+    "DD-214": {
+        "document_description": (
+            "A DD-214 (Certificate of Release or Discharge from Active Duty) is the official "
+            "military discharge document issued to U.S. service members at separation. "
+            "It contains boxes numbered 1-30 in a standard layout. Box 1 is name, "
+            "Box 12 is service dates, Box 24 is character of discharge, Box 11 is primary MOS."
+        ),
+        "fields": {
+            "name":           "Box 1 — full name of the service member (Last, First, Middle)",
+            "name_first":     "Box 1 — first/given name of the service member",
+            "name_middle":    "Box 1 — middle name or middle initial of the service member",
+            "name_last":      "Box 1 — last/family name of the service member",
+            "branch":         "Box 9 — branch of service (e.g. Army, Navy, Marine Corps, Air Force, Coast Guard)",
+            "service_start":  "Box 12a — date entered active duty this period (YYYYMMDD or MM/DD/YYYY format)",
+            "service_end":    "Box 12b — separation date this period (YYYYMMDD or MM/DD/YYYY format)",
+            "discharge_type": "Box 24 — character of service / type of discharge (e.g. Honorable, General, OTH)",
+            "rank":           "Box 4 — grade/rate/rank at time of separation",
+            "mos":            "Box 11 — primary specialty (MOS/AFSC/Rating code and title)",
+            "deployment_info":"Box 18 — remarks section, which often contains deployment locations and dates",
+            "decorations":    "Box 13 — decorations, medals, badges, commendations, citations, campaign ribbons",
+            "unit_assignment":"Unit, command, or last duty assignment if visible",
+            "combat_deployment":"Whether remarks or awards indicate combat deployment; return Yes, No, or null",
+            "pow":            "Whether the document indicates prisoner of war status; return Yes, No, or null",
+            "purple_heart":   "Whether Box 13 awards include Purple Heart; return Yes, No, or null",
+            "event_location": "Deployment or event location if listed in remarks",
+            "in_service_event":"Visible remarks, deployment notes, awards, or duty details relevant to an in-service event",
+        }
+    },
+    "21-4142": {
+        "document_description": (
+            "VA Form 21-4142 is the Authorization to Disclose Information to the Department "
+            "of Veterans Affairs. It authorizes the VA to obtain private medical records. "
+            "It contains the veteran's personal identification information."
+        ),
+        "fields": {
+            "name":           "Veteran's full name field",
+            "name_first":     "Veteran's first/given name",
+            "name_middle":    "Veteran's middle name or initial",
+            "name_last":      "Veteran's last/family name",
+            "ssn":            "Social Security Number field (may be partially redacted — extract what is visible)",
+            "dob":            "Veteran's date of birth",
+            "address":        "Current mailing address (street, city, state, ZIP)",
+            "address_street": "Street line of the current mailing address",
+            "address_city":   "City of the current mailing address",
+            "address_state":  "State of the current mailing address",
+            "address_zip":    "ZIP code of the current mailing address",
+            "phone":          "Daytime phone number",
+            "email":          "Email address if present",
+        }
+    },
+    "MILITARY_ID": {
+        "document_description": (
+            "A U.S. military ID card or Common Access Card (CAC). "
+            "Contains the service member's full name, branch of service, "
+            "rank/grade, and date of birth. May also show an expiration date "
+            "and DoD ID number. Does not contain service history or discharge information."
+        ),
+        "fields": {
+            "name":        "Full name as printed on the card (usually Last, First Middle or First Last)",
+            "name_first":  "First/given name printed on the card",
+            "name_middle": "Middle name or initial printed on the card",
+            "name_last":   "Last/family name printed on the card",
+            "branch":      "Branch of service shown on the card (Army, Navy, Marine Corps, Air Force, Space Force, Coast Guard)",
+            "rank":        "Rank or grade printed on the card (e.g. SGT, CPT, E-5, O-3)",
+            "dob":         "Date of birth printed on the card (YYYY-MM-DD if possible)",
+            "gender":      "Gender marker if printed on the card",
+        }
+    },
+    "VA_LETTER": {
+        "document_description": (
+            "A VA award letter, rating decision, or benefits summary letter. "
+            "These letters are printed on official VA letterhead and contain "
+            "the veteran's name, VA file number, combined disability rating, "
+            "individual condition ratings, and sometimes branch and service dates."
+        ),
+        "fields": {
+            "name":                  "Veteran's full name as addressed in the letter",
+            "name_first":            "Veteran's first/given name",
+            "name_last":             "Veteran's last/family name",
+            "va_file_number":        "VA file number, claim number, or claim ID if visible",
+            "branch":                "Branch of service if mentioned in the letter",
+            "service_start":         "Service entry date if mentioned",
+            "service_end":           "Service separation date if mentioned",
+            "disability_rating":     "Combined disability rating percentage (e.g. 70%)",
+            "disability_conditions": "Individual rated conditions listed in the letter (comma-separated)",
+            "conditions":            "Individual rated conditions listed in the letter (comma-separated)",
+            "service_connected":     "Whether the letter indicates service-connected disability; return Yes, No, or null",
+            "receiving_comp":        "Whether the letter indicates current disability compensation; return Yes, No, or null",
+            "enrolled_va_hc":        "Whether the letter indicates current VA health care enrollment; return Yes, No, or null",
+            "mental_health_diagnosis":"Mental health condition or diagnosis listed in the letter if visible",
+            "agent_orange":          "Whether the letter mentions Agent Orange exposure or a related presumptive condition",
+            "radiation_exposure":    "Whether the letter mentions radiation exposure or a related presumptive condition",
+            "benefit_type":          "VA benefit program named in the letter if relevant",
+            "prior_education_benefits":"Whether the letter mentions previous VA education benefits; return Yes, No, or null",
+            "prior_va_loans":        "Whether the letter mentions a prior VA home loan; return Yes, No, or null",
+            "address_street":        "Street line of the mailing address if visible",
+            "address_city":          "City of the mailing address if visible",
+            "address_state":         "State of the mailing address if visible",
+            "address_zip":           "ZIP code of the mailing address if visible",
+        }
+    },
+    "MEDICAL_RECORD": {
+        "document_description": (
+            "A VA or other federal medical record, visit summary, diagnosis list, "
+            "treatment note, problem list, or appointment record. It may contain "
+            "diagnoses, treatment dates, provider or facility names, and contact information."
+        ),
+        "fields": {
+            "gender":                  "Gender marker if visible in the patient demographics section",
+            "phone":                   "Patient phone number if visible",
+            "email":                   "Patient email if visible",
+            "disability_conditions":   "Diagnoses, problem list, or claimed conditions that appear in the record",
+            "mental_health_diagnosis": "Mental health diagnosis or condition listed in the record",
+            "disability_onset":        "Earliest onset date, diagnosis date, or symptom-start date if visible",
+            "current_treatment":       "Whether the record shows current treatment; return Yes — VA, Yes — private provider, Yes — both, No, or null",
+            "treatment_history":       "VA/federal facilities, clinics, treatment dates, or treatment summary",
+            "treatment_provider":      "Provider, clinic, hospital, or facility name",
+            "first_treatment_date":    "Earliest mental health or relevant treatment date visible",
+            "enrolled_va_hc":          "Whether the record indicates VA health care enrollment or VA treatment; return Yes, No, or null",
+            "unable_to_work":          "Whether the record indicates the veteran is unable to work due to disability",
+            "in_service_event":        "Medical note tying a condition to military service if visible",
+            "traumatic_event_description":"Traumatic event description if stated in the clinical note",
+            "event_date":              "Date of traumatic event if stated",
+        }
+    },
+    "PRIVATE_MEDICAL_RECORD": {
+        "document_description": (
+            "A private medical record, provider letter, diagnosis note, treatment plan, "
+            "or visit summary from a non-VA provider. It may contain diagnoses, "
+            "provider names, treatment dates, and treatment history."
+        ),
+        "fields": {
+            "disability_conditions":   "Diagnoses, problem list, or claimed conditions that appear in the record",
+            "mental_health_diagnosis": "Mental health diagnosis or condition listed in the record",
+            "disability_onset":        "Earliest onset date, diagnosis date, or symptom-start date if visible",
+            "current_treatment":       "Whether the record shows current treatment; return Yes — private provider, Yes — both, No, or null",
+            "treatment_history":       "Private provider names, facilities, treatment dates, or treatment summary",
+            "private_records":         "Whether this document is a private medical record; return Yes if it clearly is",
+            "treatment_provider":      "Provider, clinic, hospital, or facility name",
+            "first_treatment_date":    "Earliest mental health or relevant treatment date visible",
+        }
+    },
+    "INSURANCE_CARD": {
+        "document_description": (
+            "A health insurance card or coverage letter. It usually contains an insurance "
+            "provider name, member or policy number, plan name, and contact phone numbers."
+        ),
+        "fields": {
+            "insurance_provider": "Insurance company, plan, or coverage provider name",
+            "insurance_policy":   "Member ID, policy number, group number, or subscriber number",
+            "medicare_enrolled":  "Return Yes if the card clearly indicates Medicare coverage; otherwise null",
+            "medicaid_enrolled":  "Return Yes if the card clearly indicates Medicaid coverage; otherwise null",
+            "phone":              "Member services or contact phone number if visible",
+        }
+    },
+    "MEDICARE_CARD": {
+        "document_description": "A Medicare card or Medicare coverage document.",
+        "fields": {
+            "medicare_enrolled": "Return Yes if this is a Medicare card or Medicare coverage document",
+            "insurance_provider":"Coverage provider or plan name if visible",
+            "insurance_policy":  "Medicare number, member ID, or policy number if visible",
+        }
+    },
+    "MEDICAID_CARD": {
+        "document_description": "A Medicaid card or Medicaid coverage document.",
+        "fields": {
+            "medicaid_enrolled": "Return Yes if this is a Medicaid card or Medicaid coverage document",
+            "insurance_provider":"Coverage provider or plan name if visible",
+            "insurance_policy":  "Medicaid ID, member ID, or policy number if visible",
+        }
+    },
+    "BANK_RECORD": {
+        "document_description": (
+            "A bank statement, direct deposit form, voided check, or account document. "
+            "It may contain bank name, routing number, account number, mailing address, "
+            "and account balances."
+        ),
+        "fields": {
+            "direct_deposit_bank":    "Bank or financial institution name",
+            "direct_deposit_routing": "Routing number if visible",
+            "direct_deposit_account": "Account number if visible; preserve redaction if partially hidden",
+            "address_street":         "Street line of mailing address if visible",
+            "address_city":           "City of mailing address if visible",
+            "address_state":          "State of mailing address if visible",
+            "address_zip":            "ZIP code of mailing address if visible",
+            "net_worth":              "Account balance or total assets visible on the record",
+        }
+    },
+    "TAX_RETURN": {
+        "document_description": "A tax return or tax transcript that may include income and dependent information.",
+        "fields": {
+            "income_annual": "Prior year gross annual income or adjusted gross income if visible",
+            "income_spouse": "Spouse income if separately visible",
+            "dependents":    "Number or names of dependents claimed",
+            "net_worth":     "Asset or investment values if visible; otherwise null",
+        }
+    },
+    "W2": {
+        "document_description": "A W-2 or wage statement showing yearly employment income.",
+        "fields": {
+            "income_annual": "Wages, tips, or total income shown on the W-2",
+            "income_spouse": "Spouse income if the document is clearly for the spouse",
+        }
+    },
+    "PAY_STUB": {
+        "document_description": "A pay stub or earning statement showing current employment and wages.",
+        "fields": {
+            "income_annual":      "Year-to-date or annualized income if visible",
+            "income_spouse":      "Spouse income if the document is clearly for the spouse",
+            "currently_employed": "Return Yes if the pay stub indicates current employment",
+        }
+    },
+    "EMPLOYMENT_RECORD": {
+        "document_description": "An employment record, employer letter, leave record, or work status document.",
+        "fields": {
+            "currently_employed": "Whether the document indicates current employment; return Yes or No if clear",
+            "unable_to_work":     "Whether the document indicates the veteran is unable to work due to disability",
+        }
+    },
+    "RETIREMENT_PAY_STATEMENT": {
+        "document_description": "A military retirement pay statement, DFAS statement, or retirement benefits letter.",
+        "fields": {
+            "receiving_retirement": "Whether the document indicates military retirement pay; return Yes or No if clear",
+        }
+    },
+    "SCHOOL_RECORD": {
+        "document_description": (
+            "A school enrollment certification, acceptance letter, schedule, transcript, "
+            "tuition bill, or training program record."
+        ),
+        "fields": {
+            "benefit_type":              "VA education benefit or chapter named on the record if visible",
+            "school_name":               "School, college, university, or training program name",
+            "school_address":            "School mailing or campus address",
+            "program_of_study":          "Program, major, certificate, or training objective",
+            "enrollment_status":         "Enrollment status such as full-time, half-time, etc.",
+            "training_start":            "Expected or actual training start date",
+            "prior_education_benefits":  "Whether the record mentions previous VA education benefits; return Yes, No, or null",
+        }
+    },
+    "LOAN_DOCUMENT": {
+        "document_description": (
+            "A mortgage, lender, preapproval, loan estimate, closing disclosure, or prior "
+            "VA home loan record."
+        ),
+        "fields": {
+            "prior_va_loans":     "Whether the document indicates a prior VA home loan; return Yes, No, or null",
+            "prior_loan_address": "Address of a prior VA-financed property",
+            "loan_purpose":       "Loan purpose such as purchase, refinance, construction, or IRRRL",
+            "property_address":   "Address of the property to be purchased or refinanced",
+            "property_state":     "State where the property is located",
+            "lender_name":        "Lender or mortgage company name",
+            "entitlement_action": "Entitlement action requested if visible",
+        }
+    },
+    "PROPERTY_RECORD": {
+        "document_description": "A property record, purchase agreement, tax bill, or real estate document.",
+        "fields": {
+            "prior_loan_address": "Address of prior property if visible",
+            "property_address":   "Property street address",
+            "property_state":     "Property state",
+        }
+    },
+    "BUDDY_STATEMENT": {
+        "document_description": (
+            "A buddy statement, lay statement, written personal statement, or witness letter "
+            "describing an in-service event or its effects."
+        ),
+        "fields": {
+            "traumatic_event_description": "Description of the traumatic or stressful in-service event",
+            "event_date":                  "Approximate event date if stated",
+            "event_location":              "Event location if stated",
+            "commanding_officer":          "Commanding officer name if stated",
+            "buddy_statement":             "Return Yes if this document is a buddy or lay statement",
+            "in_service_event":            "Description of how a condition or event relates to service",
+        }
+    },
+    "SERVICE_RECORD": {
+        "document_description": (
+            "Military personnel record, orders, award citation, deployment record, evaluation, "
+            "or unit document that may describe assignments, deployments, awards, and service events."
+        ),
+        "fields": {
+            "combat_deployment": "Whether the record indicates combat deployment; return Yes, No, or null",
+            "pow":               "Whether the record indicates prisoner-of-war status; return Yes, No, or null",
+            "purple_heart":      "Whether the record lists a Purple Heart; return Yes, No, or null",
+            "agent_orange":      "Whether the record indicates service in a location/timeframe associated with Agent Orange exposure",
+            "radiation_exposure":"Whether the record indicates radiation exposure during service",
+            "in_service_event":  "Relevant in-service event or duty detail visible in the record",
+            "traumatic_event_description":"Traumatic event description if stated",
+            "event_date":        "Event date if stated",
+            "event_location":    "Event location if stated",
+            "unit_assignment":   "Unit assignment if visible",
+            "commanding_officer":"Commanding officer name if stated",
+        }
+    },
+    "GENERIC": {
+        "document_description": (
+            "A VA-related document, military record, or correspondence. "
+            "Extract any fields that appear to be personal identification, "
+            "service history, medical information, or form field values."
+        ),
+        "fields": {
+            "name":           "Full name of the veteran",
+            "ssn":            "Social Security Number (if visible)",
+            "dob":            "Date of birth",
+            "branch":         "Branch of military service",
+            "service_start":  "Service start / entry date",
+            "service_end":    "Service end / separation date",
+            "discharge_type": "Character of discharge or type of separation",
+            "address":        "Mailing or home address",
+        }
+    }
+}
+
+
+def _build_extraction_prompt(document_type: str, requested_fields: list[str]) -> str:
+    """
+    Build the Claude prompt for field extraction from a document image.
+
+    WHY we constrain to requested_fields:
+      We only ask Claude to extract what the current form actually needs.
+      This keeps the response small, focused, and easy to validate.
+      It also avoids extracting SSNs or sensitive fields unless the form genuinely requires them.
+    """
+    doc_def = DOCUMENT_FIELD_DEFINITIONS.get(document_type, DOCUMENT_FIELD_DEFINITIONS["GENERIC"])
+
+    # Filter field definitions to only the ones we actually need. If a form
+    # field is not in the known document map, still ask for that exact field
+    # instead of broadening extraction to every field in the document type.
+    relevant_fields = {}
+    for field_key in requested_fields:
+        relevant_fields[field_key] = doc_def["fields"].get(
+            field_key,
+            f"The value for the VA form field '{field_key}', but only if it is clearly visible in the document",
+        )
+
+    # If the caller did not request specific fields, fall back to all fields
+    # for this document type.
+    if not relevant_fields:
+        relevant_fields = doc_def["fields"]
+
+    field_lines = "\n".join(
+        f'  "{key}": {desc}' for key, desc in relevant_fields.items()
+    )
+
+    return f"""You are reviewing an image of a {document_type} document to help a veteran fill out a VA benefits form.
+
+Document context: {doc_def["document_description"]}
+
+Your task: Extract the following specific fields from the document image. Return ONLY a JSON object — no explanation, no markdown, no code fences. Just the raw JSON.
+
+Fields to extract:
+{field_lines}
+
+Rules:
+- If a field is clearly visible and readable, include its value as a string.
+- If a field is partially visible, include what you can read and add a note in parentheses, e.g. "2003-06 (partial — day not visible)".
+- If a field is not present in this document, set its value to null.
+- If a field is redacted or intentionally obscured, set its value to "REDACTED".
+- Never guess or invent values. Only extract what is actually visible.
+- For dates, use YYYY-MM-DD format if possible.
+- For names, use "Last, First Middle" format if that matches the document.
+
+Return format (example):
+{{
+  "name": "Sanchez, Maria Elena",
+  "branch": "Army",
+  "service_start": "2003-06-15",
+  "discharge_type": "Honorable",
+  "rank": null
+}}
+
+Now extract the fields from the document image provided."""
+
+
+def extract_fields_from_image(
+    image_bytes: bytes,
+    mime_type: str,
+    document_type: str,
+    requested_fields: list[str],
+) -> dict:
+    """
+    Send a document image to Claude and extract structured fields.
+
+    Args:
+        image_bytes:      Raw bytes of the uploaded image
+        mime_type:        MIME type — "image/jpeg", "image/png", "image/webp", "image/gif"
+        document_type:    One of "DD-214", "21-4142", or "GENERIC"
+        requested_fields: List of field keys the current form needs (e.g. ["name", "branch"])
+
+    Returns:
+        {
+          "success": bool,
+          "document_type": str,
+          "extracted_fields": { field_key: value_or_null },
+          "fields_found": int,
+          "fields_requested": int,
+          "note": str,          # human-readable summary shown to veteran
+          "error": str | None   # set if extraction failed
+        }
+
+    WHY we return a structured result with success/error flags:
+      The caller (main.py) needs to handle partial success gracefully.
+      If Claude extracts 3 of 5 fields, that's still useful — we shouldn't fail the
+      whole request. The frontend shows what was found and lets the veteran fill the rest.
+    """
+
+    # Check for API key — vision requires the Anthropic API
+    # WHY: there's no rules-based fallback for image extraction. Without the key,
+    # we tell the veteran clearly rather than silently failing.
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return {
+            "success": False,
+            "document_type": document_type,
+            "extracted_fields": {},
+            "fields_found": 0,
+            "fields_requested": len(requested_fields),
+            "note": (
+                "Document reading requires an AI API key that isn't configured in this environment. "
+                "Please enter the missing fields manually, or ask your VSO for help."
+            ),
+            "error": "ANTHROPIC_API_KEY not set",
+        }
+
+    try:
+        import anthropic
+
+        client = anthropic.Anthropic(api_key=api_key)
+        model = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+
+        # WHY base64: the Anthropic vision API requires images encoded as base64 strings,
+        # not raw bytes or URLs. This is standard for multimodal API calls.
+        image_b64 = base64.standard_b64encode(image_bytes).decode("utf-8")
+
+        prompt = _build_extraction_prompt(document_type, requested_fields)
+
+        response = client.messages.create(
+            model=model,
+            max_tokens=1024,  # WHY 1024: field extraction returns a small JSON object, not prose
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image",
+                            "source": {
+                                "type": "base64",
+                                "media_type": mime_type,
+                                "data": image_b64,
+                            },
+                        },
+                        {
+                            "type": "text",
+                            "text": prompt,
+                        },
+                    ],
+                }
+            ],
+        )
+
+        raw_text = response.content[0].text.strip()
+
+        # WHY strip code fences: Claude sometimes wraps JSON in ```json ... ```
+        # even when told not to. Strip defensively.
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("```")[1]
+            if raw_text.startswith("json"):
+                raw_text = raw_text[4:]
+            raw_text = raw_text.strip()
+
+        extracted = json.loads(raw_text)
+
+        # Count how many fields actually came back with non-null values
+        fields_found = sum(1 for v in extracted.values() if v is not None and v != "REDACTED")
+
+        # Build a human-readable note for the veteran
+        if fields_found == 0:
+            note = "We couldn't read any fields from this image. Please check the photo quality and try again, or enter the fields manually."
+        elif fields_found < len(requested_fields):
+            note = (
+                f"We found {fields_found} of {len(requested_fields)} fields in your document. "
+                "Please review each value and fill in anything that's missing or unclear."
+            )
+        else:
+            note = (
+                f"We found all {fields_found} fields in your document. "
+                "Please review each value carefully before confirming — a blurry photo or "
+                "redacted field could cause an incorrect value."
+            )
+
+        return {
+            "success": True,
+            "document_type": document_type,
+            "extracted_fields": extracted,
+            "fields_found": fields_found,
+            "fields_requested": len(requested_fields),
+            "note": note,
+            "error": None,
+        }
+
+    except json.JSONDecodeError as e:
+        # WHY handle separately: if Claude returns valid text but not valid JSON,
+        # we want a clear error rather than a 500. Log the raw text for debugging.
+        logger.error("Claude returned non-JSON from vision extraction: %s", raw_text if 'raw_text' in dir() else "unknown")
+        return {
+            "success": False,
+            "document_type": document_type,
+            "extracted_fields": {},
+            "fields_found": 0,
+            "fields_requested": len(requested_fields),
+            "note": "We had trouble reading the document. Please try a clearer photo or enter fields manually.",
+            "error": f"JSON parse error: {e}",
+        }
+
+    except Exception as e:
+        logger.error("Vision extraction failed: %s", str(e))
+        return {
+            "success": False,
+            "document_type": document_type,
+            "extracted_fields": {},
+            "fields_found": 0,
+            "fields_requested": len(requested_fields),
+            "note": "Something went wrong reading the document. Please enter the fields manually.",
+            "error": str(e),
+        }
+
+
+def suggest_source_documents(missing_field_keys: list[str]) -> list[dict]:
+    """
+    Given a list of missing field keys, return which source documents
+    might contain those fields — so we can suggest the right document to the veteran.
+
+    WHY: Instead of just saying "upload a document," we tell the veteran specifically
+    which document to look for and which fields it covers.
+
+    Example return:
+    [
+      {
+        "document_type": "DD-214",
+        "document_title": "Certificate of Release or Discharge from Active Duty",
+        "covers_fields": ["name", "branch", "service_start", "service_end", "discharge_type"],
+        "suggestion": "Your DD-214 may contain 4 of your missing fields. Do you have it nearby?"
+      }
+    ]
+    """
+    # Build a reverse map: field_key -> list of document_types that contain it
+    field_to_docs: dict[str, list[str]] = {}
+    for doc_type, doc_def in DOCUMENT_FIELD_DEFINITIONS.items():
+        if doc_type == "GENERIC":
+            continue  # Don't suggest "GENERIC" to veterans — it's a fallback, not a real doc
+        for field_key in doc_def["fields"]:
+            field_to_docs.setdefault(field_key, []).append(doc_type)
+
+    # For each source document, count how many missing fields it covers
+    doc_coverage: dict[str, list[str]] = {}
+    for field_key in missing_field_keys:
+        for doc_type in field_to_docs.get(field_key, []):
+            doc_coverage.setdefault(doc_type, []).append(field_key)
+
+    # Build suggestion objects for documents that cover at least one missing field
+    suggestions = []
+    doc_titles = {
+        "DD-214":                   "Certificate of Release or Discharge from Active Duty",
+        "21-4142":                  "Authorization to Disclose Information to the VA",
+        "MILITARY_ID":              "Military ID / CAC Card",
+        "VA_LETTER":                "VA Award Letter or Rating Decision",
+        "MEDICAL_RECORD":           "VA or Federal Medical Record",
+        "PRIVATE_MEDICAL_RECORD":   "Private Medical Record",
+        "INSURANCE_CARD":           "Health Insurance Card",
+        "MEDICARE_CARD":            "Medicare Card",
+        "MEDICAID_CARD":            "Medicaid Card",
+        "BANK_RECORD":              "Bank Statement or Direct Deposit Record",
+        "TAX_RETURN":               "Tax Return",
+        "W2":                       "W-2 Wage Statement",
+        "PAY_STUB":                 "Pay Stub",
+        "EMPLOYMENT_RECORD":        "Employment Record",
+        "RETIREMENT_PAY_STATEMENT": "Retirement Pay Statement",
+        "SCHOOL_RECORD":            "School Enrollment or Acceptance Record",
+        "LOAN_DOCUMENT":            "Mortgage or Lender Document",
+        "PROPERTY_RECORD":          "Property Record",
+        "BUDDY_STATEMENT":          "Buddy Statement or Lay Statement",
+        "SERVICE_RECORD":           "Service Record or Orders",
+    }
+
+    for doc_type, covered_fields in doc_coverage.items():
+        count = len(covered_fields)
+        plural = "field" if count == 1 else "fields"
+        suggestions.append({
+            "document_type": doc_type,
+            "document_title": doc_titles.get(doc_type, doc_type),
+            "covers_fields": covered_fields,
+            "suggestion": (
+                f"Your {doc_type} may contain {count} of your missing {plural} "
+                f"({', '.join(covered_fields)}). "
+                f"Do you have it nearby? You can take a photo or upload a scan."
+            ),
+        })
+
+    # Sort by coverage — most helpful document first
+    suggestions.sort(key=lambda s: len(s["covers_fields"]), reverse=True)
+    return suggestions
