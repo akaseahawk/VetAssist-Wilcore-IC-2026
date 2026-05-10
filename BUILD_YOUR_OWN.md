@@ -15,8 +15,8 @@ spread across 2 days.
 
 Not 4 uninterrupted hours. 4 hours of stolen minutes.
 
-Between chores. Waiting rooms. Driving (voice-to-text, relax). Sitting at the
-playground in between actually playing with my kid. I started on my phone,
+Between chores. Waiting rooms. Waiting for a Lyft. Driving (voice-to-text, relax).
+Sitting at the playground in between actually playing with my kid. I started on my phone,
 got the initial proof-of-concept to a point I was proud of, then moved to desktop
 for some of the more detailed work — and at one point showed the whole thing to
 a veteran friend on my phone while we watched our kids run around.
@@ -53,6 +53,7 @@ was actually running:
 | Describing a feature out loud | Writing the code, wiring it to the backend, testing it |
 | Saying "that looks wrong" | Diagnosing the problem, proposing a fix, explaining why |
 | Doing literally nothing | Building, deploying, verifying, documenting |
+| Waiting for a Lyft | Thinking through features, talking out the next step |
 | Playing with my kid | Running API tests, checking browser behavior, fixing edge cases |
 | Reviewing on my phone before bed | Already done. Waiting for my feedback. |
 
