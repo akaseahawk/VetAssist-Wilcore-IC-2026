@@ -1,49 +1,83 @@
 # From Idea to Live App — No Technical Skills Required to Start
 
-> I built a working proof-of-concept in about 4 hours of actual effort — spread across
-> 2 days — entirely by talking on my phone. Between chores, childcare, waiting rooms,
-> and life. No laptop. No IDE. No dedicated focus time.
+> This is a test case and a how-to guide. Not a tutorial written by someone
+> who read about this. A real account of what I actually did — written entirely
+> in my own voice, on my phone, as it was happening.
 >
-> It was good enough that a veteran friend tested it on my phone at the playground
-> while we watched our kids.
->
-> This is how I did it, and how you can too.
+> If you have an idea — technical background or not — this is for you.
 
 ---
 
-## What I built
+## How this started
 
-**VetAssist** — a VA benefits and forms preparation assistant. You put in your service
-history, it surfaces benefits worth exploring, matches you to the right VA forms,
-prefills everything it already knows, and walks you through the gaps in plain
-conversational language. It generates a preparation package you can bring to a VSO
-or VA appointment.
+I built a working, deployed web application in roughly 4 hours of actual effort
+spread across 2 days.
 
-It runs live on the internet. It uses real AI. A real veteran used it.
+Not 4 uninterrupted hours. 4 hours of stolen minutes.
 
-I am not a software engineer. I directed. The AI built.
+Between chores. Waiting rooms. Driving (voice-to-text, relax). Sitting at the
+playground in between actually playing with my kid. I started on my phone,
+got the initial proof-of-concept to a point I was proud of, then moved to desktop
+for some of the more detailed work — and at one point showed the whole thing to
+a veteran friend on my phone while we watched our kids run around.
+
+He used it. On the spot. That's when I knew it was real.
+
+This guide exists because I think a lot of people — technical and non-technical —
+have ideas sitting in their heads that they assume require more than they have:
+more time, more money, more skills, more help. I wanted to demonstrate what's
+actually possible right now, and show exactly how I did it so you can too.
+
+The app itself? You can find it at
+**[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**
+— go see what it does. I'll let it speak for itself.
+
+Questions or want to talk through your own idea? Reach out to me directly.
+
+---
+
+## What's actually happening while you live your life
+
+Here's the part that took me a minute to internalize. While I was doing dishes,
+or pushing a kid on a swing, or waiting at the doctor's office — this is what
+was actually running:
+
+| What I was doing | What the AI was doing |
+|---|---|
+| Talking through my idea on my phone | Asking clarifying questions, pushing back, helping me find the holes |
+| Describing a feature out loud | Writing the code, wiring it to the backend, testing it |
+| Saying "that looks wrong" | Diagnosing the problem, proposing a fix, explaining why |
+| Doing literally nothing | Building, deploying, verifying, documenting |
+| Playing with my kid | Running API tests, checking browser behavior, fixing edge cases |
+| Reviewing on my phone before bed | Already done. Waiting for my feedback. |
+
+That's the shift. You're not doing the work in the traditional sense.
+You're directing it. There's a meaningful difference — and it comes with real
+responsibility, which I'll get to.
 
 ---
 
 ## The honest truth up front
 
 You do not need to know how to code to get started.
-You do not need a computer science degree to explore an idea.
-You do not need a technical co-founder to build a first version.
+You do not need a computer science degree.
+You do not need a technical co-founder.
+You do not need a free weekend.
 
-What you need is a clear idea, the willingness to think it through, and about $20/month.
+What you need: a clear idea, the willingness to think it through, and about $20/month.
 
-That said — and this matters — getting something working is not the same as getting
-something right. A prototype that runs is a starting point, not a finish line. At some
-point, especially if real people are going to use your app and rely on it, you want
-technical eyes on it. Someone who can check whether it's secure, whether it handles edge
-cases gracefully, whether it scales, whether it does what you think it does under the hood.
+That said — and I mean this — getting something working is not the same as getting
+something right. A prototype that runs is a starting point, not a finish line.
+At some point, especially if real people are going to use your app and rely on it,
+you want technical eyes on it. Someone who can check whether it's secure, whether
+it handles edge cases, whether it scales, whether it does what you think it does
+under the hood.
 
-The good news: not having technical skills is no longer a reason to never start. The
-important thing is knowing when to bring in those skills — and having the humility to
-recognize that moment when it comes.
+The good news: not having those skills is no longer a reason to never start.
+Knowing when to bring them in — and being humble enough to recognize that moment —
+is the important part.
 
-This guide is about getting you to that first working version, with your eyes open.
+This guide gets you to a real, working first version. Eyes open.
 
 ---
 
@@ -51,208 +85,167 @@ This guide is about getting you to that first working version, with your eyes op
 
 | Tool | What it does | Cost |
 |---|---|---|
-| **Perplexity Computer** | Your AI co-pilot — browses the web, writes code, manages files, deploys apps, works on desktop and mobile | ~$20/month |
-| **Claude Code** (via Anthropic API) | The heavy-lifting code builder — called by Perplexity Computer during the build | Pay-as-you-go API credits — start with what you're comfortable spending |
-| **GitHub** | Stores your code safely in the cloud, tracks every change | Free |
-| **Railway** | Hosts and runs your app live on the internet | Free tier available; ~$5/month for always-on |
-| **Hugging Face Spaces** | Alternative hosting, great for AI-heavy apps | Free tier available |
+| **Perplexity Computer** | Your AI co-pilot — browses the web, writes and runs code, manages files, deploys apps. Works on desktop and mobile. | ~$20/month |
+| **Claude Code** (via Anthropic API) | The heavy-lifting code builder, called automatically during the build. You don't interact with it directly — Perplexity handles that. | Pay-as-you-go — start with $20–50 in credits |
+| **GitHub** | Stores your code safely in the cloud. Every change tracked. Rollback if something breaks. | Free |
+| **Railway** | Hosts and runs your app live on the internet. Connects to GitHub — push code, app updates automatically. | Free tier / ~$5/month for always-on |
 
-**Total to get started: roughly $20–25/month.** The Anthropic API credits are the variable
-cost — the more you build and iterate, the more you use. If you follow this process and
-think before you build, you won't burn through them unnecessarily.
+**Realistic total to launch something real: $20–75.**
+
+The Anthropic API credits are the variable. Think before you build and you won't
+burn through them. More on that below.
 
 ---
 
 ## Phase 1 — Think before you build
 
-> This is the most important phase. Do not skip it.
+> The most important phase. And the cheapest. Do not skip it.
 
-The single biggest mistake people make is jumping straight into building before the idea
-is solid. If you're unclear on what you're making, any AI tool will build you something
-unclear. Clarity going in shapes everything that comes out.
+The most common mistake: jumping straight into building before the idea is solid.
+If you're vague going in, the AI will build you something vague. It is remarkably
+good at confidently building the wrong thing if you let it.
 
-**Do this phase entirely outside of Claude Code.** Use Perplexity Computer, ChatGPT,
-Claude.ai — whatever you have access to. These conversations are cheap or free.
-Claude Code (the API) burns credits fast, and you don't want to spend them figuring out
-what you're building.
+**Do this phase outside of Claude Code.** Use Perplexity Computer on your phone,
+Claude.ai, ChatGPT — whatever. These conversations are cheap or free.
+Claude Code burns API credits, and you don't want to spend them figuring out
+what you're making.
 
-The best part: you can do this anywhere. In the car. At the playground. In a waiting
-room. On your phone with voice-to-text while the laundry runs. That is literally how
-VetAssist started.
+You can do all of Phase 1 on your phone. In a waiting room. On a walk.
+That's where most of VetAssist came from.
 
 ### Have a real conversation with AI about your idea
 
-Talk it out. Use voice-to-text on your phone, screenshot things you've sketched,
-think out loud. Ask the AI to push back.
+Talk it out. Voice-to-text. Screenshot your sketches. Think out loud.
+Ask it to disagree with you.
 
-Work through these questions as a conversation, not a checklist:
+Work through these — not as a form to fill out, as a conversation:
 
-- **What problem does this solve?** Be specific. The more concrete, the better.
-- **Who is it for?** Picture one real person. What do they struggle with?
-- **What does it actually do, step by step?** Walk through it like you're explaining
-  it to someone who's never seen it.
-- **What does it NOT do?** Scope is everything. A focused app that does one thing well
-  beats an ambitious app that does ten things poorly.
-- **What's the simplest version that proves the idea works?** That's your MVP —
-  Minimum Viable Product. Build that first.
-- **Are there security or privacy considerations?** If your app touches personal data,
-  health information, financial information, or anything sensitive — flag it now.
-  It doesn't stop you from building, but it changes what you need to think about.
+- **What problem does this solve?** Specific beats general every time.
+- **Who is it for?** Name one real person. What's their actual frustration?
+- **What does it do, step by step?** Walk through it out loud like you're showing someone.
+- **What does it NOT do?** This one matters as much as the above.
+- **What's the smallest version that proves the idea works?** That's your MVP. Build that first.
+- **Does it touch anything sensitive?** Personal data, health info, financial info —
+  flag it now. Doesn't stop you, just changes what you need to think about.
 
-Ask the AI things like:
-- "What are the holes in this idea?"
+Push the AI on your idea:
+- "What are the holes in this?"
 - "What would a skeptical user say?"
 - "What's the riskiest assumption I'm making?"
-- "If this handles sensitive data, what should I be careful about?"
+- "Where could this go wrong?"
 
 ### Write a one-page brief
 
-Before Phase 2, write a short summary. Nothing formal — just:
+Before you move to Phase 2, write a short summary. Informal is fine:
 
 - What the app does (2–3 sentences)
 - Who it's for
-- The main flow: what does a user do, step by step
+- The main flow, step by step
 - What it does NOT do
 - The simplest first version
-- Any known risks or sensitivities (data, privacy, safety)
+- Any known risks or sensitivities
 
-This brief becomes the foundation you hand to the AI that builds it.
+This becomes the brief you hand to the AI when building starts. The better it is,
+the less back-and-forth you'll need, and the fewer credits you'll burn.
 
 ---
 
 ## Phase 2 — Set up your tools (one time)
 
-These are one-time steps. Once done, you never have to repeat them.
+Do these once. Never again.
 
-### 1. Create a GitHub account
-- Go to [github.com](https://github.com) and sign up. It's free.
-- Think of GitHub as a safe deposit box for your code. Every change is saved.
-  If something breaks, you can go back to a version that worked.
-  It's also how any technical collaborator will review your code later.
+**1. GitHub** — [github.com](https://github.com). Free. Sign up.
+Think of it as a safe deposit box for your code with full version history.
+If something breaks, you go back. If a collaborator wants to review your code, this is where they look.
 
-### 2. Sign up for Perplexity Computer
-- Go to [perplexity.ai](https://perplexity.ai) and subscribe.
-- This is your main interface for everything — desktop and mobile.
+**2. Perplexity Computer** — [perplexity.ai](https://perplexity.ai). Subscribe.
+This is your main interface for everything, desktop and mobile.
 
-### 3. Get an Anthropic API key
-- Go to [console.anthropic.com](https://console.anthropic.com), create an account,
-  and add some credits. Start with $20–50.
-- This key is what lets Claude Code build your app. Keep it private —
-  never share it or post it anywhere.
+**3. Anthropic API key** — [console.anthropic.com](https://console.anthropic.com).
+Create an account, add $20–50 in credits. Keep the key private — do not share it,
+do not post it anywhere. Ever.
 
-### 4. Create a Railway account
-- Go to [railway.app](https://railway.app) and sign up with your GitHub account.
-- Railway connects directly to GitHub. When you push new code, Railway automatically
-  updates your live app. No manual deployment steps needed.
+**4. Railway** — [railway.app](https://railway.app). Sign up with your GitHub account.
+When you push new code, your live app updates automatically. No manual steps.
 
 ---
 
 ## Phase 3 — Build it
 
-Now you bring in Perplexity Computer and Claude Code together.
+Now Perplexity Computer and Claude Code work together. You direct.
 
 ### Hand over your brief
 
-Start a conversation with Perplexity Computer. Share your one-page brief and say:
+Start a conversation with Perplexity Computer. Paste your one-page brief. Say something like:
 
-> "I want to build this app. Here's what it does, who it's for, and what the first
-> version needs to include. I want you to build it with me. I'm not a developer —
-> I'll be directing and reviewing, you'll be building."
+> "I want to build this app. Here's what it does, who it's for, and what the
+> first version needs. I'm not a developer — I'll be directing and reviewing,
+> you handle the building."
 
-From here, Perplexity Computer will ask clarifying questions, write the code, test
-things along the way, and explain decisions. Your job is to review what it builds,
-tell it when something looks wrong, and stay engaged. You are the product owner.
+From here it will ask clarifying questions, write the code, test things, and explain
+decisions. Your job: review what it shows you, flag when something's wrong, stay engaged.
 
-### Reviewing work without knowing how to code
+While you're living your life, it's doing the work in the table above.
 
-You don't need to understand every line. You do need to ask:
+### Reviewing without knowing how to code
+
+You don't need to understand every line. You need to ask:
 - Does this do what I asked?
-- Does it behave the way I'd expect as a user?
-- Is there anything here I don't understand that I should?
+- Does it behave the way a real user would expect?
+- Is there anything here I don't understand that I probably should?
 
-Ask the AI to explain anything in plain language. If it can't explain a decision simply,
-ask it to simplify the code. Complexity you don't understand is complexity you can't
-confidently stand behind.
+If you can't get a plain-language explanation of a decision, ask it to simplify.
+Complexity you don't understand is complexity you can't stand behind.
 
 ### Test it like a real user
 
-As features get built, use the app:
-- Walk through the full flow
-- Enter unusual inputs — empty fields, very long text, unexpected values
-- Try it on your phone
-- Ask "what happens if a user does X?"
+Use the thing. Walk the full flow. Try weird inputs. Use it on your phone.
+Ask "what happens if someone does X?" Report what you find. It fixes things.
 
-Report what you find. The AI will fix it.
+### On security and sensitive data
 
-### A note on security and sensitive data
-
-If your app handles anything personal — names, addresses, health data, financial data,
-passwords, or anything you wouldn't want leaked — raise it explicitly with the AI during
-the build. Ask:
+If your app touches anything personal — names, health data, financial data,
+anything you wouldn't want leaked — raise it explicitly during the build:
 - "Is this stored securely?"
-- "Could someone access another user's data?"
-- "What happens if someone tries to abuse this feature?"
+- "Can one user access another user's data?"
+- "What happens if someone tries to abuse this?"
 
-The AI will address what you ask. But it won't always volunteer every concern.
-That's part of why technical review matters later — a developer with security experience
-will spot things that didn't come up during the build.
-
-This isn't a reason to stop. It's a reason to stay curious and keep asking questions.
+The AI addresses what you ask. It doesn't always volunteer every concern unprompted.
+That's exactly why technical review matters later.
 
 ---
 
 ## Phase 4 — Deploy it
 
-### Push to GitHub
-Perplexity Computer handles this. It commits your code and pushes it to your
-GitHub repository. You don't need to type any commands.
+**Push to GitHub** — Perplexity Computer handles this entirely. You don't touch the command line.
 
-### Connect Railway
-- In Railway, create a new project and link it to your GitHub repository.
-- Railway builds and deploys your app every time new code is pushed.
-- You get a live public URL you can share with anyone.
+**Connect Railway** — link your Railway project to your GitHub repo. Done once.
+Every future push auto-deploys. You get a live URL you can share with anyone.
 
-Your app is live. That's real — you built something.
+That's it. Your app is on the internet.
 
 ---
 
 ## Phase 5 — Don't stop at "it works"
 
-This is where a lot of non-technical builders stop. Don't.
+Working is the beginning, not the end.
 
-Working is the beginning. Once real people start using your app — or once you're
-thinking seriously about that — it's time to bring in technical perspective.
+Once real people use your app — or once you're seriously thinking about that —
+bring in technical perspective. Ask someone to look at it who can tell you:
 
-### What to have reviewed
+- Is this actually secure?
+- What breaks under unusual conditions?
+- Will this hold up if more people use it than I planned for?
+- Does it do what I think it does in every case that matters?
 
-- **Security** — Is data handled safely? Are there obvious vulnerabilities?
-- **Edge cases** — What happens with unexpected inputs or unusual user behavior?
-- **Scalability** — Will it hold up if more people use it than you planned for?
-- **Correctness** — Does it do what you think it does, in all the cases that matter?
+You don't hand the project over. You get a second set of eyes.
 
-### How to find technical reviewers
+If you're at Wilcore — you work with engineers. Ask one. An hour of their time
+on a quick review is worth more than you'd expect.
 
-- Post your GitHub link in developer communities (Reddit r/webdev, Hacker News, Discord
-  servers for your tech stack)
-- Ask a technically-minded friend to take a look — even an hour of their time is valuable
-- Consider a freelance code review on platforms like Toptal or Upwork for anything
-  that handles sensitive data
-- If you're building for a specific domain (healthcare, finance, legal), look for
-  advisors with domain-specific technical experience
-
-You don't need to hand the project over. You need a second set of eyes that can tell
-you what you might have missed.
-
-### Technical skills still matter — they're just not a prerequisite
-
-The tools have changed. You can go further than ever without writing a line of code.
-But the fundamentals of good software — security, reliability, correctness, thoughtful
-design — still require human judgment, and often technical human judgment.
-
-AI is an extraordinary builder and an extraordinary assistant. It is not, yet, a
-replacement for a senior engineer who's seen what happens when things go wrong at scale.
-Think of this process as getting you to the table — and then knowing when to invite
-the right people to join you there.
+**Technical people reading this:** the same principle applies in reverse.
+You can build faster now than ever before. But fast and correct are still different things.
+Use these tools to accelerate — not to skip the thinking.
 
 ---
 
@@ -260,73 +253,71 @@ the right people to join you there.
 
 | Situation | What to do |
 |---|---|
-| You pushed new code to GitHub | Nothing — Railway auto-deploys in ~60–90 seconds |
-| You changed a Railway environment variable | Railway auto-redeploys when you save |
-| The app seems stuck or frozen | Railway dashboard → Deployments → Restart |
-| Your browser is showing an old version | Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows) |
+| Pushed new code to GitHub | Nothing — auto-deploys in ~60–90 seconds |
+| Changed a Railway environment variable | Auto-redeploys when you save |
+| App seems frozen or stuck | Railway dashboard → Deployments → Restart |
+| Browser showing old version | Hard refresh: `Cmd+Shift+R` Mac / `Ctrl+Shift+R` Windows |
 
 ---
 
-## What this actually costs
+## What this costs
 
 | Item | Cost |
 |---|---|
 | Perplexity Computer | ~$20/month |
 | Anthropic API credits (first build) | $20–50 one-time |
 | GitHub | Free |
-| Railway | Free tier / ~$5/month for always-on |
-| **Total to launch something real** | **~$20–75** |
+| Railway | Free tier / ~$5/month always-on |
+| **Total to ship something real** | **~$20–75** |
 
 ---
 
-## The mindset that makes this work
+## The mindset
 
-**You are the product owner. The AI is the engineering team. Technical review is your
-quality gate.**
+You are the product owner. The AI is the engineering team.
+Technical review is your quality gate.
 
-A few things that helped:
+A few things that actually helped:
 
-- **Talk to the AI like a colleague.** Have a real back-and-forth. Push back. Ask why.
-  You'll learn more and build better.
-- **Iterate in small steps.** Get one thing working before adding the next.
-  Small wins compound.
-- **Use your phone.** Voice-to-text on the go, screenshots of sketches or references,
-  photos of whiteboards. AI works with all of it. I built most of this in stolen
-  minutes throughout the day — waiting rooms, playgrounds, between tasks.
-- **Don't panic when things break.** They will. That's normal. Tell the AI what
-  happened and it will fix it.
-- **Think before you burn credits.** Phase 1 is free. Use it well. The clearer you
-  are going in, the less rework you'll need.
-- **Stay humble about what you don't know.** The fact that something runs doesn't mean
-  it's safe, correct, or ready for the world. Ask questions. Bring in reviewers.
-  That's not a sign of weakness — it's a sign of good judgment.
-
----
-
-## You've already done the hardest part
-
-Having the idea is the hardest part. Most people stay stuck at "I wish someone would
-build something that..." — assuming it requires skills, money, or connections they
-don't have.
-
-It doesn't. Not anymore.
-
-You can start today with a phone and a conversation. You can have something running in
-a weekend — or honestly, in a few hours of stolen time across a couple of days. And you
-can do it thoughtfully — knowing that the tools have changed, that the barriers have
-come down, and that the responsibility of building something people use hasn't changed
-at all.
-
-Go build the thing. Then make it worthy of the people who'll use it.
+- **Talk to it like a colleague.** Push back. Ask why. You'll build better things
+  and learn more about what you're building in the process.
+- **Iterate in small steps.** One thing working is better than five things halfway done.
+- **Use your phone.** Voice-to-text, photos of sketches, screenshots of things you
+  want to reference. I did meaningful work on this at a playground. That's not a flex —
+  that's the point.
+- **Don't panic when things break.** They will. That's Tuesday. Tell the AI what
+  happened, it fixes it.
+- **Think before you burn credits.** Phase 1 is free. Use it. Clarity going in
+  means less rework, less cost, better output.
+- **Stay humble about what you don't know.** Running doesn't mean right.
+  Safe. Secure. Correct under all conditions. Those still require judgment —
+  and often, someone else's.
 
 ---
 
-*Written based on the real process used to build VetAssist — a VA benefits and forms
-preparation assistant built in roughly 4 hours of actual effort across 2 days, entirely
-by talking on a phone. No laptop, no IDE, no uninterrupted focus time. Built between
-chores, childcare, waiting rooms, and life.*
+## Go build the thing
 
-*It was good enough for a veteran friend to test it on a phone at the playground while
-we watched our kids.*
+Most people stay stuck at "I wish someone would build something that..." —
+assuming the gap between idea and reality is bigger than it is.
+
+It isn't. Not anymore.
+
+You can start today. On your phone. Between whatever is happening in your life.
+You can have something real running in a weekend — or, honestly, in a few hours
+of stolen time across a couple of days.
+
+The app this guide was written around is live at
+**[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**.
+Go use it. Then come build your own.
+
+Questions, thoughts, want to talk through your idea? Reach out to me directly —
+I'm happy to help you think it through.
+
+---
+
+*Written in my own voice, on my phone, as a deliberate test case of what's possible
+right now with these tools. Some of the later work moved to desktop. Some of it
+happened at a playground. A veteran friend tested the finished product on my phone
+while our kids played.*
 
 *That's the bar. You can clear it.*
