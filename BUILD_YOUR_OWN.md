@@ -32,6 +32,11 @@ The app itself? You can find it at
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**
 — go see what it does. I'll let it speak for itself.
 
+If you want to see what the team turned that POC into for the Wilcore Innovation
+Challenge, the full hackathon version is at the same URL — same app, grown up a bit.
+The repo is here:
+**[github.com/akaseahawk/VetAssist-Wilcore-IC-2026](https://github.com/akaseahawk/VetAssist-Wilcore-IC-2026)**
+
 Questions or want to talk through your own idea? Reach out to me directly.
 
 ---
@@ -50,6 +55,12 @@ was actually running:
 | Doing literally nothing | Building, deploying, verifying, documenting |
 | Playing with my kid | Running API tests, checking browser behavior, fixing edge cases |
 | Reviewing on my phone before bed | Already done. Waiting for my feedback. |
+
+Here's what that actually looked like on my phone — Perplexity Computer and Claude Code
+working through the VetAssist sprint while I was living my life:
+
+![Perplexity Computer working — task list sprint](assets/perplexity-working-1.png)
+![Perplexity Computer working — editing code files](assets/perplexity-working-2.png)
 
 That's the shift. You're not doing the work in the traditional sense.
 You're directing it. There's a meaningful difference — and it comes with real
