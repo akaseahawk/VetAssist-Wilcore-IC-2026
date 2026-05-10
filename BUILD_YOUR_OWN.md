@@ -1,8 +1,27 @@
 # From Idea to Live App — No Technical Skills Required to Start
 
-> A field guide for people who have ideas but don't know how to make them real.
-> Written by someone who did exactly this — built a working, deployed web app — using only
-> a phone, a few AI tools, and a credit card.
+> I built a working proof-of-concept in about 4 hours of actual effort — spread across
+> 2 days — entirely by talking on my phone. Between chores, childcare, waiting rooms,
+> and life. No laptop. No IDE. No dedicated focus time.
+>
+> It was good enough that a veteran friend tested it on my phone at the playground
+> while we watched our kids.
+>
+> This is how I did it, and how you can too.
+
+---
+
+## What I built
+
+**VetAssist** — a VA benefits and forms preparation assistant. You put in your service
+history, it surfaces benefits worth exploring, matches you to the right VA forms,
+prefills everything it already knows, and walks you through the gaps in plain
+conversational language. It generates a preparation package you can bring to a VSO
+or VA appointment.
+
+It runs live on the internet. It uses real AI. A real veteran used it.
+
+I am not a software engineer. I directed. The AI built.
 
 ---
 
@@ -25,25 +44,6 @@ important thing is knowing when to bring in those skills — and having the humi
 recognize that moment when it comes.
 
 This guide is about getting you to that first working version, with your eyes open.
-
----
-
-## What this guide is
-
-This is the process I actually used to build **VetAssist** — a web app that helps veterans
-identify VA benefits they may qualify for, prefills government forms with their information,
-and walks them through the gaps in plain conversational language.
-
-I built it by talking to AI on my phone while walking around. I took screenshots. I used
-voice-to-text. I worked through the idea before writing a single line of code. Then when
-the idea was solid, I brought in the tools that do the actual building — and I directed,
-reviewed, and guided like a product owner rather than a programmer.
-
-The result is a real, deployed, working application. It is also something I continue to
-review, improve, and have technically vetted — because shipping something is the beginning
-of responsibility, not the end of it.
-
-If I can do it, you can do it. And you can do it responsibly.
 
 ---
 
@@ -76,17 +76,21 @@ Claude.ai — whatever you have access to. These conversations are cheap or free
 Claude Code (the API) burns credits fast, and you don't want to spend them figuring out
 what you're building.
 
+The best part: you can do this anywhere. In the car. At the playground. In a waiting
+room. On your phone with voice-to-text while the laundry runs. That is literally how
+VetAssist started.
+
 ### Have a real conversation with AI about your idea
 
-You don't need a whiteboard or a business plan. Talk it out — use voice-to-text on your
-phone, screenshot things you've sketched, think out loud. Ask the AI to push back.
+Talk it out. Use voice-to-text on your phone, screenshot things you've sketched,
+think out loud. Ask the AI to push back.
 
 Work through these questions as a conversation, not a checklist:
 
 - **What problem does this solve?** Be specific. The more concrete, the better.
 - **Who is it for?** Picture one real person. What do they struggle with?
-- **What does it actually do, step by step?** Walk through it like you're explaining it
-  to someone who's never seen it.
+- **What does it actually do, step by step?** Walk through it like you're explaining
+  it to someone who's never seen it.
 - **What does it NOT do?** Scope is everything. A focused app that does one thing well
   beats an ambitious app that does ten things poorly.
 - **What's the simplest version that proves the idea works?** That's your MVP —
@@ -242,8 +246,8 @@ you what you might have missed.
 ### Technical skills still matter — they're just not a prerequisite
 
 The tools have changed. You can go further than ever without writing a line of code.
-But the fundamentals of good software — security, reliability, correctness,
-thoughtful design — still require human judgment, and often technical human judgment.
+But the fundamentals of good software — security, reliability, correctness, thoughtful
+design — still require human judgment, and often technical human judgment.
 
 AI is an extraordinary builder and an extraordinary assistant. It is not, yet, a
 replacement for a senior engineer who's seen what happens when things go wrong at scale.
@@ -273,9 +277,6 @@ the right people to join you there.
 | Railway | Free tier / ~$5/month for always-on |
 | **Total to launch something real** | **~$20–75** |
 
-After the first build, your monthly cost is Perplexity Computer (~$20) plus whatever
-API usage comes from maintaining or improving the app.
-
 ---
 
 ## The mindset that makes this work
@@ -285,12 +286,13 @@ quality gate.**
 
 A few things that helped:
 
-- **Talk to the AI like a colleague.** Have a real back-and-forth. Push back.
-  Ask why. You'll learn more and build better.
+- **Talk to the AI like a colleague.** Have a real back-and-forth. Push back. Ask why.
+  You'll learn more and build better.
 - **Iterate in small steps.** Get one thing working before adding the next.
   Small wins compound.
 - **Use your phone.** Voice-to-text on the go, screenshots of sketches or references,
-  photos of whiteboards. AI works with all of it.
+  photos of whiteboards. AI works with all of it. I built most of this in stolen
+  minutes throughout the day — waiting rooms, playgrounds, between tasks.
 - **Don't panic when things break.** They will. That's normal. Tell the AI what
   happened and it will fix it.
 - **Think before you burn credits.** Phase 1 is free. Use it well. The clearer you
@@ -304,19 +306,27 @@ A few things that helped:
 ## You've already done the hardest part
 
 Having the idea is the hardest part. Most people stay stuck at "I wish someone would
-build something that..." — assuming it requires skills, money, or connections they don't have.
+build something that..." — assuming it requires skills, money, or connections they
+don't have.
 
 It doesn't. Not anymore.
 
 You can start today with a phone and a conversation. You can have something running in
-a weekend. And you can do it thoughtfully — knowing that the tools have changed, that
-the barriers have come down, and that the responsibility of building something people
-use hasn't changed at all.
+a weekend — or honestly, in a few hours of stolen time across a couple of days. And you
+can do it thoughtfully — knowing that the tools have changed, that the barriers have
+come down, and that the responsibility of building something people use hasn't changed
+at all.
 
 Go build the thing. Then make it worthy of the people who'll use it.
 
 ---
 
-*Written based on the real process used to build VetAssist — a web app for veterans,
-built without a development team, deployed on Railway, using Perplexity Computer
-and the Anthropic API.*
+*Written based on the real process used to build VetAssist — a VA benefits and forms
+preparation assistant built in roughly 4 hours of actual effort across 2 days, entirely
+by talking on a phone. No laptop, no IDE, no uninterrupted focus time. Built between
+chores, childcare, waiting rooms, and life.*
+
+*It was good enough for a veteran friend to test it on a phone at the playground while
+we watched our kids.*
+
+*That's the bar. You can clear it.*
