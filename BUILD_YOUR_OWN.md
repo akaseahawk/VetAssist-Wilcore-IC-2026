@@ -12,6 +12,31 @@
 
 ---
 
+## Quick navigation
+
+**Not technical? Start here:**
+- [How this started](#how-this-started) — the story
+- [What's actually happening while you live your life](#whats-actually-happening-while-you-live-your-life) — what the AI is doing
+- [The honest truth up front](#the-honest-truth-up-front) — what you actually need
+- [The tools and what they cost](#the-tools-and-what-they-cost)
+- [Phase 1 — Think before you build](#phase-1--think-before-you-build) ← start here
+- [Phase 2 — Set up your tools](#phase-2--set-up-your-tools-one-time)
+- [Phase 3 — Build it](#phase-3--build-it)
+- [Phase 4 — Deploy it](#phase-4--deploy-it)
+- [Phase 5 — Don't stop at "it works"](#phase-5--dont-stop-at-it-works)
+- [What this costs](#what-this-costs)
+- [Go build the thing](#go-build-the-thing)
+
+**Already technical? Jump to what's relevant:**
+- [Who I am and why that matters](#who-i-am-and-why-that-matters) — background and why it's relevant
+- [Before you read this as "AI did everything"](#before-you-read-this-as-ai-did-everything-and-it-was-magic--it-wasnt) — custom instructions, system prompts, the research
+- [What's actually happening while you live your life](#whats-actually-happening-while-you-live-your-life) — the real division of labor
+- [Phase 3 — Build it](#phase-3--build-it) — directing vs. executing, your unfair advantages
+- [Phase 5 — Don't stop at "it works"](#phase-5--dont-stop-at-it-works) — where your skills multiply everything
+- [The mindset](#the-mindset) — the technical multiplier
+
+---
+
 ## How this started
 
 I built a working, deployed web application in roughly 4 hours of actual effort
