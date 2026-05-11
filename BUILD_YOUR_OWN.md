@@ -13,15 +13,17 @@
 I built a working, deployed web application in roughly 4 hours of actual effort
 spread across 2 days.
 
-Not 4 uninterrupted hours. 4 hours of stolen minutes.
+Not 4 uninterrupted hours. 4 hours of stolen minutes — entirely on my phone.
 
 Between chores. Waiting rooms. Waiting for a Lyft. Driving (voice-to-text, relax).
-Sitting at the playground in between actually playing with my kid. I started on my phone,
-got the initial proof-of-concept to a point I was proud of, then moved to desktop
-for some of the more detailed work — and at one point showed the whole thing to
-a veteran friend on my phone while we watched our kids run around.
+Sitting at the playground in between actually playing with my kid. From the first idea
+to a working POC to showing it to a veteran friend while we watched our kids run around
+— all of it was on my phone. Talking, typing, reviewing, directing.
 
-He used it. On the spot. That's when I knew it was real.
+The desktop didn't come in until we were building out the presentation for the final
+hackathon submission. The app itself? Phone start to finish.
+
+He used it on my phone at the playground. On the spot. That's when I knew it was real.
 
 This guide exists because I think a lot of people — technical and non-technical —
 have ideas sitting in their heads that they assume require more than they have:
@@ -295,8 +297,9 @@ A few things that actually helped:
   and learn more about what you're building in the process.
 - **Iterate in small steps.** One thing working is better than five things halfway done.
 - **Use your phone.** Voice-to-text, photos of sketches, screenshots of things you
-  want to reference. I did meaningful work on this at a playground. That's not a flex —
-  that's the point.
+  want to reference. I built the entire POC — start to finish — on my phone. Chores,
+  waiting rooms, Lyft rides, the playground. The desktop only came out for the
+  presentation. That's not a flex — that's the point.
 - **Don't panic when things break.** They will. That's Tuesday. Tell the AI what
   happened, it fixes it.
 - **Think before you burn credits.** Phase 1 is free. Use it. Clarity going in
@@ -328,8 +331,9 @@ I'm happy to help you think it through.
 ---
 
 *Written in my own voice, on my phone, as a deliberate test case of what's possible
-right now with these tools. Some of the later work moved to desktop. Some of it
-happened at a playground. A veteran friend tested the finished product on my phone
+right now with these tools. The entire build — from first idea to working POC — was done
+on my phone. Chores, waiting rooms, Lyft rides, the playground. The desktop only
+came in for the presentation. A veteran friend tested the finished product on my phone
 while our kids played.*
 
 *That's the bar. You can clear it.*
