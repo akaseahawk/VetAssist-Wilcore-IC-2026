@@ -43,6 +43,47 @@ Questions or want to talk through your own idea? Reach out to me directly.
 
 ---
 
+## Before you read this as "AI did everything and it was magic" — it wasn't
+
+I've spent roughly 3 years developing and refining a set of custom instructions that
+shape how any AI works with me. Think of it as a personal operating agreement between
+me and the model. Some examples of what's in it:
+
+- **Numbered structured output** — everything the AI produces is numbered hierarchically
+  (1.1, 1.2.3, etc.) so I can say "what you said at 2.3 is wrong" or "explain 4.1.2"
+  and we both know exactly what we're talking about. No ambiguity, no re-reading walls
+  of text to find the thing.
+- **Show your work** — the AI shares what it's deciding, considers alternatives, and
+  gives me a pro/con/reason before acting. I'm not just getting output, I'm getting
+  its thinking.
+- **Structured push-back** — it's set up to flag when it disagrees or sees a risk,
+  not just comply and move on.
+
+This is sometimes called a `CLAUDE.md` file or a system prompt — the AI community
+has been writing about this pattern a lot lately because it genuinely changes how
+well the collaboration goes. I've been building and tuning mine across projects for
+years. The tools got dramatically better, but so did my ability to work with them.
+
+The result blew my mind. But it didn't come from nowhere — I set it up for success.
+
+**One honest caveat on AI reasoning:** research has shown that what an LLM says
+it's doing isn't always what it's actually doing under the hood. The chain-of-thought
+explanation is useful, but it's not a guaranteed window into the model's true process.
+Two studies worth knowing about:
+
+- [*Reasoning Models Don't Always Say What They Think*](https://www.anthropic.com/research/reasoning-models-dont-say-think)
+  — Anthropic's own alignment science team (2025) found that model chain-of-thought
+  reasoning can be unfaithful to its actual internal process.
+- [*Language Models Don't Always Say What They Think: Unfaithful Explanations in
+  Chain-of-Thought Prompting*](https://arxiv.org/abs/2305.04388) — Turpin et al.,
+  NeurIPS 2023. CoT explanations can systematically misrepresent the true reason for
+  a model's prediction — plausible but misleading.
+
+Still useful. Just not gospel. Stay engaged, keep asking questions, don't treat the
+AI's self-reported reasoning as ground truth. More on that when we get to the build.
+
+---
+
 ## What's actually happening while you live your life
 
 Here's the part that took me a minute to internalize. While I was doing dishes,
@@ -69,55 +110,7 @@ That's the shift. You're not doing the work in the traditional sense.
 You're directing it. There's a meaningful difference — and it comes with real
 responsibility, which I'll get to.
 
----
 
-## This didn't just happen in a vacuum
-
-Before you read this as "AI did everything and it was magic" — it wasn't.
-
-I've spent roughly 3 years developing and refining a set of custom instructions that
-shape how any AI works with me. Think of it as a personal operating agreement between
-me and the model. Some examples of what's in it:
-
-- **Numbered structured output** — everything the AI produces is numbered hierarchically
-  (1.1, 1.2.3, etc.) so I can say "what you said at 2.3 is wrong" or "explain 4.1.2"
-  and we both know exactly what we're talking about. No ambiguity, no re-reading walls
-  of text to find the thing.
-- **Show your work** — the AI shares what it's deciding, considers alternatives, and
-  gives me a pro/con/reason before acting. I'm not just getting output, I'm getting
-  its thinking.
-- **Structured push-back** — it's set up to flag when it disagrees or sees a risk,
-  not just comply and move on.
-
-This is sometimes called a `CLAUDE.md` file or a system prompt — the AI community
-has been writing about this pattern a lot lately because it genuinely changes how
-well the collaboration goes. I've been building and tuning mine across projects for
-years. The tools got dramatically better, but so did my ability to work with them.
-
-The result blew my mind. But it didn't come from nowhere — I set it up for success.
-
-**One more honest note on AI reasoning:** research has shown that what an LLM says
-it's doing isn't always what it's actually doing under the hood. The chain-of-thought
-explanation is useful, but it's not a guaranteed window into the model's true process.
-Two studies worth knowing about:
-
-- [*Reasoning Models Don't Always Say What They Think*](https://www.anthropic.com/research/reasoning-models-dont-say-think)
-  — Anthropic's own alignment science team (2025) found that model chain-of-thought
-  reasoning can be unfaithful to its actual internal process, and that monitoring it
-  isn't sufficient to catch all undesirable behaviors.
-- [*Language Models Don't Always Say What They Think: Unfaithful Explanations in
-  Chain-of-Thought Prompting*](https://arxiv.org/abs/2305.04388) — Turpin et al.,
-  NeurIPS 2023. CoT explanations can systematically misrepresent the true reason for
-  a model's prediction — plausible but misleading.
-
-This doesn't mean the explanations are useless — they're still valuable for directing
-the work and catching obvious errors. It means you stay engaged, keep asking questions,
-and don't treat the AI's self-reported reasoning as ground truth. Which is exactly why
-technical review still matters.
-
----
-
-## The honest truth up front
 
 You do not need to know how to code to get started.
 You do not need a computer science degree.
