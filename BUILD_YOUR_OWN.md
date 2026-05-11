@@ -18,13 +18,12 @@
 - [How this started](#how-this-started) — the story
 - [What's actually happening while you live your life](#whats-actually-happening-while-you-live-your-life) — what the AI is doing
 - [The honest truth up front](#the-honest-truth-up-front) — what you actually need
-- [The tools and what they cost](#the-tools-and-what-they-cost)
+- [The tools and what they cost](#the-tools-and-what-they-cost) — tools + realistic cost
 - [Phase 1 — Think before you build](#phase-1--think-before-you-build) ← start here
 - [Phase 2 — Set up your tools](#phase-2--set-up-your-tools-one-time)
 - [Phase 3 — Build it](#phase-3--build-it)
 - [Phase 4 — Deploy it](#phase-4--deploy-it)
 - [Phase 5 — Don't stop at "it works"](#phase-5--dont-stop-at-it-works)
-- [What this costs](#what-this-costs)
 - [Go build the thing](#go-build-the-thing)
 
 **Already technical? Jump to what's relevant:**
@@ -39,8 +38,7 @@
 
 ## How this started
 
-Time is the one resource you can never get back. This is about making the most
-of the minutes you actually have.
+Time is the one resource you can never get back.
 
 I built a working, deployed web application in roughly 4 hours of actual effort
 spread across 2 days.
@@ -90,12 +88,13 @@ Questions or want to talk through your own idea? Reach out to me directly.
 
 ## Who I am, and why that matters
 
+Anyone with an idea can do this. My background shaped how fast I moved — yours will
+shape how you move. Neither requires waiting.
+
 I have a biomedical engineering degree and a background in engineering management.
 My day job is AI engineering, data science, data engineering, and AI architecture.
 I am not a software developer. I write code — but I don't build production web
 applications for a living.
-
-I tell you this because it's relevant to what happened.
 
 I think in systems. I know how to spec a problem, identify failure modes, manage
 toward an outcome, and fill in the gaps an AI leaves. I also care deeply about
@@ -108,10 +107,6 @@ You are managing a very fast, very capable, occasionally overconfident team memb
 who needs clear direction, structured feedback, and someone to notice when it's
 confidently heading in the wrong direction. That is a skill. I've been developing it
 for about 3 years.
-
-That background helped me move faster. You don't need the same background to do this —
-you'll do it at your own pace, which is still faster than waiting for a perfect time
-that isn't coming.
 
 *(If you're a software developer reading this: you have every advantage I have, plus
 the ability to read the code it writes and actually know if it's wrong. You should
@@ -356,6 +351,15 @@ Every future push auto-deploys. You get a live URL you can share with anyone.
 
 Your app is on the internet. That's real.
 
+### When things don't look right
+
+| Situation | What to do |
+|---|---|
+| Pushed new code to GitHub | Nothing — auto-deploys in ~60–90 seconds |
+| Changed a Railway environment variable | Auto-redeploys when you save |
+| App seems frozen or stuck | Railway dashboard → Deployments → Restart |
+| Browser showing old version | Hard refresh: `Cmd+Shift+R` Mac / `Ctrl+Shift+R` Windows |
+
 ---
 
 ## Phase 5 — Don't stop at "it works"
@@ -369,27 +373,21 @@ functional, not polished. The right people came in at the right time — not at 
 beginning to help me start, but after there was something worth building on.
 That's the sequence that worked.
 
-- **Matt** did a full accessibility overhaul — P0 through P2. Not just cosmetic.
-  He aligned the entire UI to the VA Design System: progress bars, alerts, buttons,
-  card and list semantics, status text, VA web components and fonts. Then went deeper:
-  cognitive accessibility (scannable benefit sections, descriptive VA.gov links,
-  VSO question prompts), responsive layout fixes, 200% zoom support, and
-  before/after screenshots to show what changed and why. He also built out the
-  static assets and scan/camera capture, refined the document upload guidance,
-  and produced and edited the demo videos for the final hackathon submission.
-- **Regan and Tyson** — both veterans — used it as actual end users and gave
-  feedback that no amount of technical review could replicate. They knew what the
-  experience should feel like. They knew where it fell short. Regan also produced
-  all the demo videos, which Matt edited into final form. That's domain expertise
-  and execution in the same person — not a code review, not a design pass.
-  That's irreplaceable.
-- **Andrew** reviewed the contract viability — the question of whether this could
-  actually go anywhere in a government context. That's a different kind of expertise,
-  and it mattered.
-- **Selia** reviewed the presentation itself — a fresh set of eyes on whether it
-  landed the way it was meant to.
-- **Amy's** accessibility consult informed the direction before a line of that
-  overhaul was written. Getting the framing right early meant less rework later.
+- **Matt** did a full accessibility overhaul — P0 through P2. He aligned the entire UI
+  to the VA Design System: progress bars, alerts, buttons, card and list semantics,
+  status text, VA web components and fonts. Cognitive accessibility, responsive layout
+  fixes, 200% zoom support, static assets, scan/camera capture, and document upload
+  refinement. He also edited the demo videos for the final submission.
+- **Regan and Tyson** — both veterans — used it as actual end users and gave feedback
+  that no amount of technical review could replicate. They knew what the experience
+  should feel like. They knew where it fell short. Regan also produced all the demo
+  videos. That's domain expertise and execution in the same person — irreplaceable.
+- **Andrew** reviewed contract viability — whether this could actually go somewhere
+  in a government context. A different kind of expertise, and it mattered.
+- **Selia** reviewed the presentation — a fresh set of eyes on whether it landed
+  the way it was meant to.
+- **Amy's** accessibility consult set the direction before a line of that overhaul
+  was written. Getting the framing right early meant less rework later.
 
 The result is what you see at
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**.
@@ -400,13 +398,15 @@ The point is that the right people, at the right time, on a thing that already e
 that's what takes it further. You don't need to wait for them to begin.
 You need to have something for them to work with.
 
-**On technical review specifically:** once real people use your app, get someone
-to look at it who can tell you:
+### What to look for when you bring people in
 
-- Is this actually secure?
-- What breaks under unusual conditions?
-- Will this hold up if more people use it than planned?
-- Does it do what I think it does in every case that matters?
+Once real people use your app, get the right eyes on it:
+
+| Who | What to ask them |
+|---|---|
+| **Technical reviewer** | Is this secure? What breaks under load or unusual conditions? Does it do what I think it does in every case that matters? |
+| **Domain expert** | Does this actually solve the problem? Where does the experience fall short for a real user? |
+| **Fresh eyes** | Does this make sense? Is it clear what to do? What's confusing? |
 
 You don't hand the project over. You get a second set of eyes.
 
@@ -418,52 +418,28 @@ The floor is lower than it used to be. Your ceiling is higher than you think.
 
 ---
 
-## When to redeploy or restart on Railway
-
-| Situation | What to do |
-|---|---|
-| Pushed new code to GitHub | Nothing — auto-deploys in ~60–90 seconds |
-| Changed a Railway environment variable | Auto-redeploys when you save |
-| App seems frozen or stuck | Railway dashboard → Deployments → Restart |
-| Browser showing old version | Hard refresh: `Cmd+Shift+R` Mac / `Ctrl+Shift+R` Windows |
-
----
-
-## What this costs
-
-| Item | Cost |
-|---|---|
-| Perplexity Computer | ~$20/month |
-| Anthropic API credits (first build) | $20–50 one-time |
-| GitHub | Free |
-| Railway | Free tier / ~$5/month always-on |
-| **Total to ship something real** | **~$20–75** |
-
----
-
 ## The mindset
 
-You are the product owner. The AI is the engineering team.
-Technical review is your quality gate.
+The AI is the engineering team. You are the product owner.
+That distinction matters more than any tool you pick.
 
 A few things that actually helped:
 
 - **Talk to it like a colleague.** Push back. Ask why. You'll build better things
   and understand what you built in the process.
 - **Iterate in small steps.** One thing working is better than five things halfway done.
-- **Use your phone.** Voice-to-text, photos of sketches, screenshots of references.
-  I built the entire POC — start to finish — on my phone. The desktop only came out
-  for the presentation. That's not a flex — that's the point.
 - **Don't panic when things break.** They will. That's Tuesday. Tell the AI what
   happened, it fixes it.
-- **Think before you burn credits.** Phase 1 is free. Clarity going in means less
-  rework, less cost, better output.
 - **Stay humble about what you don't know.** Running doesn't mean right. Safe.
   Secure. Correct under all conditions. Those still require judgment — and often,
   someone else's.
+- **Think before you build.** Phase 1 is free. Clarity going in means less rework,
+  less cost, better output. *(Technical people: this means you too. Possibly more.)*
 - **If you have technical skills — use them.** Read the code. Question the
   architecture. Know what "it looks right" actually means. That knowledge doesn't
-  become less valuable because the AI did the typing.
+  become less valuable because the AI did the typing. *(Non-technical readers: this
+  is why bringing in that person at Phase 5 isn't optional if you're building
+  something real people depend on.)*
 
 ---
 
@@ -479,7 +455,7 @@ You can start today. On your phone. Between whatever is happening in your life.
 You can have something real running in a weekend — or in a few hours of stolen time
 across a couple of days, assuming your Lyft is late enough.
 
-Time is the one resource you can never replace. The question isn't whether you have
+Time is the one resource you can never get back. The question isn't whether you have
 enough of it — it's what you do with the pieces you actually have.
 
 The app this guide was written around is live at
