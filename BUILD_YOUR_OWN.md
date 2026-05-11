@@ -39,6 +39,9 @@
 
 ## How this started
 
+Time is the one resource you can never get back. This is about making the most
+of the minutes you actually have.
+
 I built a working, deployed web application in roughly 4 hours of actual effort
 spread across 2 days.
 
@@ -46,16 +49,25 @@ Not 4 uninterrupted hours. 4 hours of stolen minutes — entirely on my phone.
 
 Between chores. Waiting rooms. Waiting for a Lyft. *(The Lyft was late. I used the
 time to work through the system architecture. This was not planned but worked out
-well.)* Sitting at the playground in between actually playing with my kid. From the
-first idea to a working POC to showing it to a veteran friend while we watched our
-kids run around — all of it was on my phone. Talking, typing, reviewing, directing.
+well.)* Sitting at the playground in between actually playing with my kid. A minute
+here, a few minutes there — a glance at the phone while the kid runs, a voice note
+while I'm walking over. Responsibly watching a child at a playground is not a
+perfect time to build software. It turned out to be plenty of time.
+
+From the first idea to a working POC to showing it to a veteran friend while we
+watched our kids run around — all of it was on my phone. Talking, typing, reviewing,
+directing.
 
 The desktop didn't come in until we were building out the presentation for the final
 hackathon submission. The app itself? Phone start to finish.
 
 He used it on my phone at the playground. On the spot. That's when I knew it was real.
 
-What the team built on top of that POC is a different guide. This one is about the
+There is no perfect time. That's not a productivity tip — it's just what I found to be
+true. You say something, wait for things to happen, review when a moment opens up.
+The moments were real. The product was real.
+
+What the team built on top of that POC is a different story. This one is about the
 part that happened first — what one person can do, alone, on a phone, between life.
 
 This guide exists because I think a lot of people — technical and non-technical —
@@ -96,6 +108,10 @@ You are managing a very fast, very capable, occasionally overconfident team memb
 who needs clear direction, structured feedback, and someone to notice when it's
 confidently heading in the wrong direction. That is a skill. I've been developing it
 for about 3 years.
+
+That background helped me move faster. You don't need the same background to do this —
+you'll do it at your own pace, which is still faster than waiting for a perfect time
+that isn't coming.
 
 *(If you're a software developer reading this: you have every advantage I have, plus
 the ability to read the code it writes and actually know if it's wrong. You should
@@ -349,7 +365,9 @@ Working is the beginning, not the end.
 Here's what happened after the playground.
 
 The MVP worked. A real veteran used it and it held up. But it was still rough —
-functional, not polished. What happened next is the actual lesson:
+functional, not polished. The right people came in at the right time — not at the
+beginning to help me start, but after there was something worth building on.
+That's the sequence that worked.
 
 - **Matt** did a full accessibility overhaul — P0 through P2. Not just cosmetic.
   He aligned the entire UI to the VA Design System: progress bars, alerts, buttons,
@@ -358,28 +376,29 @@ functional, not polished. What happened next is the actual lesson:
   VSO question prompts), responsive layout fixes, 200% zoom support, and
   before/after screenshots to show what changed and why. He also built out the
   static assets and scan/camera capture, refined the document upload guidance,
-  and put together presentation materials for the final hackathon submission.
-  That's what "MVP frontend refinement" actually looked like on this project.
+  and produced and edited the demo videos for the final hackathon submission.
 - **Regan and Tyson** — both veterans — used it as actual end users and gave
   feedback that no amount of technical review could replicate. They knew what the
-  experience should feel like. They knew where it fell short. That's not a code
-  review. That's domain validation, and it's irreplaceable.
+  experience should feel like. They knew where it fell short. Regan also produced
+  all the demo videos, which Matt edited into final form. That's domain expertise
+  and execution in the same person — not a code review, not a design pass.
+  That's irreplaceable.
+- **Andrew** reviewed the contract viability — the question of whether this could
+  actually go anywhere in a government context. That's a different kind of expertise,
+  and it mattered.
+- **Selia** reviewed the presentation itself — a fresh set of eyes on whether it
+  landed the way it was meant to.
 - **Amy's** accessibility consult informed the direction before a line of that
   overhaul was written. Getting the framing right early meant less rework later.
-  That difference matters when you're putting it in front of judges, or real users,
-  or anyone who needs to trust it on sight.
 
 The result is what you see at
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**.
 That's not a solo project anymore. That's what collaboration does to an MVP.
 
 The point isn't that you need a team to start. You don't.
-The point is that getting it to the next level takes people — and specifically,
-the right people: engineers who can make it real, domain experts who can validate
-it, users who can break it in ways you didn't anticipate.
-
-Anyone can build something real alone. Getting it to where it actually serves people
-well is a team sport.
+The point is that the right people, at the right time, on a thing that already exists —
+that's what takes it further. You don't need to wait for them to begin.
+You need to have something for them to work with.
 
 **On technical review specifically:** once real people use your app, get someone
 to look at it who can tell you:
@@ -459,6 +478,9 @@ It doesn't. Not anymore.
 You can start today. On your phone. Between whatever is happening in your life.
 You can have something real running in a weekend — or in a few hours of stolen time
 across a couple of days, assuming your Lyft is late enough.
+
+Time is the one resource you can never replace. The question isn't whether you have
+enough of it — it's what you do with the pieces you actually have.
 
 The app this guide was written around is live at
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**.
