@@ -55,6 +55,9 @@ hackathon submission. The app itself? Phone start to finish.
 
 He used it on my phone at the playground. On the spot. That's when I knew it was real.
 
+What the team built on top of that POC is a different guide. This one is about the
+part that happened first — what one person can do, alone, on a phone, between life.
+
 This guide exists because I think a lot of people — technical and non-technical —
 have ideas sitting in their heads that they assume require more than they have:
 more time, more money, more skills, more help. I wanted to demonstrate what's
@@ -343,8 +346,37 @@ Your app is on the internet. That's real.
 
 Working is the beginning, not the end.
 
-Once real people use your app, bring in technical perspective. Ask someone to look
-at it who can tell you:
+Here's what happened after the playground.
+
+The MVP worked. A real veteran used it and it held up. But it was still rough —
+functional, not polished. What happened next is the actual lesson:
+
+- **Matt** took the codebase and refactored it properly. Not just cleaned up —
+  restructured, made it production-quality, brought engineering discipline to what
+  had been a fast-moving proof of concept.
+- **Regan and Tyson** — both veterans — used it as actual end users and gave
+  feedback that no amount of technical review could replicate. They knew what the
+  experience should feel like. They knew where it fell short. That's not a code
+  review. That's domain validation, and it's irreplaceable.
+- **Amy's** guidance on the VA Design System turned the UI from "functional web app"
+  to something that looked like it actually belonged in the VA ecosystem. That
+  difference matters when you're putting it in front of judges, or real users, or
+  anyone who needs to trust it on sight.
+
+The result is what you see at
+**[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**.
+That's not a solo project anymore. That's what collaboration does to an MVP.
+
+The point isn't that you need a team to start. You don't.
+The point is that getting it to the next level takes people — and specifically,
+the right people: engineers who can make it real, domain experts who can validate
+it, users who can break it in ways you didn't anticipate.
+
+Anyone can build something real alone. Getting it to where it actually serves people
+well is a team sport.
+
+**On technical review specifically:** once real people use your app, get someone
+to look at it who can tell you:
 
 - Is this actually secure?
 - What breaks under unusual conditions?
@@ -353,12 +385,8 @@ at it who can tell you:
 
 You don't hand the project over. You get a second set of eyes.
 
-If you're at Wilcore — you work with engineers. Ask one.
-An hour of their time on a quick review is worth more than you'd expect.
-
-**Technical people reading this:** the same principle in reverse. You can build
-faster now than ever before. But fast and correct are still different things.
-These tools accelerate the work — they don't replace the judgment.
+**Technical people reading this:** same principle in reverse. You can build faster
+now than ever before. But fast and correct are still different things.
 Your domain knowledge, your ability to read and critique the output, your
 understanding of what "actually secure" means — that's the multiplier.
 The floor is lower than it used to be. Your ceiling is higher than you think.
