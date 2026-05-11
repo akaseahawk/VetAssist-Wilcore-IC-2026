@@ -351,17 +351,23 @@ Here's what happened after the playground.
 The MVP worked. A real veteran used it and it held up. But it was still rough —
 functional, not polished. What happened next is the actual lesson:
 
-- **Matt** took the codebase and refactored it properly. Not just cleaned up —
-  restructured, made it production-quality, brought engineering discipline to what
-  had been a fast-moving proof of concept.
+- **Matt** did a full accessibility overhaul — P0 through P2. Not just cosmetic.
+  He aligned the entire UI to the VA Design System: progress bars, alerts, buttons,
+  card and list semantics, status text, VA web components and fonts. Then went deeper:
+  cognitive accessibility (scannable benefit sections, descriptive VA.gov links,
+  VSO question prompts), responsive layout fixes, 200% zoom support, and
+  before/after screenshots to show what changed and why. He also built out the
+  static assets and scan/camera capture, refined the document upload guidance,
+  and put together presentation materials for the final hackathon submission.
+  That's what "MVP frontend refinement" actually looked like on this project.
 - **Regan and Tyson** — both veterans — used it as actual end users and gave
   feedback that no amount of technical review could replicate. They knew what the
   experience should feel like. They knew where it fell short. That's not a code
   review. That's domain validation, and it's irreplaceable.
-- **Amy's** guidance on the VA Design System turned the UI from "functional web app"
-  to something that looked like it actually belonged in the VA ecosystem. That
-  difference matters when you're putting it in front of judges, or real users, or
-  anyone who needs to trust it on sight.
+- **Amy's** accessibility consult informed the direction before a line of that
+  overhaul was written. Getting the framing right early meant less rework later.
+  That difference matters when you're putting it in front of judges, or real users,
+  or anyone who needs to trust it on sight.
 
 The result is what you see at
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)**.
