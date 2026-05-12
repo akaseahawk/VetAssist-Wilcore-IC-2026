@@ -104,15 +104,15 @@ AI compensated for most of the gaps — not perfectly, but well enough to ship s
 
 ## ⚙️ Before you read this as "AI did everything" — it wasn't
 
-Three years of refining custom instructions that shape how any AI works with me — a personal operating agreement between me and the model, sometimes called a `CLAUDE.md` file or system prompt.[^9] Mine does three things:
+Three years of refining custom instructions that shape how any AI works with me — a personal operating agreement between me and the model, sometimes called a `CLAUDE.md` file or system prompt.[[9]](#9) Mine does three things:
 
 - **Numbered structured output** — everything is numbered hierarchically so I can say "2.3 is wrong" and we both know exactly what we're talking about. Small thing. Not a small thing.
 - **Show your work** — the AI shares what it's deciding and why, before acting. I get its reasoning, not just output — which I can agree with, correct, or redirect.
-- **Structured push-back** — it flags disagreement and risk instead of just complying. An AI that only agrees with you is a faster way to be wrong.[^6]
+- **Structured push-back** — it flags disagreement and risk instead of just complying. An AI that only agrees with you is a faster way to be wrong.[[6]](#6)
 
 One more thing that made a real difference: **I always ask the AI to ask me questions before it starts executing.** Not after. Before. Something like: *"Before you do anything, ask me the questions you need to do this well."* This one habit prevents more wasted work than anything else in this guide. The AI will make assumptions if you let it. Don't let it.
 
-**On trusting AI output:** the research on what AI says it's doing vs. what it's actually doing is worth knowing.[^1][^2] The chain-of-thought is useful — not a guaranteed window into the model's real process.
+**On trusting AI output:** the research on what AI says it's doing vs. what it's actually doing is worth knowing.[[1]](#1)[[2]](#2) The chain-of-thought is useful — not a guaranteed window into the model's real process.
 
 Trust it more when:
 - The task is well-scoped and specific
@@ -122,7 +122,7 @@ Trust it more when:
 Trust it less when:
 - It's confident about something inherently uncertain
 - The stakes are high and you haven't independently checked
-- Something feels off, even if you can't articulate why — that instinct matters[^13]
+- Something feels off, even if you can't articulate why — that instinct matters[[13]](#13)
 
 This applies to everyone. Knowing how to read code doesn't make the model's stated reasoning more accurate.
 
@@ -145,8 +145,8 @@ While I was doing dishes, pushing a kid on a swing, waiting for a Lyft — this 
 
 What that actually looked like on my phone:
 
-![Perplexity Computer working — task list sprint](assets/perplexity-working-1.png)
-![Perplexity Computer working — editing code files](assets/perplexity-working-2.png)
+![Perplexity Computer working — task list sprint](assets/perplexity-working-1-sharp.png)
+![Perplexity Computer working — editing code files](assets/perplexity-working-2-sharp.png)
 
 You're not doing the work in the traditional sense. You're directing it. There's a meaningful difference — and real responsibility that comes with it.
 
@@ -155,18 +155,18 @@ You're not doing the work in the traditional sense. You're directing it. There's
 ## ✅ The honest truth up front
 
 You do not need to write code to get started.
-You do not need a CS degree to ship something real.[^8]
+You do not need a CS degree to ship something real.[[8]](#8)
 You do not need a free weekend. *(Apparently you need a late Lyft.)*
 
 What you need: a clear idea, the willingness to think it through, and about $20/month.
 
-**This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[^11] Non-technical people use these same skills every day. The AI meets you where you are.[^10]
+**This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[[11]](#11) Non-technical people use these same skills every day. The AI meets you where you are.[[10]](#10)
 
 **On technical advantages:** systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Technical people move faster, catch more errors, ask sharper questions.
 
-**On non-technical advantages:** knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[^12] The people who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
+**On non-technical advantages:** knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[[12]](#12) The people who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
 
-**This is not zero-sum.** The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[^12]
+**This is not zero-sum.** The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[[12]](#12)
 
 ---
 
@@ -204,7 +204,7 @@ flowchart TD
 
 > The most important phase. Also the cheapest.
 
-The most common mistake: building before the idea is solid. The AI will confidently build the wrong thing if you let it.[^6]
+The most common mistake: building before the idea is solid. The AI will confidently build the wrong thing if you let it.[[6]](#6)
 
 *(Technical people: this applies more to you, not less. You can move fast enough to get very far in the wrong direction before noticing.)*
 
@@ -214,9 +214,11 @@ You can do all of Phase 1 on your phone. Waiting room. Walk. That's where most o
 
 ### Have a real conversation with AI about your idea
 
-Talk it out. Voice-to-text. Ask it to push back. **Start by asking the AI to ask you questions** — not to start building, not to give you a plan, but to ask what it needs to understand your idea well. This is the single most useful thing you can do before any work begins.
+**Start by asking the AI to ask you questions** — not to start building, not to give you a plan, but to ask what it needs to understand your idea well. Then just talk. Voice-to-text, typed messages, screenshots, a photo of a sketch on a napkin — whatever you have. The AI can work with all of it.
 
-Then cover these:
+That's how VetAssist happened. Not a written brief. A back-and-forth conversation, on my phone, in pieces. The research shows this works for drawings and handwriting too [[14]](#14) — you don't need clean input, you need honest input.
+
+The questions to work through — however you get there:
 
 - **What problem does this solve?** Specific beats general.
 - **Who is it for?** Name one real person. What's their actual frustration?
@@ -227,18 +229,9 @@ Then cover these:
 
 Push it: *"What are the holes in this? What would a skeptical user say? What's the riskiest assumption?"*
 
-### Write a one-page brief
+### Hand it over as a summary
 
-Before Phase 2:
-
-- What it does (2–3 sentences)
-- Who it's for
-- The main flow
-- What it does NOT do
-- The simplest first version
-- Any known risks
-
-This is what you hand the AI when building starts. The better it is, the less rework, the fewer credits burned.
+Before Phase 2, ask the AI to summarize what it's heard — the idea, the user, the scope, the risks. Read it. Correct what's wrong. That summary is what you hand to the build phase. You didn't write it. You directed it. Same outcome, less friction.
 
 ---
 
@@ -293,7 +286,7 @@ If your app touches anything personal, raise it explicitly:
 - "Can one user access another user's data?"
 - "What happens if someone tries to abuse this?"
 
-The AI addresses what you ask. It doesn't always volunteer what you don't.[^7] You need to be the paranoid one.
+The AI addresses what you ask. It doesn't always volunteer what you don't.[[7]](#7) You need to be the paranoid one.
 
 ---
 
@@ -381,11 +374,11 @@ I've spent three years following this space and I'm reasonably confident in thes
 
 **On AI reasoning — what's actually happening under the hood**
 
-**[1]** Turpin et al., NeurIPS 2023 — *Language Models Don't Always Say What They Think*
+<a name="1"></a>**[1]** Turpin et al., NeurIPS 2023 — *Language Models Don't Always Say What They Think*
 https://arxiv.org/abs/2305.04388
 CoT explanations can systematically misrepresent the true reason for a model's prediction. Plausible, but not necessarily what drove the answer.
 
-**[2]** Anthropic Alignment Science, April 2025 — *Reasoning Models Don't Always Say What They Think*
+<a name="2"></a>**[2]** Anthropic Alignment Science, April 2025 — *Reasoning Models Don't Always Say What They Think*
 https://www.anthropic.com/research/reasoning-models-dont-say-think
 Claude 3.7 Sonnet mentioned a contextual hint in its chain-of-thought only 25% of the time. In reward-hacking scenarios, models admitted to the behavior less than 2% of the time.
 
@@ -393,7 +386,7 @@ Claude 3.7 Sonnet mentioned a contextual hint in its chain-of-thought only 25% o
 
 **On AI capability velocity**
 
-**[4]** Wijk et al., 2024 — *RE-Bench: Evaluating Frontier AI R&D Capabilities Against Human Experts*
+<a name="4"></a>**[4]** Wijk et al., 2024 — *RE-Bench: Evaluating Frontier AI R&D Capabilities Against Human Experts*
 https://arxiv.org/abs/2411.15114
 AI agents scored 4x higher than human experts on structured ML engineering tasks at a 2-hour budget, generating and testing solutions over 10x faster. ML research engineering specifically — not general app development. The velocity gap is real. Extrapolate accordingly.
 
@@ -401,11 +394,11 @@ AI agents scored 4x higher than human experts on structured ML engineering tasks
 
 **On AI-assisted development — bias, risks, and human judgment**
 
-**[6]** Zhou et al., 2026 — *Cognitive Biases in LLM-Assisted Software Development*
+<a name="6"></a>**[6]** Zhou et al., 2026 — *Cognitive Biases in LLM-Assisted Software Development*
 https://www.semanticscholar.org/paper/8592f852439d6b03788ef8ac0c1ddeaef738e4e7
 48.8% of programmer actions in LLM-assisted development were biased; LLM interactions drove 56.4% of those. Automation bias and over-reliance are the dominant failure modes. The study behind "the AI will confidently build the wrong thing" and "an AI that only agrees with you is a faster way to be wrong."
 
-**[7]** Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
+<a name="7"></a>**[7]** Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
 https://ieeexplore.ieee.org/document/11202778/
 Security vulnerabilities, hallucinations, and code quality issues in LLM-generated code. The study behind "the AI is not paranoid enough."
 
@@ -413,7 +406,7 @@ Security vulnerabilities, hallucinations, and code quality issues in LLM-generat
 
 **On non-technical users building with LLMs**
 
-**[8]** Calò & De Russis — *Leveraging Large Language Models for End-User Website Generation*
+<a name="8"></a>**[8]** Calò & De Russis — *Leveraging Large Language Models for End-User Website Generation*
 https://link.springer.com/10.1007/978-3-031-34433-6_4
 End users generating functional apps with no programming background. The research basis for "you don't need a CS degree."
 
@@ -421,7 +414,7 @@ End users generating functional apps with no programming background. The researc
 
 **On system prompts and custom instructions**
 
-**[9]** Zhang et al., 2024 — *SPRIG: Improving Large Language Model Performance by System Prompt Optimization*
+<a name="9"></a>**[9]** Zhang et al., 2024 — *SPRIG: Improving Large Language Model Performance by System Prompt Optimization*
 https://arxiv.org/abs/2410.14826
 Optimized system prompts improve performance and generalize across model families, parameter sizes, and languages. Three years of custom instructions is not a quirk — it's documented.
 
@@ -429,7 +422,7 @@ Optimized system prompts improve performance and generalize across model familie
 
 **On the belief trap — why people don't start**
 
-**[10]** Ma et al., 2024 — *Learning to Adopt Generative AI*
+<a name="10"></a>**[10]** Ma et al., 2024 — *Learning to Adopt Generative AI*
 https://arxiv.org/abs/2410.19806
 People who would benefit most from AI tools often underestimate their value before trying — opt out, miss the gains, stay stuck. The study behind "the first step is the only one that actually matters."
 
@@ -437,11 +430,11 @@ People who would benefit most from AI tools often underestimate their value befo
 
 **On AI beyond coding — knowledge work, planning, ideation**
 
-**[11]** Brachman et al., IBM Research, 2025 — *Current and Future Use of Large Language Models for Knowledge Work*
+<a name="11"></a>**[11]** Brachman et al., IBM Research, 2025 — *Current and Future Use of Large Language Models for Knowledge Work*
 https://arxiv.org/abs/2503.16774
 Survey of 216 knowledge workers: LLMs used heavily for writing, planning, summarizing, research — not just code. Productivity gains documented across non-coding tasks.
 
-**[12]** Lim & Perrault, 2024 — *Rapid AIdeation: Generating Ideas With the Self and in Collaboration With Large Language Models*
+<a name="12"></a>**[12]** Lim & Perrault, 2024 — *Rapid AIdeation: Generating Ideas With the Self and in Collaboration With Large Language Models*
 https://arxiv.org/abs/2403.12928
 AI produces greater variety of ideas; humans bring quality judgment to AI volume. The research basis for 2+2=8 — human and AI together produce what neither could alone.
 
@@ -449,7 +442,7 @@ AI produces greater variety of ideas; humans bring quality judgment to AI volume
 
 **On when to trust AI output**
 
-**[13]** Steyvers et al., 2025 — *What Large Language Models Know and What People Think They Know*
+<a name="13"></a>**[13]** Steyvers et al., 2025 — *What Large Language Models Know and What People Think They Know*
 https://arxiv.org/abs/2401.13835
 Users consistently overestimate LLM accuracy when shown explanations. Models are better calibrated on what they know vs. don't know than users assume — but the gap between model confidence and actual accuracy is real and task-dependent. The basis for "trust it more when the task is specific and you can verify."
 
@@ -457,6 +450,6 @@ Users consistently overestimate LLM accuracy when shown explanations. Models are
 
 **On adoption barriers**
 
-**[14]** Raees et al., ACM 2026 — *"We Still Use Spreadsheets." Understanding Business Decision-Makers' Perceptions and Barriers to AI Analytics*
+<a name="14"></a>**[14]** Raees et al., ACM 2026 — *"We Still Use Spreadsheets." Understanding Business Decision-Makers' Perceptions and Barriers to AI Analytics*
 https://dl.acm.org/doi/10.1145/3772363.3798820
 Non-technical professionals face real adoption barriers — skill gaps, intimidation, tool complexity. The barrier is largely perceived, not a ceiling. The study behind "the assumption that you can't start is wrong, and it's expensive."
