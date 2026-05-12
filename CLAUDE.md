@@ -28,6 +28,7 @@ services/
   form_matcher.py           Maps benefits → forms, prefills fields, flags missing
   claude_chat.py            Conversational assistant (Anthropic API or placeholder)
   document_vision.py        Claude multimodal vision — reads document photos, extracts fields
+  pdf_generator.py          PDF output package — cover page + field summary sheet (reportlab)
 data/
   veterans.json             3 synthetic veteran profiles (no real PII)
   benefits_rules.json       5 benefit definitions used by the rules fallback

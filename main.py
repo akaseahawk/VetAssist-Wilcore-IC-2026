@@ -11,9 +11,12 @@ HOW THIS APP WORKS (read this first):
       6. Claude asks for missing fields conversationally — one at a time
       7. Output package generated (post-MVP)
 
-    Claude is used for conversation only — the rules engine handles eligibility.
-    Claude can add nuance and explain benefits using its innate knowledge,
-    but it does not make eligibility decisions.
+    Claude drives benefit discovery by default — reading the veteran's full profile
+    and surfacing what's worth exploring using its own VA knowledge.
+    A hardcoded rules engine in services/eligibility.py runs as fallback when no
+    API key is set. Claude is also used for the conversational assistant and
+    document vision. It does not make eligibility determinations — always framed
+    as 'worth exploring.'
 
 WHY FastAPI:
     - Lightweight, fast, and has automatic API docs at /docs
@@ -35,7 +38,7 @@ RUNNING LOCALLY:
 API ENDPOINTS:
     GET  /                          → serves the frontend HTML page
     GET  /api/veterans              → list all veteran profiles (id, name, branch)
-    GET  /api/veterans/{id}         → full profile for one veteran
+    GET  /api/veterans/{veteran_id} → full profile for one veteran
     GET  /api/eligibility/{id}      → run benefit eligibility for a demo-profile veteran
     POST /api/eligibility/own       → same as above but accepts inline profile in request body
     GET  /api/forms/{id}            → matched forms + prefilled fields for a demo-profile veteran
