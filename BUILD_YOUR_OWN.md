@@ -28,11 +28,7 @@ flowchart TD
 
 ## Quick navigation
 
-<<<<<<< HEAD
 **Key:** ⚡ Technical people unfair advantage  |  💡 Non-technical people unfair advantage  |  no icon = no advantage either way
-=======
-**Key:** ⚡ Technical people — unfair advantage  |  💡 Non-technical people — unfair advantage  |  no icon = no advantage either way
->>>>>>> 2f2eab8 (docs: nav humor, robot emoji for AI in diagram, key labels updated)
 
 ---
 
