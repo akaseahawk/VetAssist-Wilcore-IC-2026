@@ -152,7 +152,7 @@ What you need: a clear idea, the willingness to think it through, and about $20/
 
 **This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[[8]](#8) Non-technical people use these same skills every day. The AI meets you where you are.
 
-Technical people move faster, catch more technical errors — systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Non-technical people catch more non-technical errors — knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[[9]](#9) The ones who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
+Technical people move faster, catch more technical errors — systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Non-technical people catch more non-technical errors — knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[[9]](#9) The ones who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.[[11]](#11)
 
 Not zero-sum. The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[[9]](#9)
 
@@ -338,7 +338,7 @@ You are the product owner. The AI is the engineering team. Act like it.
 
 ## 🏁 Go build the thing
 
-Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.
+Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.[[15]](#15)
 
 It doesn't. Not anymore. You can start today. On your phone. Between whatever is happening in your life.[[10]](#10)
 
