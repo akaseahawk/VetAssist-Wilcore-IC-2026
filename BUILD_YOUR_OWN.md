@@ -5,9 +5,12 @@
 >
 > A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
+> **Who this is for:** Anyone with an idea — technical background or not
+> 
 > **Stack:** Perplexity Computer · Claude Code · GitHub · Railway
 >
-> **Cost to launch:** $20–75 · **Who this is for:** Anyone with an idea — technical background or not
+> **Cost to launch:** $20–75 ·
+
 
 ---
 
