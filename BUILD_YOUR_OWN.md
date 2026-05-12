@@ -43,7 +43,7 @@
 One time. Done.
 
 🏗️ [Phase 3 — Build it](#phase-3--build-it)
-⚡ Directing vs. executing. Technical readers: your knowledge of what the model produces is an advantage — use it. The models are moving faster than any individual can track; working with them closely is how you stay ahead, not how you fall behind.
+⚡ Directing vs. executing. Technical readers: your knowledge of what the model produces is an advantage — use it. The models are moving faster than any individual can track;[^4] working with them closely is how you stay ahead, not how you fall behind.
 
 🚀 [Phase 4 — Deploy it](#phase-4--deploy-it)
 Get it live. Troubleshooting table included.
@@ -55,6 +55,9 @@ Get it live. Troubleshooting table included.
 ✳️ No unfair advantage here. Though technical readers get called out specifically — respectfully.
 
 🏁 [Go build the thing](#go-build-the-thing)
+
+📚 [Research & receipts](#research--receipts)
+The citations behind the claims. Verify them yourself — that's the point.
 
 ---
 
@@ -141,7 +144,7 @@ be doing this in half the time. I'm not sure why you aren't.)*
 Three years of refining a set of custom instructions that shape how any AI works
 with me. Think of it as a personal operating agreement between me and the model —
 sometimes called a `CLAUDE.md` file or system prompt. The AI community has been
-writing about this pattern a lot lately. Here's what mine includes:
+writing about this pattern a lot lately.[^9] Here's what mine includes:
 
 - **Numbered structured output** — everything the AI produces is numbered
   hierarchically (1.1, 1.2.3, etc.) so I can say "what you said at 2.3 is wrong"
@@ -152,7 +155,7 @@ writing about this pattern a lot lately. Here's what mine includes:
   I'm getting its thinking — which I can then agree with, correct, or redirect.
 - **Structured push-back** — it's set up to flag when it disagrees or sees a risk,
   not just comply and move on. An AI that only agrees with you is just a faster
-  way to be wrong.
+  way to be wrong.[^6]
 
 The tools got dramatically better over those 3 years. So did my ability to work
 with them. The result still blew my mind. But it didn't come from nowhere —
@@ -163,10 +166,13 @@ doing isn't always what it's actually doing under the hood. The chain-of-thought
 explanation is useful — just not a guaranteed window into the model's true process.
 Two studies worth knowing about:
 
-- [*Reasoning Models Don't Always Say What They Think*](https://www.anthropic.com/research/reasoning-models-dont-say-think)
+- [*Reasoning Models Don't Always Say What They Think*](https://www.anthropic.com/research/reasoning-models-dont-say-think)[^2]
   — Anthropic's alignment science team (2025): chain-of-thought reasoning can be
   unfaithful to the model's actual internal process.
-- [*Language Models Don't Always Say What They Think*](https://arxiv.org/abs/2305.04388)
+- [*Measuring Faithfulness in Chain-of-Thought Reasoning*](https://arxiv.org/abs/2307.13702)[^3]
+  — Lanham et al., Anthropic 2023: intervening on the reasoning chain reveals the
+  stated reasoning isn't always what's driving the answer.
+- [*Language Models Don't Always Say What They Think*](https://arxiv.org/abs/2305.04388)[^1]
   — Turpin et al., NeurIPS 2023: CoT explanations can systematically misrepresent
   the true reason for a model's prediction. Plausible, but misleading.
 
@@ -206,7 +212,7 @@ responsibility, which I'll get to.
 ## ✅ The honest truth up front
 
 You do not need to write code to get started.
-You do not need a computer science degree to ship something real.
+You do not need a computer science degree to ship something real.[^8]
 You do not need a free weekend. *(Apparently you need a late Lyft.)*
 
 What you need: a clear idea, the willingness to think it through, and about $20/month.
@@ -250,7 +256,7 @@ burn through them unnecessarily. More on that in Phase 1.
 
 The most common mistake: jumping into building before the idea is solid. If you're
 vague going in, the AI will build you something vague. It is remarkably good at
-confidently building the wrong thing if you let it.
+confidently building the wrong thing if you let it.[^6]
 
 *(Technical people: this applies to you too. Possibly more, because you can move
 faster and get further in the wrong direction before noticing.)*
@@ -359,7 +365,7 @@ anything you wouldn't want leaked — raise it explicitly during the build:
 - "What happens if someone tries to abuse this?"
 
 The AI addresses what you ask. It doesn't always volunteer every concern unprompted.
-This is why technical review still matters. The AI is not paranoid enough.
+This is why technical review still matters. The AI is not paranoid enough.[^7]
 You need to be.
 
 ---
@@ -498,3 +504,95 @@ doesn't count.*
 *A veteran friend tested the finished product on my phone while our kids played.*
 
 *That's the bar. You can clear it.*
+
+---
+
+## 📚 Research & receipts
+
+I've spent three years following this space closely. I'm reasonably confident
+in these citations. I have not verified every one with the rigor I'd apply
+professionally — partly because I built this guide the same way I built the app:
+in stolen minutes, on my phone, between life.
+
+Which means this is actually a perfect opportunity to practice what this guide
+preaches: don't trust the AI's work without checking it. I did my part.
+Now it's your turn.
+
+*(Also: the irony of citing research about AI being overconfident in its own
+reasoning, in a document partially produced by AI, is not lost on me.)*
+
+Check the quality and applicability of each study yourself. That's not a
+disclaimer — it's the point.
+
+---
+
+**On AI reasoning and what's actually happening under the hood:**
+
+[^1]: Turpin et al., NeurIPS 2023 — *Language Models Don't Always Say What They Think*
+https://arxiv.org/abs/2305.04388
+CoT explanations can systematically misrepresent the true reason for a model's
+prediction. The stated reasoning is plausible but not necessarily what drove the answer.
+
+[^2]: Anthropic Alignment Science, April 2025 — *Reasoning Models Don't Always Say What They Think*
+https://www.anthropic.com/research/reasoning-models-dont-say-think
+Claude 3.7 Sonnet mentioned a contextual hint in its chain-of-thought only 25% of
+the time. In reward-hacking scenarios, models admitted to the behavior less than 2%
+of the time.
+
+[^3]: Lanham et al., Anthropic, 2023 — *Measuring Faithfulness in Chain-of-Thought Reasoning*
+https://arxiv.org/abs/2307.13702
+Intervening on the reasoning chain changes model predictions in ways that reveal the
+stated reasoning isn't always load-bearing. A separate Anthropic study, same conclusion.
+
+---
+
+**On AI moving faster than any individual can track:**
+
+[^4]: Wijk et al., 2024 — *RE-Bench: Evaluating Frontier AI R&D Capabilities Against Human Experts*
+https://arxiv.org/abs/2411.15114
+AI agents scored 4x higher than human experts on structured ML engineering tasks at a
+2-hour budget, and can generate and test solutions over 10x faster than humans at much
+lower cost. This is ML research engineering specifically — not general app development.
+The velocity gap is real and documented. Extrapolate accordingly.
+
+---
+
+**On AI-assisted development — productivity, risks, and what human judgment still does:**
+
+[^5]: Schmidt et al., 2024 — *Significant Productivity Gains through Programming with Large Language Models*
+https://dl.acm.org/doi/pdf/10.1145/3661145
+Measured productivity gains in LLM-assisted coding tasks via GitHub Copilot and GPT-3.
+Gains are real. The human's ability to evaluate and redirect output remains the variable.
+
+[^6]: Zhou et al., 2026 — *Cognitive Biases in LLM-Assisted Software Development*
+https://www.semanticscholar.org/paper/8592f852439d6b03788ef8ac0c1ddeaef738e4e7
+48.8% of programmer actions in LLM-assisted development were biased. LLM interactions
+accounted for 56.4% of those biased actions. Automation bias and over-reliance are the
+dominant failure modes. The AI will confidently build the wrong thing — this is the
+study behind that line. Also the study behind "an AI that only agrees with you is just
+a faster way to be wrong."
+
+[^7]: Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
+https://ieeexplore.ieee.org/document/11202778/
+Comprehensive analysis of security vulnerabilities, hallucinations, and code quality
+issues in LLM-generated code. The AI is not paranoid enough about security.
+This paper is why that line is in the guide.
+
+---
+
+**On LLMs enabling non-technical users to build:**
+
+[^8]: Calò & De Russis — *Leveraging Large Language Models for End-User Website Generation*
+https://link.springer.com/10.1007/978-3-031-34433-6_4
+End users generating functional websites with no programming background.
+The research basis for "you don't need a CS degree."
+
+---
+
+**On system prompts and custom instructions mattering:**
+
+[^9]: Zhang et al., 2024 — *SPRIG: Improving Large Language Model Performance by System Prompt Optimization*
+https://arxiv.org/abs/2410.14826
+Optimized system prompts improve LLM performance and generalize across model families,
+parameter sizes, and languages. Three years of custom instructions is not a quirk —
+it's documented.
