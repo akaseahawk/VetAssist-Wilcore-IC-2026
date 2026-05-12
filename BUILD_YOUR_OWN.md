@@ -110,19 +110,9 @@ Three years of refining custom instructions that shape how any AI works with me 
 - **Show your work** — the AI shares what it's deciding and why, before acting. I get its reasoning, not just output — which I can agree with, correct, or redirect.
 - **Structured push-back** — it flags disagreement and risk instead of just complying. An AI that only agrees with you is a faster way to be wrong.[[6]](#6)
 
-One more thing that made a real difference: **I always ask the AI to ask me questions before it starts executing.** Not after. Before. Something like: *"Before you do anything, ask me the questions you need to do this well."* This one habit prevents more wasted work than anything else in this guide. The AI will make assumptions if you let it. Don't let it.
+One more thing: **always ask the AI to ask you questions before it starts executing.** Something like: *"Before you do anything, ask me the questions you need to do this well."* The AI will assume if you let it. Don't let it.
 
-**On trusting AI output:** the research on what AI says it's doing vs. what it's actually doing is worth knowing.[[1]](#1)[[2]](#2) The chain-of-thought is useful — not a guaranteed window into the model's real process.
-
-Trust it more when:
-- The task is well-scoped and specific
-- You asked it to show its reasoning and it tracks
-- You can verify the output against something real — does it work, does it behave correctly, does it match what you asked
-
-Trust it less when:
-- It's confident about something inherently uncertain
-- The stakes are high and you haven't independently checked
-- Something feels off, even if you can't articulate why — that instinct matters[[13]](#13)
+**On trusting AI output:** the research on what AI says it's doing vs. what it's actually doing is worth knowing.[[1]](#1)[[2]](#2) The chain-of-thought is useful — not a guaranteed window into what actually drove the answer. Trust it more when you can verify the output against something real. Trust it less when it's confident about something inherently uncertain[[13]](#13) — and when something feels off, that instinct matters.
 
 This applies to everyone. Knowing how to read code doesn't make the model's stated reasoning more accurate.
 
@@ -162,11 +152,9 @@ What you need: a clear idea, the willingness to think it through, and about $20/
 
 **This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[[11]](#11) Non-technical people use these same skills every day. The AI meets you where you are.[[10]](#10)
 
-**On technical advantages:** systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Technical people move faster, catch more errors, ask sharper questions.
+Technical people move faster, catch more technical errors — systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Non-technical people catch more non-technical errors — knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[[12]](#12) The ones who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
 
-**On non-technical advantages:** knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[[12]](#12) The people who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
-
-**This is not zero-sum.** The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[[12]](#12)
+Not zero-sum. The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[[12]](#12)
 
 ---
 
@@ -216,7 +204,13 @@ You can do all of Phase 1 on your phone. Waiting room. Walk. That's where most o
 
 **Start by asking the AI to ask you questions** — not to start building, not to give you a plan, but to ask what it needs to understand your idea well. Then just talk. Voice-to-text, typed messages, screenshots, a photo of a sketch on a napkin — whatever you have. The AI can work with all of it.
 
-That's how VetAssist happened. Not a written brief. A back-and-forth conversation, on my phone, in pieces. The research shows this works for drawings and handwriting too [[14]](#14) — you don't need clean input, you need honest input.
+That's how VetAssist happened. Not a written brief. A back-and-forth, on my phone, in pieces. Voice, screenshots, typed notes — whatever you have. I've had it read barely legible handwritten faxes and pull the right information.[[15]](#15) LLMs are robust to typos, informal input, and messy prompts — the model works with signal, not polish.[[16]](#16)[[17]](#17) You don't need clean input, you need honest input.
+
+Here's a real prompt I used. Unedited.
+
+> *"make technical advangate, non-technical advantage. . before you readthis is for both people. phase 5 is both . . also the idea to call out technical people s use them, their knowledge is valuable but dont dismiss the model. the models are getting faster than any person can track on the technical side. so take advantage of them. you can remove the no one skils for 2, and 4. also when its both you dont need a do not skip. if they're skipping then kind of loseing the point. you also when it's both advantage, then it's not an advantage over eachother. thts the joke. phase 5 has no special advantage. replace no one skips with something cleaner than no adtangage . mindset no adtange."*
+
+That's what it worked with. The output was exactly right.
 
 The questions to work through — however you get there:
 
@@ -253,9 +247,9 @@ Four steps. None of them interesting. Do them once and never again.
 
 Perplexity Computer and Claude Code work together. You direct.
 
-### Hand over your brief
+### Start the build
 
-Paste your one-page brief into Perplexity Computer:
+Paste your Phase 1 summary into Perplexity Computer:
 
 > *"Before you start, ask me the questions you need to do this well."*
 
@@ -263,7 +257,7 @@ Let it ask. Answer. Then:
 
 > *"Here's what I want to build. I'll be directing and reviewing — you handle the building."*
 
-It asks questions, writes code, tests things, explains decisions. Your job: review, flag what's wrong, stay engaged.
+
 
 ### Reviewing the work
 
@@ -311,7 +305,7 @@ The AI addresses what you ask. It doesn't always volunteer what you don't.[[7]](
 
 Working is the beginning.
 
-The MVP worked. A real veteran used it and it held up. Still rough — functional, not polished. Then the right people came in, not at the beginning to help me start, but after there was something worth building on. That's the sequence.
+The MVP worked. A veteran used it, gave feedback on the spot, and it held up. Still rough — functional, not polished. The right people, at the right time. That's the sequence.
 
 - **Matt** — full accessibility overhaul, P0 through P2. VA Design System alignment: progress bars, alerts, buttons, card/list semantics, VA web components and fonts. Cognitive accessibility, responsive layout, 200% zoom, static assets, scan/camera capture, document upload refinement. Edited the demo videos.
 - **Regan and Tyson** — both veterans — used it as actual end users. They knew what the experience should feel like and where it fell short. No technical review substitutes for that. Regan also produced the demo videos.
@@ -453,3 +447,19 @@ Users consistently overestimate LLM accuracy when shown explanations. Models are
 <a name="14"></a>**[14]** Raees et al., ACM 2026 — *"We Still Use Spreadsheets." Understanding Business Decision-Makers' Perceptions and Barriers to AI Analytics*
 https://dl.acm.org/doi/10.1145/3772363.3798820
 Non-technical professionals face real adoption barriers — skill gaps, intimidation, tool complexity. The barrier is largely perceived, not a ceiling. The study behind "the assumption that you can't start is wrong, and it's expensive."
+
+---
+
+**On messy input — why imperfect prompts still work**
+
+<a name="15"></a>**[15]** Galfre et al., 2025 — *Vision-Language Models for Sick Leave Certificates: Beyond OCR in Real-World Form Understanding*
+https://ieeexplore.ieee.org/document/11390982/
+VLMs tested on real-world documents received as smartphone photos or noisy scans, often with handwritten notes and signatures. VLMs outperform OCR pipelines on these — 89.6% accuracy on typed scans, superior handling of complex fields. The study behind "I've had it read barely legible handwritten faxes and pull the right information."
+
+<a name="16"></a>**[16]** Zhu et al., 2024 — *PromptRobust: Towards Evaluating the Robustness of Large Language Models on Adversarial Prompts*
+https://arxiv.org/abs/2306.04528
+Benchmarks LLM robustness against typos, synonyms, character/word/sentence-level perturbations. Modern LLMs maintain semantic understanding across noisy prompt variations. The study behind "the model works with signal, not polish."
+
+<a name="17"></a>**[17]** Singh et al., 2024 — *Robustness of LLMs to Perturbations in Text*
+https://arxiv.org/abs/2407.08989
+Directly finds: "generative LLMs are quite robust to noisy perturbations in text." Minimal prompting achieves state-of-the-art on noisy benchmarks. Companion to [16].
