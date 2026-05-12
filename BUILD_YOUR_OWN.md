@@ -5,11 +5,15 @@
 >
 > A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
+> Skeptical? Good. The app is live. The citations are published research — not blog posts, not LinkedIn takes. Science isn't just a meme. It's in the receipts.
+>
 > **Who this is for:** Anyone with an idea — technical background or not
-> 
+>
 > **Stack:** Perplexity Computer · Claude Code · GitHub · Railway
 >
-> **Cost to launch:** $20–75 ·
+> **Cost to launch:** $20–75
+>
+> **Proof:** [vetassist-production.up.railway.app](https://vetassist-production.up.railway.app) · [Research & receipts](#-research--receipts)
 
 
 ---
@@ -157,7 +161,7 @@ What you need: a clear idea, the willingness to think it through, and about $20/
 
 **This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[[7]](#7) Non-technical people use these same skills every day. The AI meets you where you are.
 
-Technical people move faster, catch more technical errors — systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Non-technical people catch more non-technical errors — knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[[8]](#8) The ones who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.[[9]](#9)
+Technical people move faster, catch more technical errors — systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Non-technical people catch more non-technical errors — knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting. The ones who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
 
 Not zero-sum. The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[[8]](#8)
 
@@ -209,7 +213,7 @@ You can do all of [Phase 1](#-phase-1--think-before-you-build) on your phone. Wa
 
 **Start by asking the AI to ask you questions** — not to start building, not to give you a plan, but to ask what it needs to understand your idea well. Then just talk. Voice-to-text, typed messages, screenshots, a photo of a sketch on a napkin — whatever you have. The AI can work with all of it.
 
-That's how VetAssist happened. Not a written brief. A back-and-forth on my phone, in pieces. I've had it read barely legible handwritten faxes and pull the right information.[[10]](#10) LLMs are robust to typos, informal input, and messy prompts — the model works with signal, not polish.[[11]](#11)[[12]](#12) You don't need clean input, you need honest input.
+That's how VetAssist happened. Not a written brief. A back-and-forth on my phone, in pieces. I've had it read barely legible handwritten faxes and pull the right information.[[9]](#9) LLMs are robust to typos, informal input, and messy prompts — the model works with signal, not polish.[[10]](#10)[[11]](#11) You don't need clean input, you need honest input.
 
 Here's a real prompt I used. Unedited.
 
@@ -283,7 +287,7 @@ If your app touches anything personal, raise it explicitly:
 - "Can one user access another user's data?"
 - "What happens if someone tries to abuse this?"
 
-The AI addresses what you ask. It doesn't always volunteer what you don't.[[13]](#13) You need to be the paranoid one.
+The AI addresses what you ask. It doesn't always volunteer what you don't.[[12]](#12) You need to be the paranoid one.
 
 ---
 
@@ -343,9 +347,9 @@ You are the product owner. The AI is the engineering team. Act like it.
 
 ## 🏁 Go build the thing
 
-Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.[[14]](#14)
+Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.[[13]](#13)[[14]](#14)
 
-It doesn't. Not anymore. You can start today. On your phone. Between whatever is happening in your life.[[15]](#15)
+It doesn't. Not anymore. You can start today. On your phone. Between whatever is happening in your life.
 
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)** — go use it. Then come build your own.
 
@@ -395,7 +399,7 @@ Optimized system prompts improve performance and generalize across model familie
 https://www.semanticscholar.org/paper/8592f852439d6b03788ef8ac0c1ddeaef738e4e7
 48.8% of programmer actions in LLM-assisted development were biased; LLM interactions drove 56.4% of those. Automation bias and over-reliance are the dominant failure modes. The study behind "the AI will confidently build the wrong thing" and "an AI that only agrees with you is a faster way to be wrong."
 
-<a name="13"></a>**[13]** Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
+<a name="12"></a>**[12]** Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
 https://ieeexplore.ieee.org/document/11202778/
 Security vulnerabilities, hallucinations, and code quality issues in LLM-generated code. The study behind "the AI is not paranoid enough."
 
@@ -431,38 +435,30 @@ AI produces greater variety of ideas; humans bring quality judgment to AI volume
 
 **On the belief trap — why people don't start**
 
-<a name="15"></a>**[15]** Ma et al., 2024 — *Learning to Adopt Generative AI*
+<a name="14"></a>**[14]** Ma et al., 2024 — *Learning to Adopt Generative AI*
 https://arxiv.org/abs/2410.19806
 People who would benefit most from AI tools often underestimate their value before trying — opt out, miss the gains, stay stuck. The study behind "the gap between idea and reality requires less than you think."
 
 ---
 
-**On AI capability velocity**
-
-<a name="9"></a>**[9]** Wijk et al., 2024 — *RE-Bench: Evaluating Frontier AI R&D Capabilities Against Human Experts*
-https://arxiv.org/abs/2411.15114
-AI agents scored 4x higher than human experts on structured ML engineering tasks at a 2-hour budget, generating and testing solutions over 10x faster. ML research engineering specifically — not general app development. The velocity gap is real. Extrapolate accordingly.
-
----
-
 **On messy input — why imperfect prompts still work**
 
-<a name="10"></a>**[10]** Galfre et al., 2025 — *Vision-Language Models for Sick Leave Certificates: Beyond OCR in Real-World Form Understanding*
+<a name="9"></a>**[9]** Galfre et al., 2025 — *Vision-Language Models for Sick Leave Certificates: Beyond OCR in Real-World Form Understanding*
 https://ieeexplore.ieee.org/document/11390982/
 VLMs tested on real-world documents received as smartphone photos or noisy scans, often with handwritten notes and signatures. VLMs outperform OCR pipelines — 89.6% accuracy on typed scans, superior handling of complex fields. The study behind "I've had it read barely legible handwritten faxes and pull the right information."
 
-<a name="11"></a>**[11]** Zhu et al., 2024 — *PromptRobust: Towards Evaluating the Robustness of Large Language Models on Adversarial Prompts*
+<a name="10"></a>**[10]** Zhu et al., 2024 — *PromptRobust: Towards Evaluating the Robustness of Large Language Models on Adversarial Prompts*
 https://arxiv.org/abs/2306.04528
 Benchmarks LLM robustness against typos, synonyms, character/word/sentence-level perturbations. Modern LLMs maintain semantic understanding across noisy prompt variations. The study behind "the model works with signal, not polish."
 
-<a name="12"></a>**[12]** Singh et al., 2024 — *Robustness of LLMs to Perturbations in Text*
+<a name="11"></a>**[11]** Singh et al., 2024 — *Robustness of LLMs to Perturbations in Text*
 https://arxiv.org/abs/2407.08989
-"Generative LLMs are quite robust to noisy perturbations in text." Minimal prompting achieves state-of-the-art on noisy benchmarks. Companion to [11].
+"Generative LLMs are quite robust to noisy perturbations in text." Minimal prompting achieves state-of-the-art on noisy benchmarks. Companion to [10].
 
 ---
 
 **On adoption barriers**
 
-<a name="14"></a>**[14]** Raees et al., ACM 2026 — *"We Still Use Spreadsheets." Understanding Business Decision-Makers' Perceptions and Barriers to AI Analytics*
+<a name="13"></a>**[13]** Raees et al., ACM 2026 — *"We Still Use Spreadsheets." Understanding Business Decision-Makers' Perceptions and Barriers to AI Analytics*
 https://dl.acm.org/doi/10.1145/3772363.3798820
 Non-technical professionals face real adoption barriers — skill gaps, intimidation, tool complexity. The barrier is largely perceived, not a ceiling.
