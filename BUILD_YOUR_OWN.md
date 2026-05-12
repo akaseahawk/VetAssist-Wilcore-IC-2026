@@ -30,7 +30,7 @@ flowchart TD
 
 ## Quick navigation
 
-**Key:** ⚡ Technical people unfair advantage  |  💡 Non-technical people unfair advantage  |  no icon = no advantage either way
+**Key:** ⚡ Technical people unfair advantage  |  💡 Non-technical people unfair advantage  |  no icon = no unfair advantage
 
 ---
 
