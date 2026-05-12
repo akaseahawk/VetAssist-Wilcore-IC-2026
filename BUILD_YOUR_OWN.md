@@ -1,17 +1,9 @@
 # From Idea to Live App — No Technical Skills Required, Technically
 *Technical people have an unfair advantage here. So do non-technical people. We'll treat this as normal and move on.*
 
-> A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed.
->
-> Almost all of this was done by voice and screenshots. Talking into a phone, dropping images into chat. As life was happening.
->
-> If you have an idea — technical background or not — this is for you.
-
----
-
 > **TL;DR** *(Too Long, Didn't Read — the part you read when you don't have time to read)*
 >
-> ~4 hours. A phone. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
+> A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
 > **Stack:** Perplexity Computer · Claude Code · GitHub · Railway
 >
