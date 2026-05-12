@@ -107,7 +107,7 @@ I write code as part of my job — but for this build I didn't touch the code di
 
 What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even pushed some models to their limits as part of the job (its own fun story), but not the instincts that come from years of shipping production apps.
 
-What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've spent three years specifically getting good at working with generative AI. It shows in the output.
+What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've spent three years specifically getting good at working with generative AI. [Exhibit A.](#-who-i-am-and-why-that-matters)
 
 The AI covered what I couldn't and magnified what I could — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
 
