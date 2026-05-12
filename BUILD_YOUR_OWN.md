@@ -80,10 +80,6 @@ From first idea to working POC to showing it to a veteran friend while we watche
 
 He used it on my phone at the playground. On the spot. That's when I knew it was real.
 
-There is no perfect time. You say something, wait for things to happen, review when a moment opens up. The moments were real. The product was real.
-
-This guide exists because I think a lot of people — technical and not — have ideas sitting in their heads that they assume require more than they have. I wanted to show what's actually possible right now, and exactly how I did it.
-
 The app: **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)** — go see what it does.
 
 The hackathon repo: **[github.com/akaseahawk/VetAssist-Wilcore-IC-2026](https://github.com/akaseahawk/VetAssist-Wilcore-IC-2026)**
@@ -102,7 +98,7 @@ What I brought: I think in systems. I can spec a problem, identify failure modes
 
 What I didn't have: I'm not a software developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data privacy, AI security, and prompt injection, but not the security instincts that come from years of shipping production software. Those gaps were real, and they showed.
 
-What filled them: AI compensated for most of what I couldn't do alone — not perfectly, but well enough to ship something real and get a veteran to use it on the spot. Then the right people came in and took it further. That's the whole story. Phase 5 covers it.
+AI compensated for most of the gaps — not perfectly, but well enough to ship something real. Then the right people came in. Phase 5 covers it.
 
 *(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You should be doing this in half the time. I'm genuinely not sure what's stopping you.)*
 
@@ -120,7 +116,7 @@ One more thing that made a real difference: **I always ask the AI to ask me ques
 
 **On trusting AI output:** the research on what AI says it's doing vs. what it's actually doing is worth knowing.[^1][^2] The chain-of-thought is useful — not a guaranteed window into the model's real process.
 
-But trust is earned and specific, not binary. Trust it more when:
+Trust it more when:
 - The task is well-scoped and specific
 - You asked it to show its reasoning and it tracks
 - You can verify the output against something real — does it work, does it behave correctly, does it match what you asked
@@ -165,17 +161,13 @@ You do not need a free weekend. *(Apparently you need a late Lyft.)*
 
 What you need: a clear idea, the willingness to think it through, and about $20/month.
 
-**This isn't just about building apps.** AI is useful long before you write a line of code — or direct one to be written. Planning, problem framing, research, writing, thinking through edge cases, preparing a brief, stress-testing an idea.[^11] Non-technical people use these same skills every day. The AI meets you where you are.[^10]
+**This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[^11] Non-technical people use these same skills every day. The AI meets you where you are.[^10]
 
-**On technical advantages:** systems thinking, the ability to read the AI's output critically, knowing when something is technically correct but practically wrong — those matter. Technical people can move faster, catch more errors, ask sharper questions.
+**On technical advantages:** systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Technical people move faster, catch more errors, ask sharper questions.
 
-**On non-technical advantages:** knowing the problem from the inside, seeing what real users actually need, and not getting distracted by what's technically interesting — those are equally real.[^12] The people who get the most out of this aren't always the most technical. They're the ones who know what they're building and why.
+**On non-technical advantages:** knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting.[^12] The people who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
 
-**Neither is complete without the other. This is not zero-sum.**
-
-The common framing is that AI takes output from humans or humans take it from AI. That's the wrong model. Used well, it's 2+2=8. The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. The combination produces something neither could alone — and VetAssist is the proof of that.[^12]
-
-Getting something working is not the same as getting something right. A prototype is a starting point. When real people depend on it, you want the right eyes on it. More on that in Phase 5.
+**This is not zero-sum.** The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[^12]
 
 ---
 
@@ -287,7 +279,7 @@ It asks questions, writes code, tests things, explains decisions. Your job: revi
 - Does it behave the way a real user would expect?
 - Is there anything I don't understand that I probably should?
 
-If you can't get a plain-language explanation, ask for one. Complexity you can't explain is complexity you can't stand behind.
+If you can't get a plain-language explanation, ask for one.
 
 *(Technical readers: you get to read the code and know if it's actually correct. Use that.)*
 
@@ -353,13 +345,10 @@ You don't need a team to start. You need something for them to work with.
 
 You are the product owner. The AI is the engineering team. Act like it.
 
-- **Ask questions before building.** Every time. Make it a habit before the AI touches anything.
-- **Talk to it like a colleague.** Push back. Ask why. You'll build better things and understand what you built.
-- **Iterate in small steps.** One thing working beats five things halfway done.
+- **Ask questions before the AI touches anything.** Every time. Make it a habit.
 - **Don't panic when things break.** They will. Tell the AI what happened. It fixes things.
 - **Stay humble about what you don't know.** Running doesn't mean right, secure, or correct under all conditions.
-- **Think before you build.** Phase 1 is free. *(Technical people: especially you.)*
-- **Use what you know.** Technical or not — your knowledge of the problem, the user, the output doesn't become less valuable because the AI did the work. *(That goes for both sides of the key up top.)*
+- **Use what you know.** Your knowledge of the problem, the user, the output doesn't become less valuable because the AI did the work. *(That goes for both sides of the key up top.)*
 
 ---
 
@@ -367,11 +356,7 @@ You are the product owner. The AI is the engineering team. Act like it.
 
 Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.
 
-It doesn't. Not anymore.
-
-You can start today. On your phone. Between whatever is happening in your life.
-
-Time is the one resource you can never get back. The question isn't whether you have enough — it's what you do with the pieces you actually have.
+It doesn't. Not anymore. You can start today. On your phone. Between whatever is happening in your life.
 
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)** — go use it. Then come build your own.
 
@@ -389,13 +374,9 @@ Questions or want to talk through your idea? Reach out directly.
 
 ## 📚 Research & receipts
 
-I've spent three years following this space. I'm reasonably confident in these citations. I have not verified every one with the rigor I'd apply professionally — partly because I built this guide the same way I built the app: in stolen minutes, on my phone, between life.
-
-Which means this is a perfect opportunity to practice what this guide preaches: don't trust the AI's work without checking it. I did my part. Now it's your turn.
-
 *(The irony of writing about not trusting AI in a document made with AI is not lost on me.)*
 
-Check the quality and applicability yourself. That's not a disclaimer — it's the point.
+I've spent three years following this space and I'm reasonably confident in these. Check them yourself — that's the point.
 
 ---
 
