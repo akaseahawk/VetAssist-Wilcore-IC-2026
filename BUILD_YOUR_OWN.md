@@ -12,7 +12,7 @@
 ```mermaid
 flowchart TD
     A["💡 You\nAn idea. Any background."] --> C
-    B["⚡ AI\nSpeed. Breadth. Execution."] --> C
+    B["🤖 AI\nSpeed. Breadth. Execution."] --> C
     C["🏗️ Something real\nBuilt and deployed."] --> D
     D["🤝 Right people, right time\nDomain knowledge. Technical review. Fresh eyes."]
     D --> E["✅ Something better\nthan either could build alone."]
@@ -28,11 +28,15 @@ flowchart TD
 
 ## Quick navigation
 
+<<<<<<< HEAD
 **Key:** ⚡ Technical people unfair advantage  |  💡 Non-technical people unfair advantage  |  no icon = no advantage either way
+=======
+**Key:** ⚡ Technical people — unfair advantage  |  💡 Non-technical people — unfair advantage  |  no icon = no advantage either way
+>>>>>>> 2f2eab8 (docs: nav humor, robot emoji for AI in diagram, key labels updated)
 
 ---
 
-🕐 [How this started](#-how-this-started) — The story. Start here.
+🕐 [How this started](#-how-this-started) — A Lyft was late. An app got built. As one does.
 
 🪞 [Who I am, and why that matters](#-who-i-am-and-why-that-matters) — 💡 Why this worked, and why it can work for you.
 
