@@ -10,11 +10,12 @@
 ---
 
 > **TL;DR** *(Too Long, Didn't Read — the part you read when you don't have time to read)*
-> A working, deployed app built in ~4 hours on a phone — no laptop, no IDE, entirely by voice and screenshots. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is the full process, start to finish, so you can do it too.
+>
+> ~4 hours. A phone. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
 > **Stack:** Perplexity Computer · Claude Code · GitHub · Railway
-> **Cost to launch:** $20–75
-> **Who this is for:** Anyone with an idea — technical background or not
+>
+> **Cost to launch:** $20–75 · **Who this is for:** Anyone with an idea — technical background or not
 
 ---
 
