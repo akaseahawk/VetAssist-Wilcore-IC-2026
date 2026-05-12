@@ -5,7 +5,7 @@
 >
 > A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
-> Skeptical? Good. The app is live. The citations are published research — not blog posts, not LinkedIn takes. Science isn't just a meme. It's in the receipts.
+> Skeptical? Good. I got receipts. The app is live. Citations are science papers. No LinkedIn posts here. 
 >
 > **Who this is for:** Anyone with an idea — technical background or not
 >
