@@ -14,29 +14,51 @@
 
 ## Quick navigation
 
-**Not technical? Start here:**
-- [How this started](#how-this-started) — the story
-- [What's actually happening while you live your life](#whats-actually-happening-while-you-live-your-life) — what the AI is doing
-- [The honest truth up front](#the-honest-truth-up-front) — what you actually need
-- [The tools and what they cost](#the-tools-and-what-they-cost) — tools + realistic cost
-- [Phase 1 — Think before you build](#phase-1--think-before-you-build) ← start here
-- [Phase 2 — Set up your tools](#phase-2--set-up-your-tools-one-time)
-- [Phase 3 — Build it](#phase-3--build-it)
-- [Phase 4 — Deploy it](#phase-4--deploy-it)
-- [Phase 5 — Don't stop at "it works"](#phase-5--dont-stop-at-it-works)
-- [Go build the thing](#go-build-the-thing)
-
-**Already technical? Jump to what's relevant:**
-- [Who I am and why that matters](#who-i-am-and-why-that-matters) — background and why it's relevant
-- [Before you read this as "AI did everything"](#before-you-read-this-as-ai-did-everything-and-it-was-magic--it-wasnt) — custom instructions, system prompts, the research
-- [What's actually happening while you live your life](#whats-actually-happening-while-you-live-your-life) — the real division of labor
-- [Phase 3 — Build it](#phase-3--build-it) — directing vs. executing, your unfair advantages
-- [Phase 5 — Don't stop at "it works"](#phase-5--dont-stop-at-it-works) — where your skills multiply everything
-- [The mindset](#the-mindset) — the technical multiplier
+**Key:** &nbsp; ⚡ Technical advantage &nbsp;|&nbsp; 💡 Non-technical advantage &nbsp;|&nbsp; ✳️ No unfair advantage here
 
 ---
 
-## How this started
+🕐 [How this started](#how-this-started)
+✳️ No unfair advantage here. The story. Read this first.
+
+🪞 [Who I am, and why that matters](#who-i-am-and-why-that-matters)
+💡 Not a flex — context for why this worked and why it can work for you.
+
+⚙️ [Before you read this as "AI did everything"](#before-you-read-this-as-ai-did-everything-and-it-was-magic--it-wasnt)
+✳️ No unfair advantage here. Custom instructions, CLAUDE.md pattern, LLM faithfulness research — and why even technical people should stay skeptical of the model's self-reported reasoning.
+
+👁️ [What's actually happening while you live your life](#whats-actually-happening-while-you-live-your-life)
+✳️ No unfair advantage here. The real division of labor. Reframes everything.
+
+✅ [The honest truth up front](#the-honest-truth-up-front)
+💡 What you actually need to start. (Less than you think.)
+
+🛠️ [The tools and what they cost](#the-tools-and-what-they-cost)
+✳️ No unfair advantage here. Four tools. Realistic cost. No surprises.
+
+📋 [Phase 1 — Think before you build](#phase-1--think-before-you-build)
+✳️ No unfair advantage here. The cheapest phase and the most important one.
+
+🔧 [Phase 2 — Set up your tools](#phase-2--set-up-your-tools-one-time)
+One time. Done.
+
+🏗️ [Phase 3 — Build it](#phase-3--build-it)
+⚡ Directing vs. executing. Technical readers: your knowledge of what the model produces is an advantage — use it. The models are moving faster than any individual can track; working with them closely is how you stay ahead, not how you fall behind.
+
+🚀 [Phase 4 — Deploy it](#phase-4--deploy-it)
+Get it live. Troubleshooting table included.
+
+🤝 [Phase 5 — Don't stop at "it works"](#phase-5--dont-stop-at-it-works)
+✳️ No unfair advantage here. The collaboration story + who to bring in and when.
+
+🧠 [The mindset](#the-mindset)
+✳️ No unfair advantage here. Though technical readers get called out specifically — respectfully.
+
+🏁 [Go build the thing](#go-build-the-thing)
+
+---
+
+## 🕐 How this started
 
 Time is the one resource you can never get back.
 
@@ -86,7 +108,7 @@ Questions or want to talk through your own idea? Reach out to me directly.
 
 ---
 
-## Who I am, and why that matters
+## 🪞 Who I am, and why that matters
 
 Anyone with an idea can do this. My background shaped how fast I moved — yours will
 shape how you move. Neither requires waiting.
@@ -114,7 +136,7 @@ be doing this in half the time. I'm not sure why you aren't.)*
 
 ---
 
-## Before you read this as "AI did everything and it was magic" — it wasn't
+## ⚙️ Before you read this as "AI did everything and it was magic" — it wasn't
 
 Three years of refining a set of custom instructions that shape how any AI works
 with me. Think of it as a personal operating agreement between me and the model —
@@ -154,7 +176,7 @@ for dealing with most people too.
 
 ---
 
-## What's actually happening while you live your life
+## 👁️ What's actually happening while you live your life
 
 Here's the part that took me a minute to internalize. While I was doing dishes,
 or pushing a kid on a swing, or waiting for a Lyft — this is what was actually running:
@@ -181,7 +203,7 @@ responsibility, which I'll get to.
 
 ---
 
-## The honest truth up front
+## ✅ The honest truth up front
 
 You do not need to write code to get started.
 You do not need a computer science degree to ship something real.
@@ -206,7 +228,7 @@ This guide gets you to a real, working first version. Eyes open.
 
 ---
 
-## The tools (and what they cost)
+## 🛠️ The tools (and what they cost)
 
 | Tool | What it does | Cost |
 |---|---|---|
@@ -222,7 +244,7 @@ burn through them unnecessarily. More on that in Phase 1.
 
 ---
 
-## Phase 1 — Think before you build
+## 📋 Phase 1 — Think before you build
 
 > The most important phase. Also the cheapest. Do not skip it.
 
@@ -276,7 +298,7 @@ the less back-and-forth you'll need, and the fewer credits you'll burn.
 
 ---
 
-## Phase 2 — Set up your tools (one time)
+## 🔧 Phase 2 — Set up your tools (one time)
 
 Do these once. Never again.
 
@@ -296,7 +318,7 @@ Push new code, app updates automatically. No manual deployment steps.
 
 ---
 
-## Phase 3 — Build it
+## 🏗️ Phase 3 — Build it
 
 Now Perplexity Computer and Claude Code work together. You direct.
 
@@ -342,7 +364,7 @@ You need to be.
 
 ---
 
-## Phase 4 — Deploy it
+## 🚀 Phase 4 — Deploy it
 
 **Push to GitHub** — Perplexity Computer handles this. You don't touch the command line.
 
@@ -362,7 +384,7 @@ Your app is on the internet. That's real.
 
 ---
 
-## Phase 5 — Don't stop at "it works"
+## 🤝 Phase 5 — Don't stop at "it works"
 
 Working is the beginning, not the end.
 
@@ -418,7 +440,7 @@ The floor is lower than it used to be. Your ceiling is higher than you think.
 
 ---
 
-## The mindset
+## 🧠 The mindset
 
 The AI is the engineering team. You are the product owner.
 That distinction matters more than any tool you pick.
@@ -443,7 +465,7 @@ A few things that actually helped:
 
 ---
 
-## Go build the thing
+## 🏁 Go build the thing
 
 Most people stay stuck at "I wish someone would build something that..." —
 assuming the gap between idea and reality requires skills, time, or resources
