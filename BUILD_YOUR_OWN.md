@@ -1,43 +1,69 @@
 # From Idea to Live App — No Technical Skills Required, Technically
-*Technical skills give you a head start. Non-technical skills give you a different one. We'll get to both.*
+*Technical people have an unfair advantage here. So do non-technical people. We'll treat this as normal and move on.*
 
-> A real account of what I actually did — written in my own voice, on my phone, as it was happening.
+> **TL;DR** *(Too Long, Didn't Read — the part you read when you don't have time to read)*
 >
-> This is a guide about building software, written by someone who does not write software for a living — and who had real gaps that showed. We'll get to those too.
+> A guide about building an app, written by someone who doesn't build apps for a living — which turns out to be the point. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
-> If you have an idea — technical background or not — this is for you.
+> Skeptical? Good. I got receipts. The app is live. Citations are science papers. No LinkedIn posts here.
+>
+> **Who this is for:** Anyone with an idea — technical background or not
+>
+> **Stack:** Perplexity Computer · Claude Code · GitHub · Railway
+>
+> **Cost to launch:** $20–75
+>
+> **Proof:** [vetassist-production.up.railway.app](https://vetassist-production.up.railway.app) · [Research & receipts](#-research--receipts)
+
+
+---
+
+```mermaid
+flowchart TD
+    A["🧑 You\nAn idea. Any background."] --> C
+    B["🤖 AI\nSpeed. Breadth. Execution."] --> C
+    C["🏗️ Something real\nBuilt and deployed."] --> D
+    D["🤝 Right people, right time\nDomain knowledge. Technical review. Fresh eyes."]
+    D --> E["✅ Something better\nthan either could build alone."]
+
+    style A fill:#f0f4ff,stroke:#6366f1,color:#1e1b4b
+    style B fill:#f0f4ff,stroke:#6366f1,color:#1e1b4b
+    style C fill:#e0e7ff,stroke:#4f46e5,color:#1e1b4b
+    style D fill:#ede9fe,stroke:#7c3aed,color:#1e1b4b
+    style E fill:#d1fae5,stroke:#059669,color:#064e3b
+```
 
 ---
 
 ## Quick navigation
 
-**Key:** &nbsp; ⚡ Technical advantage &nbsp;|&nbsp; 💡 Non-technical advantage &nbsp;|&nbsp; ✳️ No unfair advantage here
+**Key:** ⚡ Technical people unfair advantage  |  💡 Non-technical people unfair advantage  |  no icon = no unfair advantage
 
 ---
 
-🕐 [How this started](#-how-this-started) — ✳️ The story. Start here.
+🕐 [How this started](#-how-this-started) — A Lyft was late. An app got built. As one does.
 
 🪞 [Who I am, and why that matters](#-who-i-am-and-why-that-matters) — 💡 Why this worked, and why it can work for you.
 
-⚙️ [Before you read this as "AI did everything"](#%EF%B8%8F-before-you-read-this-as-ai-did-everything--it-wasnt) — ✳️ Why you should stay skeptical. Both of you.
+⚙️ [Before you read this as "AI did everything"](#%EF%B8%8F-before-you-read-this-as-ai-did-everything--it-wasnt) — Why you should stay skeptical. And when to trust it.
 
-👁️ [What's actually happening while you live your life](#%EF%B8%8F-whats-actually-happening-while-you-live-your-life) — ✳️ The real division of labor.
+👁️ [What's actually happening while you live your life](#%EF%B8%8F-whats-actually-happening-while-you-live-your-life) — The real division of labor.
 
 ✅ [The honest truth up front](#-the-honest-truth-up-front) — 💡 What you actually need. And the zero-sum myth.
 
-🛠️ [The tools and what they cost](#%EF%B8%8F-the-tools-and-what-they-cost) — ✳️ Four tools. Under $75.
+🛠️ [The tools and what they cost](#%EF%B8%8F-the-tools-and-what-they-cost) — Four tools. Under $75.
 
-📋 [Phase 1 — Think before you build](#-phase-1--think-before-you-build) — ✳️ The cheapest and most important phase.
+📋 [Phase 1 — Think before you build](#-phase-1--think-before-you-build) — The cheapest and most important phase.
 
 🔧 [Phase 2 — Set up your tools](#-phase-2--set-up-your-tools-one-time) — One time. Done.
 
-🏗️ [Phase 3 — Build it](#%EF%B8%8F-phase-3--build-it) — ⚡ Directing vs. executing. Working closely with the model is how you stay ahead.
+🏗️ [Phase 3 — Build it](#%EF%B8%8F-phase-3--build-it) — ⚡ Directing vs. executing. Working closely is how you stay ahead.
 
 🚀 [Phase 4 — Deploy it](#-phase-4--deploy-it) — Get it live.
 
-🤝 [Phase 5 — Don't stop at "it works"](#-phase-5--dont-stop-at-it-works) — ✳️ Collaboration story + who to bring in and when.
+🤝 [Phase 5 — Don't stop at "it works"](#-phase-5--dont-stop-at-it-works) — Collaboration + who to bring in and when.
 
-🧠 [The mindset](#-the-mindset) — ✳️ Applies to everyone. Both sides get called out.
+🧠 [The mindset](#-the-mindset) — Applies to everyone.
 
 🏁 [Go build the thing](#-go-build-the-thing)
 
@@ -45,23 +71,23 @@
 
 ---
 
+A note on "technical" and "non-technical": it's the shorthand everyone uses, a false dichotomy, and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both.
+
+I have an engineering background and a management background and still hit the edges of both. The labels are a shorthand, not a verdict.
+
+---
+
 ## 🕐 How this started
 
-Time is the one resource you can never get back.
+I built a working, deployed app in roughly 4 hours of actual effort spread across 2 days — entirely on my phone, between everything else happening in my life.
 
-I built a working, deployed web application in roughly 4 hours of actual effort spread across 2 days.
+Not 4 uninterrupted hours. 4 hours of stolen minutes. Chores. Waiting rooms. The Lyft was late. Sitting at the playground while my kid ran around. Talking into my phone, dropping in screenshots, occasionally typing when the kid was asleep on me.
 
-Not 4 uninterrupted hours. 4 hours of stolen minutes — entirely on my phone.
+A veteran friend was at the playground that day. I handed him my phone and he tested the app right there — used it for real, gave me feedback on the spot. What worked, what didn't, what a veteran actually needs when navigating the VA. I incorporated the feedback immediately, redeployed from the playground, and handed him the phone again. He was impressed. That was the moment. That was the "hell yes — let's get a team together and actually help people."
 
-Between chores. Waiting rooms. The Lyft was late. Sitting at the playground between actually playing with my kid. A minute here, a few minutes there. Responsibly watching a child at a playground is not a perfect time to build software. It turned out to be plenty of time.
+(The winning-some-money part was also a factor. Being honest.)
 
-From first idea to working POC to showing it to a veteran friend while we watched our kids run around — all on my phone. Talking, typing, reviewing, directing.
-
-He used it on my phone at the playground. On the spot. That's when I knew it was real.
-
-There is no perfect time. You say something, wait for things to happen, review when a moment opens up. The moments were real. The product was real.
-
-This guide exists because I think a lot of people — technical and not — have ideas sitting in their heads that they assume require more than they have. I wanted to show what's actually possible right now, and exactly how I did it.
+Time is the one resource you can never get back — and almost none of this required a block of it.
 
 The app: **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)** — go see what it does.
 
@@ -73,33 +99,35 @@ Questions or want to talk through your own idea? Reach out directly.
 
 ## 🪞 Who I am, and why that matters
 
-Anyone with an idea can do this. My background shaped how fast I moved. It also came with gaps. Both matter.
+Anyone with an idea can do this. My background shaped how fast I moved. Where my background ended, the AI picked up. Both matter.
 
-I'm an AI solution architect, AI engineer, data engineer, and data scientist. I have a biomedical engineering degree and a background in engineering management. I am not a software developer, not a DevOps engineer, not a UI/UX professional, not a contracts expert, not an end user of what I was building. I don't build production web applications for a living — I write code, but there's a difference.
+I sit at the technical/non-technical line by trade — AI, data, and healthcare. Which is probably why this guide exists.
 
-I had real gaps. I can't eyeball a security vulnerability the way a trained engineer can. I don't have the instincts that come from years of shipping software. I'm not the veteran trying to navigate a broken system. Those gaps were real, and they showed.
+I write code as part of my job — but for this build I didn't touch the code directly. I said what to do, dropped in screenshots when I needed to show something, and the AI handled the rest. Deliberate — to test what's actually possible when you direct entirely through voice and images, without ever editing a file.
 
-What filled them: AI compensated for a lot of what I couldn't do alone — not perfectly, but well enough to ship something real. Then the right people came in and took it further. That's the actual story. Phase 5 covers it.
+What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even pushed some models to their limits as part of the job (its own fun story), but not the instincts that come from years of shipping production apps.
 
-What I did bring: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. Working with this generation of AI is, fundamentally, engineering management. I've been developing that skill for about 3 years, and it shows in the output.
+What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've spent three years specifically getting good at working with generative AI. Receipt: you're reading it.
 
-*(Software developers reading this: you have every advantage I have, plus the ability to read the code and know if it's actually right. You should be doing this in half the time. I'm not sure why you aren't.)*
+The AI covered what I couldn't and magnified what I could — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
+
+*(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You could probably cut your story points in half — I think.)*
 
 ---
 
 ## ⚙️ Before you read this as "AI did everything" — it wasn't
 
-Three years of refining custom instructions that shape how any AI works with me — a personal operating agreement between me and the model, sometimes called a `CLAUDE.md` file or system prompt.[^9] Mine does three things:
+Three years of refining custom instructions that shape how any AI works with me — a personal operating agreement between me and the model, sometimes called a `CLAUDE.md` file or system prompt.[[1]](#1) Here's a sample:
 
 - **Numbered structured output** — everything is numbered hierarchically so I can say "2.3 is wrong" and we both know exactly what we're talking about. Small thing. Not a small thing.
-- **Show your work** — the AI shares what it's deciding and why, before acting. I'm getting its reasoning, not just output — which I can agree with, correct, or redirect.
-- **Structured push-back** — it flags disagreement and risk instead of just complying. An AI that only agrees with you is a faster way to be wrong.[^6]
+- **Show your work** — the AI shares what it's deciding and why, before acting. I get its reasoning, not just output — which I can agree with, correct, or redirect.
+- **Structured push-back** — it flags disagreement and risk instead of just complying. An AI that only agrees with you is a faster way to be wrong.[[2]](#2)
 
-The tools got dramatically better over those 3 years. So did my ability to work with them.
+One more thing: **always ask the AI to ask you questions before it starts executing.** Something like: *"Before you do anything, ask me the questions you need to do this well."* The AI will assume if you let it. Don't let it.
 
-**On trusting AI reasoning:** research shows that what an LLM says it's doing isn't always what it's actually doing.[^1][^2][^3] The chain-of-thought is useful — not a guaranteed window into the model's actual process. Trust, but verify. What to verify: does the output do what you asked, does it behave correctly for a real user, and does anything feel off even if you can't articulate why. That instinct matters. Act on it.
+**On trusting AI output:** the research on what AI says it's doing vs. what it's actually doing is worth knowing.[[3]](#3)[[4]](#4) The chain-of-thought is useful — not a guaranteed window into what actually drove the answer. Trust it more when you can verify the output against something real. Trust it less when it's confident about something inherently uncertain[[5]](#5) — and when something feels off, that instinct matters.
 
-This applies to everyone — technical readers included. Knowing how to read code doesn't make the model's stated reasoning accurate.
+This applies to everyone. Knowing how to read code doesn't make the model's stated reasoning more accurate.
 
 ---
 
@@ -110,7 +138,8 @@ While I was doing dishes, pushing a kid on a swing, waiting for a Lyft — this 
 | What I was doing | What the AI was doing |
 |---|---|
 | Talking through my idea | Asking clarifying questions, pushing back, finding holes |
-| Describing a feature | Writing code, wiring it to the backend, testing it |
+| Dropping in a screenshot of broken UI | Reading it, diagnosing, fixing without me typing a word |
+| Describing a feature out loud | Writing code, wiring it to the backend, testing it |
 | Saying "that looks wrong" | Diagnosing, proposing a fix, explaining why |
 | Doing literally nothing | Building, deploying, verifying, documenting |
 | Waiting for a Lyft | Working through system architecture |
@@ -119,8 +148,8 @@ While I was doing dishes, pushing a kid on a swing, waiting for a Lyft — this 
 
 What that actually looked like on my phone:
 
-![Perplexity Computer working — task list sprint](assets/perplexity-working-1.png)
-![Perplexity Computer working — editing code files](assets/perplexity-working-2.png)
+![Perplexity Computer working — task list sprint](assets/perplexity-working-1-sharp.png)
+![Perplexity Computer working — editing code files](assets/perplexity-working-2-sharp.png)
 
 You're not doing the work in the traditional sense. You're directing it. There's a meaningful difference — and real responsibility that comes with it.
 
@@ -129,20 +158,16 @@ You're not doing the work in the traditional sense. You're directing it. There's
 ## ✅ The honest truth up front
 
 You do not need to write code to get started.
-You do not need a CS degree to ship something real.[^8]
-You do not need a free weekend.
+You do not need a CS degree to ship something real.[[6]](#6)
+You do not need a free weekend. *(Apparently you need a late Lyft.)*
 
 What you need: a clear idea, the willingness to think it through, and about $20/month.
 
-**On non-technical advantages:** knowing the problem from the inside, seeing clearly what real users actually need, and not getting distracted by what's technically interesting — those are genuine advantages. Research consistently shows non-technical people face real barriers to building, often assuming they can't start at all.[^8] That assumption is wrong, and it's expensive. The people who get the most out of AI-assisted building aren't always the most technical — they're the ones who know what they're building and why.
+**This isn't just about building apps.** AI is useful long before you write a line of code — planning, problem framing, research, writing, stress-testing an idea.[[7]](#7) Non-technical people use these same skills every day. The AI meets you where you are.
 
-**On technical advantages:** systems thinking, the ability to read the AI's output critically, and knowing when something is technically correct but practically wrong — those matter too. Technical people can move faster, catch more errors, and ask better questions of the model.
+Technical people move faster, catch more technical errors — systems thinking, reading output critically, knowing when something is technically correct but practically wrong. Non-technical people catch more non-technical errors — knowing the problem from the inside, seeing what real users need, not getting distracted by what's technically interesting. The ones who get the most out of this aren't always the most technical — they're the ones who know what they're building and why.
 
-**Neither is complete without the other. This is not zero-sum.**
-
-The common framing is that AI takes the output or humans do. That's the wrong model. Used well, it's 2+2=8. The human brings judgment, domain knowledge, and the ability to say "this is wrong for this user." The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. The combination produces something neither could alone. That's the actual story of VetAssist — and it's the point of this guide.
-
-Getting something working is not the same as getting something right. A prototype is a starting point. When real people depend on it, you want the right eyes on it. More on that in Phase 5.
+Not zero-sum. The human brings judgment and domain knowledge. The AI brings speed, breadth, and the ability to hold an entire codebase in memory while you're at the playground. 2+2=8 — VetAssist is the proof.[[8]](#8)
 
 ---
 
@@ -155,7 +180,24 @@ Getting something working is not the same as getting something right. A prototyp
 | **GitHub** | Stores your code. Every change tracked. If something breaks, you go back. | Free |
 | **Railway** | Hosts your app live. Connects to GitHub — push code, app updates. | Free tier / ~$5/month always-on |
 
-**Realistic total to launch: $20–75.** The Anthropic credits are the variable — Phase 1 exists to keep that number down.
+**Realistic total to launch: $20–75.** The Anthropic credits are the variable — [Phase 1](#-phase-1--think-before-you-build) exists to keep that number down.
+
+---
+
+```mermaid
+flowchart TD
+    P1["📋 Phase 1 — Think before you build\nFree. On your phone. Do not skip."] --> P2
+    P2["🔧 Phase 2 — Set up your tools\nOne time. 30 minutes."] --> P3
+    P3["🏗️ Phase 3 — Build it\nYou direct. AI executes."] --> P4
+    P4["🚀 Phase 4 — Deploy it\nLive URL. Auto-deploys on push."] --> P5
+    P5["🤝 Phase 5 — Don't stop at 'it works'\nRight people. Right time."]
+
+    style P1 fill:#fef9c3,stroke:#ca8a04,color:#713f12
+    style P2 fill:#fef9c3,stroke:#ca8a04,color:#713f12
+    style P3 fill:#dbeafe,stroke:#2563eb,color:#1e3a5f
+    style P4 fill:#dbeafe,stroke:#2563eb,color:#1e3a5f
+    style P5 fill:#d1fae5,stroke:#059669,color:#064e3b
+```
 
 ---
 
@@ -163,17 +205,27 @@ Getting something working is not the same as getting something right. A prototyp
 
 > The most important phase. Also the cheapest.
 
-The most common mistake: building before the idea is solid. The AI will confidently build the wrong thing if you let it.[^6]
+The most common mistake: building before the idea is solid. The AI will confidently build the wrong thing if you let it.[[2]](#2)
 
 *(Technical people: this applies more to you, not less. You can move fast enough to get very far in the wrong direction before noticing.)*
 
 **Do this phase outside Claude Code.** Perplexity Computer, Claude.ai, ChatGPT — free or close to it. Save the API credits for building.
 
-You can do all of Phase 1 on your phone. Waiting room. Walk. That's where most of VetAssist came from.
+You can do all of [Phase 1](#-phase-1--think-before-you-build) on your phone. Waiting room. Walk. That's where most of VetAssist came from.
 
 ### Have a real conversation with AI about your idea
 
-Talk it out. Voice-to-text. Ask it to push back. Cover these:
+**Start by asking the AI to ask you questions** — not to start building, not to give you a plan, but to ask what it needs to understand your idea well. Then just talk. Voice-to-text, typed messages, screenshots, a photo of a sketch on a napkin — whatever you have. The AI can work with all of it.
+
+That's how VetAssist happened. Not a written brief. A back-and-forth on my phone, in pieces. I've had it read barely legible handwritten faxes and pull the right information.[[9]](#9) LLMs are robust to typos, informal input, and messy prompts — the model works with signal, not polish.[[10]](#10)[[11]](#11) You don't need clean input, you need honest input.
+
+Here's a real prompt I used. Unedited.
+
+> *"make technical advangate, non-technical advantage. . before you readthis is for both people. phase 5 is both . . also the idea to call out technical people s use them, their knowledge is valuable but dont dismiss the model. the models are getting faster than any person can track on the technical side. so take advantage of them. you can remove the no one skils for 2, and 4. also when its both you dont need a do not skip. if they're skipping then kind of loseing the point. you also when it's both advantage, then it's not an advantage over eachother. thts the joke. phase 5 has no special advantage. replace no one skips with something cleaner than no adtangage . mindset no adtange."*
+
+That's what it worked with. The output was exactly right.
+
+The questions to work through — however you get there:
 
 - **What problem does this solve?** Specific beats general.
 - **Who is it for?** Name one real person. What's their actual frustration?
@@ -184,22 +236,15 @@ Talk it out. Voice-to-text. Ask it to push back. Cover these:
 
 Push it: *"What are the holes in this? What would a skeptical user say? What's the riskiest assumption?"*
 
-### Write a one-page brief
+### Hand it over as a summary
 
-Before Phase 2:
-
-- What it does (2–3 sentences)
-- Who it's for
-- The main flow
-- What it does NOT do
-- The simplest first version
-- Any known risks
-
-This is what you hand the AI when building starts. The better it is, the less rework, the fewer credits burned.
+Before [Phase 2](#-phase-2--set-up-your-tools-one-time), ask the AI to summarize what it's heard — the idea, the user, the scope, the risks. Read it. Correct what's wrong. That's your handoff to [Phase 3](#%EF%B8%8F-phase-3--build-it).
 
 ---
 
 ## 🔧 Phase 2 — Set up your tools (one time)
+
+Four steps. None of them interesting. Do them once and never again.
 
 **1. GitHub** — [github.com](https://github.com). Free. Sign up.
 
@@ -215,13 +260,15 @@ This is what you hand the AI when building starts. The better it is, the less re
 
 Perplexity Computer and Claude Code work together. You direct.
 
-### Hand over your brief
+### Start the build
 
-Paste your one-page brief into Perplexity Computer:
+Paste your [Phase 1](#-phase-1--think-before-you-build) summary into Perplexity Computer:
 
-> *"I want to build this app. Here's what it does, who it's for, and what the first version needs. I'll be directing and reviewing — you handle the building."*
+> *"Before you start, ask me the questions you need to do this well."*
 
-It asks questions, writes code, tests things, explains decisions. Your job: review, flag what's wrong, stay engaged.
+Let it ask. Answer. Then:
+
+> *"Here's what I want to build. I'll be directing and reviewing — you handle the building."*
 
 ### Reviewing the work
 
@@ -229,7 +276,7 @@ It asks questions, writes code, tests things, explains decisions. Your job: revi
 - Does it behave the way a real user would expect?
 - Is there anything I don't understand that I probably should?
 
-If you can't get a plain-language explanation, ask for one. Complexity you can't explain is complexity you can't stand behind.
+If you can't get a plain-language explanation, ask for one.
 
 *(Technical readers: you get to read the code and know if it's actually correct. Use that.)*
 
@@ -244,7 +291,7 @@ If your app touches anything personal, raise it explicitly:
 - "Can one user access another user's data?"
 - "What happens if someone tries to abuse this?"
 
-The AI addresses what you ask. It doesn't always volunteer what you don't.[^7] You need to be the paranoid one.
+The AI addresses what you ask. It doesn't always volunteer what you don't.[[12]](#12) You need to be the paranoid one.
 
 ---
 
@@ -269,7 +316,7 @@ The AI addresses what you ask. It doesn't always volunteer what you don't.[^7] Y
 
 Working is the beginning.
 
-The MVP worked. A real veteran used it and it held up. Still rough — functional, not polished. Then the right people came in, not at the beginning to help me start, but after there was something worth building on. That's the sequence.
+The MVP worked. A veteran used it, gave feedback on the spot, and it held up. Still rough — functional, not polished. The right people, at the right time. That's the sequence.
 
 - **Matt** — full accessibility overhaul, P0 through P2. VA Design System alignment: progress bars, alerts, buttons, card/list semantics, VA web components and fonts. Cognitive accessibility, responsive layout, 200% zoom, static assets, scan/camera capture, document upload refinement. Edited the demo videos.
 - **Regan and Tyson** — both veterans — used it as actual end users. They knew what the experience should feel like and where it fell short. No technical review substitutes for that. Regan also produced the demo videos.
@@ -293,26 +340,20 @@ You don't need a team to start. You need something for them to work with.
 
 ## 🧠 The mindset
 
-The AI is the engineering team. You are the product owner.
+You are the product owner. The AI is the engineering team. Act like it.
 
-- **Talk to it like a colleague.** Push back. Ask why. You'll build better things and understand what you built.
-- **Iterate in small steps.** One thing working beats five things halfway done.
+- **Ask questions before the AI touches anything.** Every time. Make it a habit.
 - **Don't panic when things break.** They will. Tell the AI what happened. It fixes things.
 - **Stay humble about what you don't know.** Running doesn't mean right, secure, or correct under all conditions.
-- **Think before you build.** Phase 1 is free. *(Technical people: especially you.)*
-- **If you have technical skills — use them.** Read the code. That knowledge doesn't become less valuable because the AI did the typing. *(Non-technical readers: this is why Phase 5 matters.)*
+- **Use what you know.** Your knowledge of the problem, the user, the output doesn't become less valuable because the AI did the work. *(That goes for both sides of the key up top.)*
 
 ---
 
 ## 🏁 Go build the thing
 
-Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.
+Most people stay stuck at "I wish someone would build something that..." — assuming the gap between idea and reality requires more than they have.[[13]](#13)[[14]](#14)
 
-It doesn't. Not anymore.
-
-You can start today. On your phone. Between whatever is happening in your life.
-
-Time is the one resource you can never get back. The question isn't whether you have enough — it's what you do with the pieces you actually have.
+It doesn't. Not anymore. You can start today. On your phone. Between whatever is happening in your life.
 
 **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)** — go use it. Then come build your own.
 
@@ -320,9 +361,9 @@ Questions or want to talk through your idea? Reach out directly.
 
 ---
 
-*Written on my phone, as a deliberate test case of what's possible right now. The entire build — from first idea to working POC — was done on my phone. Chores, waiting rooms, Lyft rides, the playground. The desktop only came out for the presentation, which is a slide deck and not a web application and therefore doesn't count.*
+*A guide about building an app, written by someone who doesn't build apps for a living. The entire build — from first idea to working POC — was done on a phone. Chores, waiting rooms, Lyft rides, the playground. The desktop only came out for the presentation, which is a slide deck and not an app and therefore doesn't count.*
 
-*A veteran friend tested the finished product on my phone while our kids played.*
+*A veteran friend tested it on my phone at the playground, gave feedback, got an update while his kid was still on the swings, and approved it on the spot. User testing doesn't usually work that fast. This did.*
 
 *That's the bar. You can clear it.*
 
@@ -330,66 +371,96 @@ Questions or want to talk through your idea? Reach out directly.
 
 ## 📚 Research & receipts
 
-I've spent three years following this space. I'm reasonably confident in these citations. I have not verified every one with the rigor I'd apply professionally — partly because I built this guide the same way I built the app: in stolen minutes, on my phone, between life.
-
-Which means this is a perfect opportunity to practice what this guide preaches: don't trust the AI's work without checking it. I did my part. Now it's your turn.
-
-*(The irony of citing research about AI overconfidence in its own reasoning, in a document partially produced by AI, is not lost on me.)*
-
-Check the quality and applicability yourself. That's not a disclaimer — it's the point.
+*Sourced by AI. Verified by you, apparently.*
 
 ---
 
 **On AI reasoning — what's actually happening under the hood**
 
-**[1]** Turpin et al., NeurIPS 2023 — *Language Models Don't Always Say What They Think*
+<a name="3"></a>**[3]** Turpin et al., NeurIPS 2023 — *Language Models Don't Always Say What They Think*
 https://arxiv.org/abs/2305.04388
 CoT explanations can systematically misrepresent the true reason for a model's prediction. Plausible, but not necessarily what drove the answer.
 
-**[2]** Anthropic Alignment Science, April 2025 — *Reasoning Models Don't Always Say What They Think*
+<a name="4"></a>**[4]** Anthropic Alignment Science, April 2025 — *Reasoning Models Don't Always Say What They Think*
 https://www.anthropic.com/research/reasoning-models-dont-say-think
 Claude 3.7 Sonnet mentioned a contextual hint in its chain-of-thought only 25% of the time. In reward-hacking scenarios, models admitted to the behavior less than 2% of the time.
-
-**[3]** Lanham et al., Anthropic, 2023 — *Measuring Faithfulness in Chain-of-Thought Reasoning*
-https://arxiv.org/abs/2307.13702
-Intervening on the reasoning chain changes model predictions in ways that show the stated reasoning isn't always load-bearing. Same conclusion, separate study.
-
----
-
-**On AI capability velocity**
-
-**[4]** Wijk et al., 2024 — *RE-Bench: Evaluating Frontier AI R&D Capabilities Against Human Experts*
-https://arxiv.org/abs/2411.15114
-AI agents scored 4x higher than human experts on structured ML engineering tasks at a 2-hour budget, generating and testing solutions over 10x faster. ML research engineering specifically — not general app development. The velocity gap is real. Extrapolate accordingly.
-
----
-
-**On AI-assisted development — productivity, risks, and human judgment**
-
-**[5]** Schmidt et al., 2024 — *Significant Productivity Gains through Programming with Large Language Models*
-https://dl.acm.org/doi/pdf/10.1145/3661145
-Productivity gains are real. The human's ability to evaluate and redirect output remains the variable.
-
-**[6]** Zhou et al., 2026 — *Cognitive Biases in LLM-Assisted Software Development*
-https://www.semanticscholar.org/paper/8592f852439d6b03788ef8ac0c1ddeaef738e4e7
-48.8% of programmer actions in LLM-assisted development were biased; LLM interactions drove 56.4% of those. Automation bias and over-reliance are the dominant failure modes. The study behind "the AI will confidently build the wrong thing" and "an AI that only agrees with you is a faster way to be wrong."
-
-**[7]** Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
-https://ieeexplore.ieee.org/document/11202778/
-Security vulnerabilities, hallucinations, and code quality issues in LLM-generated code. The study behind "the AI is not paranoid enough."
-
----
-
-**On non-technical users building with LLMs**
-
-**[8]** Calò & De Russis — *Leveraging Large Language Models for End-User Website Generation*
-https://link.springer.com/10.1007/978-3-031-34433-6_4
-End users generating functional websites with no programming background. The research basis for "you don't need a CS degree."
 
 ---
 
 **On system prompts and custom instructions**
 
-**[9]** Zhang et al., 2024 — *SPRIG: Improving Large Language Model Performance by System Prompt Optimization*
+<a name="1"></a>**[1]** Zhang et al., 2024 — *SPRIG: Improving Large Language Model Performance by System Prompt Optimization*
 https://arxiv.org/abs/2410.14826
 Optimized system prompts improve performance and generalize across model families, parameter sizes, and languages. Three years of custom instructions is not a quirk — it's documented.
+
+---
+
+**On AI-assisted development — bias, risks, and human judgment**
+
+<a name="2"></a>**[2]** Zhou et al., 2026 — *Cognitive Biases in LLM-Assisted Software Development*
+https://www.semanticscholar.org/paper/8592f852439d6b03788ef8ac0c1ddeaef738e4e7
+48.8% of programmer actions in LLM-assisted development were biased; LLM interactions drove 56.4% of those. Automation bias and over-reliance are the dominant failure modes. The study behind "the AI will confidently build the wrong thing" and "an AI that only agrees with you is a faster way to be wrong."
+
+<a name="12"></a>**[12]** Haque et al., 2025 — *Hallucinations and Security Risks in AI-Assisted Software Development*
+https://ieeexplore.ieee.org/document/11202778/
+Security vulnerabilities, hallucinations, and code quality issues in LLM-generated code. The study behind "the AI is not paranoid enough."
+
+---
+
+**On when to trust AI output**
+
+<a name="5"></a>**[5]** Steyvers et al., 2025 — *What Large Language Models Know and What People Think They Know*
+https://arxiv.org/abs/2401.13835
+Users consistently overestimate LLM accuracy when shown explanations. The gap between model confidence and actual accuracy is real and task-dependent. The basis for "trust it more when the task is specific and you can verify."
+
+---
+
+**On non-technical users building with LLMs**
+
+<a name="6"></a>**[6]** Calò & De Russis — *Leveraging Large Language Models for End-User Website Generation*
+https://link.springer.com/10.1007/978-3-031-34433-6_4
+End users generating functional apps with no programming background. The research basis for "you don't need a CS degree."
+
+---
+
+**On AI beyond coding — knowledge work, planning, ideation**
+
+<a name="7"></a>**[7]** Brachman et al., IBM Research, 2025 — *Current and Future Use of Large Language Models for Knowledge Work*
+https://arxiv.org/abs/2503.16774
+Survey of 216 knowledge workers: LLMs used heavily for writing, planning, summarizing, research — not just code. Productivity gains documented across non-coding tasks.
+
+<a name="8"></a>**[8]** Lim & Perrault, 2024 — *Rapid AIdeation: Generating Ideas With the Self and in Collaboration With Large Language Models*
+https://arxiv.org/abs/2403.12928
+AI produces greater variety of ideas; humans bring quality judgment to AI volume. The research basis for 2+2=8 — human and AI together produce what neither could alone.
+
+---
+
+**On the belief trap — why people don't start**
+
+<a name="14"></a>**[14]** Ma et al., 2024 — *Learning to Adopt Generative AI*
+https://arxiv.org/abs/2410.19806
+People who would benefit most from AI tools often underestimate their value before trying — opt out, miss the gains, stay stuck. The study behind "the gap between idea and reality requires less than you think."
+
+---
+
+**On messy input — why imperfect prompts still work**
+
+<a name="9"></a>**[9]** Galfre et al., 2025 — *Vision-Language Models for Sick Leave Certificates: Beyond OCR in Real-World Form Understanding*
+https://ieeexplore.ieee.org/document/11390982/
+VLMs tested on real-world documents received as smartphone photos or noisy scans, often with handwritten notes and signatures. VLMs outperform OCR pipelines — 89.6% accuracy on typed scans, superior handling of complex fields. The study behind "I've had it read barely legible handwritten faxes and pull the right information."
+
+<a name="10"></a>**[10]** Zhu et al., 2024 — *PromptRobust: Towards Evaluating the Robustness of Large Language Models on Adversarial Prompts*
+https://arxiv.org/abs/2306.04528
+Benchmarks LLM robustness against typos, synonyms, character/word/sentence-level perturbations. Modern LLMs maintain semantic understanding across noisy prompt variations. The study behind "the model works with signal, not polish."
+
+<a name="11"></a>**[11]** Singh et al., 2024 — *Robustness of LLMs to Perturbations in Text*
+https://arxiv.org/abs/2407.08989
+"Generative LLMs are quite robust to noisy perturbations in text." Minimal prompting achieves state-of-the-art on noisy benchmarks. Companion to [10].
+
+---
+
+**On adoption barriers**
+
+<a name="13"></a>**[13]** Raees et al., ACM 2026 — *"We Still Use Spreadsheets." Understanding Business Decision-Makers' Perceptions and Barriers to AI Analytics*
+https://dl.acm.org/doi/10.1145/3772363.3798820
+Non-technical professionals face real adoption barriers — skill gaps, intimidation, tool complexity. The barrier is largely perceived, not a ceiling.
