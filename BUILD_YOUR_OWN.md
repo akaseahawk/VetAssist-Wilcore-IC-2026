@@ -367,9 +367,7 @@ Questions or want to talk through your idea? Reach out directly.
 
 ## 📚 Research & receipts
 
-*(The irony of writing about not trusting AI in a document made with AI is not lost on me.)*
-
-I've spent three years following this space and I'm reasonably confident in these. Check them yourself — that's the point.
+*Sourced by AI. Verified by you, apparently.*
 
 ---
 
