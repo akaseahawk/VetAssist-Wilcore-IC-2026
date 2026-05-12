@@ -3,7 +3,7 @@
 
 > A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed.
 >
-> Almost all of this was done by voice. Talking into a phone. As life was happening.
+> Almost all of this was done by voice and screenshots. Talking into a phone, dropping images into chat. As life was happening.
 >
 > If you have an idea — technical background or not — this is for you.
 
@@ -76,7 +76,7 @@ Not 4 uninterrupted hours. 4 hours of stolen minutes — entirely on my phone.
 
 Between chores. Waiting rooms. The Lyft was late. Sitting at the playground between actually playing with my kid. A minute here, a few minutes there. Responsibly watching a child at a playground is not a perfect time to build an app. It turned out to be plenty of time.
 
-From first idea to working POC to showing it to a veteran friend while we watched our kids run around — all on my phone. Talking into it, mostly. Reviewing, directing, occasionally typing when the kid was asleep on me.
+From first idea to working POC to showing it to a veteran friend while we watched our kids run around — all on my phone. Talking into it, dropping in screenshots when I needed to show something, occasionally typing when the kid was asleep on me.
 
 He used it on my phone at the playground. On the spot. That's when I knew it was real.
 
@@ -92,7 +92,7 @@ Questions or want to talk through your own idea? Reach out directly.
 
 Anyone with an idea can do this. My background shaped how fast I moved. It also came with gaps. Both matter.
 
-I'm an AI engineer, data engineer, data scientist, and AI solution architect. Engineering background, management background. I write code as part of my job — but for this build I didn't touch the code directly. I said what to do. The AI did the typing. That was deliberate — partly to test what's actually possible with current tools when you direct entirely by voice and chat.
+I'm an AI engineer, data engineer, data scientist, and AI solution architect. Engineering background, management background. I write code as part of my job — but for this build I didn't touch the code directly. I said what to do, dropped in screenshots when I needed to show something, and the AI handled the rest. That was deliberate — partly to test what's actually possible when you direct entirely through voice and images, without ever editing a file yourself.
 
 What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've also spent three years developing the specific skill of working with AI — which is its own thing, and it shows in the output.
 
@@ -137,6 +137,7 @@ While I was doing dishes, pushing a kid on a swing, waiting for a Lyft — this 
 | What I was doing | What the AI was doing |
 |---|---|
 | Talking through my idea | Asking clarifying questions, pushing back, finding holes |
+| Dropping in a screenshot of broken UI | Reading it, diagnosing, fixing without me typing a word |
 | Describing a feature out loud | Writing code, wiring it to the backend, testing it |
 | Saying "that looks wrong" | Diagnosing, proposing a fix, explaining why |
 | Doing literally nothing | Building, deploying, verifying, documenting |
