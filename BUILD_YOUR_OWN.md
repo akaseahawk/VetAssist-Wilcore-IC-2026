@@ -5,7 +5,7 @@
 >
 > A guide about building an app, written by someone who doesn't build apps for a living — which turns out to be the point. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
-> Skeptical? Good. I got receipts. The app is live. Citations are science papers. No LinkedIn posts here. 
+> Skeptical? Good. I got receipts. The app is live. Citations are science papers. No LinkedIn posts here.
 >
 > **Who this is for:** Anyone with an idea — technical background or not
 >
@@ -71,7 +71,9 @@ flowchart TD
 
 ---
 
-A note on "technical" and "non-technical": it's the shorthand everyone uses, a false dichotomy, and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still hit the edges of both. The labels are a shorthand, not a verdict.
+A note on "technical" and "non-technical": it's the shorthand everyone uses, a false dichotomy, and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both.
+
+I have an engineering background and a management background and still hit the edges of both. The labels are a shorthand, not a verdict.
 
 ---
 
@@ -97,19 +99,19 @@ Questions or want to talk through your own idea? Reach out directly.
 
 ## 🪞 Who I am, and why that matters
 
-Anyone with an idea can do this. My background shaped how fast I moved. Where it ran out, the AI picked up. Both matter.
+Anyone with an idea can do this. My background shaped how fast I moved. Where my background ended, the AI picked up. Both matter.
 
 I sit at the technical/non-technical line by trade — AI, data, and healthcare. Which is probably why this guide exists.
 
 I write code as part of my job — but for this build I didn't touch the code directly. I said what to do, dropped in screenshots when I needed to show something, and the AI handled the rest. Deliberate — to test what's actually possible when you direct entirely through voice and images, without ever editing a file.
 
-What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even jailbreaked some models (it's own fun story), but not the instincts that come from years of shipping production apps.
+What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even pushed some models to their limits as part of the job (its own fun story), but not the instincts that come from years of shipping production apps.
 
-What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've also spent three years developing the specific skill of working with generative AI — which is its own thing, and it shows in the output.
+What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've spent three years specifically getting good at working with generative AI. It shows in the output.
 
-The AI closed most of it and magnified my strengths — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
+The AI covered what I couldn't and magnified what I could — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
 
-*(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You should be doing this in half the time. I'm genuinely not sure what's stopping you.)*
+*(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You could probably cut your story points in half — I think.)*
 
 ---
 
