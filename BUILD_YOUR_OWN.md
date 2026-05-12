@@ -109,7 +109,7 @@ AI compensated for most of the gaps and magnified my strengths — not perfectly
 
 ## ⚙️ Before you read this as "AI did everything" — it wasn't
 
-Three years of refining custom instructions that shape how any AI works with me — a personal operating agreement between me and the model, sometimes called a `CLAUDE.md` file or system prompt.[[3]](#3) Mine does three things:
+Three years of refining custom instructions that shape how any AI works with me — a personal operating agreement between me and the model, sometimes called a `CLAUDE.md` file or system prompt.[[3]](#3) Here's a sample:
 
 - **Numbered structured output** — everything is numbered hierarchically so I can say "2.3 is wrong" and we both know exactly what we're talking about. Small thing. Not a small thing.
 - **Show your work** — the AI shares what it's deciding and why, before acting. I get its reasoning, not just output — which I can agree with, correct, or redirect.
