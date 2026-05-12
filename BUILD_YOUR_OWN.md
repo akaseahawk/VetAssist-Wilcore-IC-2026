@@ -11,7 +11,7 @@
 
 ```mermaid
 flowchart TD
-    A["💡 You\nAn idea. Any background."] --> C
+    A["🧑 You\nAn idea. Any background."] --> C
     B["🤖 AI\nSpeed. Breadth. Execution."] --> C
     C["🏗️ Something real\nBuilt and deployed."] --> D
     D["🤝 Right people, right time\nDomain knowledge. Technical review. Fresh eyes."]
