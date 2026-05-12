@@ -64,7 +64,7 @@ flowchart TD
 
 ---
 
-A note on "technical" and "non-technical": it's the shorthand everyone uses and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still had gaps where both ran out. The labels are a shorthand, not a verdict.
+A note on "technical" and "non-technical": it's the shorthand everyone uses, a false dichotomy, and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still had gaps where both ran out. The labels are a shorthand, not a verdict.
 
 ---
 
