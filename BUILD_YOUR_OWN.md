@@ -9,10 +9,6 @@
 
 ---
 
-A note on "technical" and "non-technical": it's the shorthand everyone uses and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still had gaps where both ran out. The labels are a shorthand, not a verdict.
-
----
-
 ```mermaid
 flowchart TD
     A["💡 You\nAn idea. Any background."] --> C
@@ -32,7 +28,7 @@ flowchart TD
 
 ## Quick navigation
 
-**Key:** ⚡ Technical advantage &nbsp;|&nbsp; 💡 Non-technical advantage &nbsp;|&nbsp; *(no icon — no unfair advantage, meaning both benefit equally, which somewhat undermines the whole key)*
+**Key:** ⚡ Technical unfair advantage  |  💡 Non-technical unfair advantage  |  no icon = no advantage either way
 
 ---
 
@@ -66,19 +62,21 @@ flowchart TD
 
 ---
 
+A note on "technical" and "non-technical": it's the shorthand everyone uses and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still had gaps where both ran out. The labels are a shorthand, not a verdict.
+
+---
+
 ## 🕐 How this started
 
-Time is the one resource you can never get back.
+I built a working, deployed app in roughly 4 hours of actual effort spread across 2 days — entirely on my phone, between everything else happening in my life.
 
-I built a working, deployed app in roughly 4 hours of actual effort spread across 2 days.
+Not 4 uninterrupted hours. 4 hours of stolen minutes. Chores. Waiting rooms. The Lyft was late. Sitting at the playground while my kid ran around. Talking into my phone, dropping in screenshots, occasionally typing when the kid was asleep on me.
 
-Not 4 uninterrupted hours. 4 hours of stolen minutes — entirely on my phone.
+A veteran friend was at the playground that day. I handed him my phone and he tested the app right there — used it for real, gave me feedback on the spot. What worked, what didn't, what a veteran actually needs when navigating the VA. That was the moment. That was the "hell yes — let's get a team together and actually help people."
 
-Between chores. Waiting rooms. The Lyft was late. Sitting at the playground between actually playing with my kid. A minute here, a few minutes there. Responsibly watching a child at a playground is not a perfect time to build an app. It turned out to be plenty of time.
+(The winning-some-money part was also a factor. Being honest.)
 
-From first idea to working POC to showing it to a veteran friend while we watched our kids run around — all on my phone. Talking into it, dropping in screenshots when I needed to show something, occasionally typing when the kid was asleep on me.
-
-He used it on my phone at the playground. On the spot. That's when I knew it was real.
+Time is the one resource you can never get back — and almost none of this required a block of it.
 
 The app: **[vetassist-production.up.railway.app](https://vetassist-production.up.railway.app)** — go see what it does.
 
