@@ -3,7 +3,7 @@
 
 > **TL;DR** *(Too Long, Didn't Read — the part you read when you don't have time to read)*
 >
-> A guide about building an app, written by someone who doesn't build apps for a living — and who had real gaps that showed. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
+> A guide about building an app, written by someone who doesn't build apps for a living — which turns out to be the point. ~4 hours. A phone. Voice and screenshots, as life was happening. A veteran tested it live, gave feedback, got an update on the spot, and approved it. This guide is how.
 >
 > Skeptical? Good. I got receipts. The app is live. Citations are science papers. No LinkedIn posts here. 
 >
@@ -71,7 +71,7 @@ flowchart TD
 
 ---
 
-A note on "technical" and "non-technical": it's the shorthand everyone uses, a false dichotomy, and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still had gaps where both ran out. The labels are a shorthand, not a verdict.
+A note on "technical" and "non-technical": it's the shorthand everyone uses, a false dichotomy, and it mostly gets in the way. What actually matters is what you bring — can you evaluate what the AI produced, or do you know the problem from the inside? Most people are some of both. I have an engineering background and a management background and still hit the edges of both. The labels are a shorthand, not a verdict.
 
 ---
 
@@ -97,15 +97,17 @@ Questions or want to talk through your own idea? Reach out directly.
 
 ## 🪞 Who I am, and why that matters
 
-Anyone with an idea can do this. My background shaped how fast I moved. It also came with gaps. Both matter.
+Anyone with an idea can do this. My background shaped how fast I moved. Where it ran out, the AI picked up. Both matter.
 
-I'm an AI engineer, data engineer, data scientist, and AI solution architect. Engineering background, management background. I write code as part of my job — but for this build I didn't touch the code directly. I said what to do, dropped in screenshots when I needed to show something, and the AI handled the rest. Deliberate — to test what's actually possible when you direct entirely through voice and images, without ever editing a file.
+I sit at the technical/non-technical line by trade — AI, data, and healthcare. Which is probably why this guide exists.
 
-What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even jailbreaked some models (it's own fun story), but not the instincts that come from years of shipping production apps. Those gaps were real, and they showed.
+I write code as part of my job — but for this build I didn't touch the code directly. I said what to do, dropped in screenshots when I needed to show something, and the AI handled the rest. Deliberate — to test what's actually possible when you direct entirely through voice and images, without ever editing a file.
+
+What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even jailbreaked some models (it's own fun story), but not the instincts that come from years of shipping production apps.
 
 What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've also spent three years developing the specific skill of working with generative AI — which is its own thing, and it shows in the output.
 
-AI compensated for most of the gaps and magnified my strengths — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
+The AI closed most of it and magnified my strengths — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
 
 *(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You should be doing this in half the time. I'm genuinely not sure what's stopping you.)*
 
