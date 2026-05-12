@@ -98,7 +98,7 @@ What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-t
 
 What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've also spent three years developing the specific skill of working with generative AI — which is its own thing, and it shows in the output.
 
-AI compensated for most of the gaps and magnified my strengths — not perfectly, but well enough to ship something real. Then the right people came in. Phase 5 covers it.
+AI compensated for most of the gaps and magnified my strengths — not perfectly, but well enough to ship something real. Then the right people came in. [Phase 5](#-phase-5--dont-stop-at-it-works) covers it.
 
 *(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You should be doing this in half the time. I'm genuinely not sure what's stopping you.)*
 
@@ -169,7 +169,7 @@ Not zero-sum. The human brings judgment and domain knowledge. The AI brings spee
 | **GitHub** | Stores your code. Every change tracked. If something breaks, you go back. | Free |
 | **Railway** | Hosts your app live. Connects to GitHub — push code, app updates. | Free tier / ~$5/month always-on |
 
-**Realistic total to launch: $20–75.** The Anthropic credits are the variable — Phase 1 exists to keep that number down.
+**Realistic total to launch: $20–75.** The Anthropic credits are the variable — [Phase 1](#-phase-1--think-before-you-build) exists to keep that number down.
 
 ---
 
@@ -200,7 +200,7 @@ The most common mistake: building before the idea is solid. The AI will confiden
 
 **Do this phase outside Claude Code.** Perplexity Computer, Claude.ai, ChatGPT — free or close to it. Save the API credits for building.
 
-You can do all of Phase 1 on your phone. Waiting room. Walk. That's where most of VetAssist came from.
+You can do all of [Phase 1](#-phase-1--think-before-you-build) on your phone. Waiting room. Walk. That's where most of VetAssist came from.
 
 ### Have a real conversation with AI about your idea
 
@@ -227,7 +227,7 @@ Push it: *"What are the holes in this? What would a skeptical user say? What's t
 
 ### Hand it over as a summary
 
-Before Phase 2, ask the AI to summarize what it's heard — the idea, the user, the scope, the risks. Read it. Correct what's wrong. That's your handoff to Phase 3.
+Before [Phase 2](#-phase-2--set-up-your-tools-one-time), ask the AI to summarize what it's heard — the idea, the user, the scope, the risks. Read it. Correct what's wrong. That's your handoff to [Phase 3](#%EF%B8%8F-phase-3--build-it).
 
 ---
 
@@ -251,7 +251,7 @@ Perplexity Computer and Claude Code work together. You direct.
 
 ### Start the build
 
-Paste your Phase 1 summary into Perplexity Computer:
+Paste your [Phase 1](#-phase-1--think-before-you-build) summary into Perplexity Computer:
 
 > *"Before you start, ask me the questions you need to do this well."*
 
