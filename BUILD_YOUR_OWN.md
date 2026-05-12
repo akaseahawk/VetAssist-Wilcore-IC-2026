@@ -72,7 +72,7 @@ I built a working, deployed app in roughly 4 hours of actual effort spread acros
 
 Not 4 uninterrupted hours. 4 hours of stolen minutes. Chores. Waiting rooms. The Lyft was late. Sitting at the playground while my kid ran around. Talking into my phone, dropping in screenshots, occasionally typing when the kid was asleep on me.
 
-A veteran friend was at the playground that day. I handed him my phone and he tested the app right there — used it for real, gave me feedback on the spot. What worked, what didn't, what a veteran actually needs when navigating the VA. That was the moment. That was the "hell yes — let's get a team together and actually help people."
+A veteran friend was at the playground that day. I handed him my phone and he tested the app right there — used it for real, gave me feedback on the spot. What worked, what didn't, what a veteran actually needs when navigating the VA. I incorporated the feedback immediately, redeployed from the playground, and handed him the phone again. He was impressed. That was the moment. That was the "hell yes — let's get a team together and actually help people."
 
 (The winning-some-money part was also a factor. Being honest.)
 
@@ -350,7 +350,7 @@ Questions or want to talk through your idea? Reach out directly.
 
 *A guide about building an app, written by someone who doesn't build apps for a living. The entire build — from first idea to working POC — was done on a phone. Chores, waiting rooms, Lyft rides, the playground. The desktop only came out for the presentation, which is a slide deck and not an app and therefore doesn't count.*
 
-*A veteran friend tested it on my phone while our kids played.*
+*A veteran friend tested it on my phone at the playground, gave feedback, got an update while his kid was still on the swings, and approved it on the spot. User testing doesn't usually work that fast. This did.*
 
 *That's the bar. You can clear it.*
 
