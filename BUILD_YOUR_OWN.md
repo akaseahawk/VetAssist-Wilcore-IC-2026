@@ -94,11 +94,11 @@ Anyone with an idea can do this. My background shaped how fast I moved. It also 
 
 I'm an AI engineer, data engineer, data scientist, and AI solution architect. Engineering background, management background. I write code as part of my job — but for this build I didn't touch the code directly. I said what to do, dropped in screenshots when I needed to show something, and the AI handled the rest. Deliberate — to test what's actually possible when you direct entirely through voice and images, without ever editing a file.
 
-What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've also spent three years developing the specific skill of working with AI — which is its own thing, and it shows in the output.
+What I didn't have: I'm not an app developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data and AI, even jailbreaked some models (it's own fun story), but not the instincts that come from years of shipping production apps. Those gaps were real, and they showed.
 
-What I didn't have: I'm not a software developer. Not a DevOps engineer. Not a day-to-day UX practitioner. Not a contracts expert. Not a veteran trying to navigate the VA system — which is the actual user of what I built. I have fluency in data privacy, AI security, and prompt injection, but not the security instincts that come from years of shipping production software. Those gaps were real, and they showed.
+What I brought: I think in systems. I can spec a problem, identify failure modes, manage toward an outcome, and notice when the AI is confidently heading somewhere wrong. That's engineering and management training working together. I've also spent three years developing the specific skill of working with generative AI — which is its own thing, and it shows in the output.
 
-AI compensated for most of the gaps — not perfectly, but well enough to ship something real. Then the right people came in. Phase 5 covers it.
+AI compensated for most of the gaps and magnified my strengths — not perfectly, but well enough to ship something real. Then the right people came in. Phase 5 covers it.
 
 *(Software developers reading this: you have every advantage I have, plus you can actually read the code and know if it's right. You should be doing this in half the time. I'm genuinely not sure what's stopping you.)*
 
