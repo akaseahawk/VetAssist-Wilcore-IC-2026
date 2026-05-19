@@ -318,7 +318,7 @@ Working is the beginning.
 
 The MVP worked. A veteran used it, gave feedback on the spot, and it held up. Still rough — functional, not polished. The right people, at the right time. That's the sequence.
 
-- **Matt** — full accessibility overhaul, P0 through P2. VA Design System alignment: progress bars, alerts, buttons, card/list semantics, VA web components and fonts. Cognitive accessibility, responsive layout, 200% zoom, static assets, scan/camera capture, document upload refinement. Edited the demo videos.
+- **Matt** — full accessibility overhaul, P0 through P2. VA Design System alignment, Cognitive accessibility, responsive layout, 200% zoom, static assets, scan/camera capture, document upload refinement. Edited the demo videos.
 - **Regan and Tyson** — both veterans — used it as actual end users. They knew what the experience should feel like and where it fell short. No technical review substitutes for that. Regan also produced the demo videos.
 - **Andrew** — reviewed contract viability. Whether this could go somewhere in a government context. Mattered.
 - **Selia** — reviewed the presentation. Fresh eyes on whether it landed.
