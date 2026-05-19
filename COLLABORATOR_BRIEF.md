@@ -1,6 +1,9 @@
 # VetAssist — Collaborator Brief
 
-**Wilcore Innovation Challenge | April 20–27, 2026**
+**Wilcore Innovation Challenge | Submitted April 27, 2026 — Challenge Complete**
+
+> This brief was written during the challenge window to recruit collaborators.
+> The app is live, the submission is in, and the team delivered. Preserved here for context.
 
 Hey — I'm building something for the challenge and wanted to show you what it is
 before asking if you're interested in jumping in. Read this first, then decide.
@@ -240,21 +243,21 @@ architecture Q&A prep, clean install verification.
 
 ## What the week looks like
 
-| Day | Goal |
+| Day | What happened |
 |-----|------|
-| Mon Apr 20 | Challenge opens — decide if you're in, run the app locally |
-| Tue–Wed | Frontend: UI pass. Engineering: code review + upload flow test |
-| Thu | Full demo run-through, catch anything broken |
-| Fri | Record video demo, finalize submission materials |
-| Mon Apr 27 | Deadline 11:59 PM ET |
+| Mon Apr 20 | Challenge opened — team formed, app scaffolded |
+| Tue–Wed | Frontend UI pass. Engineering: code review + upload flow |
+| Thu | Full demo run-through, accessibility overhaul (Matt) |
+| Fri | Demo recorded, submission materials finalized |
+| Mon Apr 27 | Submitted 11:59 PM ET — delivered. |
 
 ---
 
 ## Getting it running (takes 3 minutes)
 
 ```bash
-git clone https://github.com/akaseahawk/VetAssist
-cd VetAssist
+git clone https://github.com/akaseahawk/VetAssist-Wilcore-IC-2026
+cd VetAssist-Wilcore-IC-2026
 pip install -r requirements.txt
 python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 # open http://localhost:8000
