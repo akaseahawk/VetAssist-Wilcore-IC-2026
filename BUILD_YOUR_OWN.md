@@ -148,8 +148,8 @@ While I was doing dishes, pushing a kid on a swing, waiting for a Lyft — this 
 
 What that actually looked like on my phone:
 
-![Perplexity Computer working — task list sprint](assets/perplexity-working-1-sharp.png)
-![Perplexity Computer working — editing code files](assets/perplexity-working-2-sharp.png)
+![Perplexity Computer working — task list sprint](assets/VetAssist%20Perplexity%20Computer%20Screenshot_0.jpg))
+![Perplexity Computer working — editing code files](assets/VetAssist%20Perplexity%20Computer%20Screenshot_1.jpg)
 
 You're not doing the work in the traditional sense. You're directing it. There's a meaningful difference — and real responsibility that comes with it.
 
