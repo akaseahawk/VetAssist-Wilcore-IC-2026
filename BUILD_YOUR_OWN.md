@@ -11,7 +11,7 @@
 >
 > **Stack:** Perplexity Computer · Claude Code · GitHub · Railway
 >
-> **Cost to launch:** $20–75
+> **Cost to launch:** $20–50
 >
 > **Proof:** [vetassist-production.up.railway.app](https://vetassist-production.up.railway.app) · [Research & receipts](#-research--receipts)
 
@@ -51,7 +51,7 @@ flowchart TD
 
 ✅ [The honest truth up front](#-the-honest-truth-up-front) — 💡 What you actually need. And the zero-sum myth.
 
-🛠️ [The tools and what they cost](#%EF%B8%8F-the-tools-and-what-they-cost) — Four tools. Under $75.
+🛠️ [The tools and what they cost](#%EF%B8%8F-the-tools-and-what-they-cost) — Four tools. Under $50.
 
 📋 [Phase 1 — Think before you build](#-phase-1--think-before-you-build) — The cheapest and most important phase.
 
@@ -180,7 +180,7 @@ Not zero-sum. The human brings judgment and domain knowledge. The AI brings spee
 | **GitHub** | Stores your code. Every change tracked. If something breaks, you go back. | Free |
 | **Railway** | Hosts your app live. Connects to GitHub — push code, app updates. | Free tier / ~$5/month always-on |
 
-**Realistic total to launch: $20–75.** The Anthropic credits are the variable — [Phase 1](#-phase-1--think-before-you-build) exists to keep that number down.
+**Realistic total to launch: $20–50.** The Anthropic credits are the variable — [Phase 1](#-phase-1--think-before-you-build) exists to keep that number down.
 
 ---
 
